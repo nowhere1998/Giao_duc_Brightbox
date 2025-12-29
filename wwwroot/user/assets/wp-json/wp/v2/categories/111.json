@@ -1,0 +1,6 @@
+
+
+
+
+
+{"id":111,"count":13,"description":"","link":"https:\/\/inno.com.vn\/support\/","name":"Th\u00f4ng tin h\u1ed7 tr\u1ee3","slug":"support","taxonomy":"category","parent":0,"meta":[],"acf":[],"_links":{"self":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/categories\/111","targetHints":{"allow":["GET"]}}],"collection":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/taxonomies\/category"}],"wp:post_type":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/posts?categories=111"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}

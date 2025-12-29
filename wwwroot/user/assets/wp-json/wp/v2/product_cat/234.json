@@ -1,0 +1,6 @@
+
+
+
+
+
+{"id":234,"count":9,"description":"","link":"https:\/\/inno.com.vn\/man-hinh-hien-thi-thong-tin\/","name":"M\u00e0n h\u00ecnh hi\u1ec3n th\u1ecb th\u00f4ng tin","slug":"man-hinh-hien-thi-thong-tin","taxonomy":"product_cat","parent":226,"meta":[],"acf":[],"_links":{"self":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/product_cat\/234","targetHints":{"allow":["GET"]}}],"collection":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/product_cat"}],"about":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/taxonomies\/product_cat"}],"up":[{"embeddable":true,"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/product_cat\/226"}],"wp:post_type":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/product?product_cat=234"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}

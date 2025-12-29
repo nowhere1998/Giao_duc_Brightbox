@@ -1,0 +1,92 @@
+﻿@model MyShop.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container py-4">
+
+    <!-- TITLE -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold text-uppercase text-primary">
+            Chỉnh sửa người dùng
+        </h4>
+    </div>
+
+    <!-- FORM -->
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input asp-for="Id" type="hidden" />
+        <!-- ROW 1 -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="Username" class="form-label fw-semibold"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Email" class="form-label fw-semibold"></label>
+                <input asp-for="Email" type="text" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- ROW 2 -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Mật khẩu mail gửi</label>
+                <input type="password"
+                       name="PasswordHash"
+                       class="form-control"
+                       placeholder="Nhập mật khẩu mới (để trống nếu không đổi)">
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="FullName" class="form-label fw-semibold"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="Role" class="form-label fw-semibold"></label>
+                <select asp-for="Role" class="form-select">
+                    <option value="1">Quản trị viên</option>
+                    <option value="0">Người dùng</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Status" class="form-label fw-semibold"></label>
+                <select asp-for="Status" class="form-select">
+                    <option value="1">Hoạt động</option>
+                    <option value="0">Khoá</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Actions bottom -->
+        <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-success mr-2">
+                <i class="fas fa-save"></i> Lưu lại
+            </button>
+            <a asp-action="Index" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Trở lại
+            </a>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

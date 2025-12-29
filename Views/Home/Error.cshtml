@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Lỗi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var code = ViewBag.StatusCode ?? 404;
+}
+
+<main class="error-wrapper">
+    <div class="error-card">
+        <div class="error-code">@ViewBag.StatusCode</div>
+
+        <h1 class="error-title">
+            Oops! Có lỗi xảy ra
+        </h1>
+
+        <p class="error-desc">
+            Trang bạn đang truy cập không tồn tại hoặc đã bị xóa.<br />
+            Vui lòng kiểm tra lại đường dẫn.
+        </p>
+
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">🏠 Trang chủ</a>
+            <a href="javascript:history.back()" class="btn btn-outline">⬅ Quay lại</a>
+        </div>
+    </div>
+</main>
+@section Styles {
+    <style>
+        .error-wrapper {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 14px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .error-code {
+            font-size: 72px;
+            font-weight: 700;
+            color: #ff4d4f;
+            margin-bottom: 10px;
+        }
+
+        .error-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .error-desc {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .error-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: #1677ff;
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background: #0958d9;
+            }
+
+        .btn-outline {
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+            .btn-outline:hover {
+                background: #f5f5f5;
+            }
+    </style>
+}

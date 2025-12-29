@@ -1,0 +1,208 @@
+﻿@model IEnumerable<MyShop.Models.News>
+@using System.Text.RegularExpressions
+@{
+	ViewData["Title"] = "Tin tức";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="">
+
+	<div id="content" class="blog-wrapper blog-archive page-wrapper">
+
+
+		<div class="row row-large row-divided ">
+
+			<div class="large-9 col">
+
+
+
+				<div class="row large-columns-1 medium-columns- small-columns-1">
+					@* list tin tức *@
+					@if (Model.Any())
+					{
+						@foreach (News n in Model)
+						{
+							<div class="col post-item">
+								<div class="col-inner">
+									<div class="box box-vertical box-text-bottom box-blog-post has-hover">
+										<div class="box-image" style="width:40%;">
+											<div class="image-cover" style="padding-top:56%;">
+												<a href="/chi-tiet-tin-tuc/@n.Slug" class="plain" aria-label="INNO Việt Nam tham dự Hội nghị Chuyển đổi số trong Giáo dục và Đào tạo 2025 của Bộ GD&#038;ĐT">
+													<img width="600" height="400" src="@n.Hinhanh" class="attachment-medium size-medium wp-post-image" alt="@n.Title" decoding="async" loading="lazy" />
+												</a>
+											</div>
+										</div>
+										<div class="box-text text-left">
+											<div class="box-text-inner blog-post-inner">
+
+
+												<h5 class="post-title is-large ">
+													<a href="/chi-tiet-tin-tuc/@n.Slug" class="plain">@n.Title</a>
+												</h5>
+												<div class="is-divider"></div>
+												<p class="from_the_blog_excerpt" style="white-space:normal; word-break: break-word">
+													@{
+														var html = n.Content ?? "";
+														var text = Regex.Replace(html, "<.*?>", "").Trim();
+
+														var maxLength = 150;
+														if (text.Length > maxLength)
+														{
+															var cut = text.Substring(0, maxLength);
+															var lastSpace = cut.LastIndexOf(" ");
+
+															if (lastSpace > 0)
+															{
+																text = cut.Substring(0, lastSpace) + "...";
+															}
+															else
+															{
+																text = cut + "...";
+															}
+														}
+													}
+													@text
+												</p>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+					}
+					else
+					{
+						<p>Tin tức đang cập nhật ...</p>
+					}
+					@* end list tin tức *@
+
+				</div>
+				@if (ViewBag.TotalPages > 1)
+				{
+					<ul class="page-numbers nav-pagination links text-center">
+
+						@* Prev *@
+						@if (ViewBag.CurrentPage > 1)
+						{
+							<li>
+								<a class="prev page-number" href="/tin-tuc/page/@(ViewBag.CurrentPage - 1)">
+									<i class="icon-angle-left"></i>
+								</a>
+							</li>
+						}
+
+						@for (int i = 1; i <= ViewBag.TotalPages; i++)
+						{
+							if (i == ViewBag.CurrentPage)
+							{
+								<li>
+									<span class="page-number current">@i</span>
+								</li>
+							}
+							else
+							{
+								<li>
+									<a class="page-number" href="/tin-tuc/page/@i">@i</a>
+								</li>
+							}
+						}
+
+						@* Next *@
+						@if (ViewBag.CurrentPage < ViewBag.TotalPages)
+						{
+							<li>
+								<a class="next page-number" href="/tin-tuc/page/@(ViewBag.CurrentPage + 1)">
+									<i class="icon-angle-right"></i>
+								</a>
+							</li>
+						}
+					</ul>
+				}
+			</div>
+			<div class="post-sidebar large-3 col">
+				<div class="is-sticky-column" data-sticky-mode="javascript">
+					<div class="is-sticky-column__inner">
+						<div id="secondary" class="widget-area " role="complementary">
+							@* <aside id="flatsome_recent_posts-17" class="widget flatsome_recent_posts">
+								<span class="widget-title "><span>Bài viết đã xem</span></span><div class="is-divider small"></div>
+								<ul>
+
+									<li class="recent-blog-posts-li">
+										<div class="flex-row recent-blog-posts align-top pt-half pb-half">
+											<div class="flex-col mr-half">
+												<div class="badge post-date  badge-outline">
+													<div class="badge-inner bg-fill" style="background: url(https://inno.com.vn/wp-content/uploads/2025/12/ZAN_6058-280x280.webp); border:0;">
+													</div>
+												</div>
+											</div>
+											<div class="flex-col flex-grow">
+												<a href="https://inno.com.vn/inno-viet-nam-tham-du-hoi-nghi-chuyen-doi-so-trong-giao-duc-va-dao-tao-2025-cua-bo-gddt/" title="INNO Việt Nam tham dự Hội nghị Chuyển đổi số trong Giáo dục và Đào tạo 2025 của Bộ GD&#038;ĐT">INNO Việt Nam tham dự Hội nghị Chuyển đổi số trong Giáo dục và Đào tạo 2025 của Bộ GD&#038;ĐT</a>
+												<span class="post_comments op-7 block is-xsmall"><a href="https://inno.com.vn/inno-viet-nam-tham-du-hoi-nghi-chuyen-doi-so-trong-giao-duc-va-dao-tao-2025-cua-bo-gddt/#respond"></a></span>
+											</div>
+										</div>
+									</li>
+
+
+									<li class="recent-blog-posts-li">
+										<div class="flex-row recent-blog-posts align-top pt-half pb-half">
+											<div class="flex-col mr-half">
+												<div class="badge post-date  badge-outline">
+													<div class="badge-inner bg-fill" style="background: url(https://inno.com.vn/wp-content/uploads/2025/11/POST-Quan-ly-thu-vien-truong-THPT-hieu-qua-voi-phan-mem-quan-ly-thu-vien-hien-dai-280x280.webp); border:0;">
+													</div>
+												</div>
+											</div>
+											<div class="flex-col flex-grow">
+												<a href="https://inno.com.vn/quan-ly-thu-vien-truong-thpt-hieu-qua/" title="Quản lý thư viện trường THPT hiệu quả với phần mềm quản lý thư viện hiện đại">Quản lý thư viện trường THPT hiệu quả với phần mềm quản lý thư viện hiện đại</a>
+												<span class="post_comments op-7 block is-xsmall"><a href="https://inno.com.vn/quan-ly-thu-vien-truong-thpt-hieu-qua/#respond"></a></span>
+											</div>
+										</div>
+									</li>
+
+								</ul>
+							</aside> *@
+							<aside id="recent-posts-9" class="widget widget_recent_entries">
+								<span class="widget-title "><span>Bài viết mới đăng</span></span><div class="is-divider small"></div>
+								<ul>
+									@foreach (var np in ViewBag.NewPosts)
+									{
+										<li class="recent-blog-posts-li">
+											<div class="flex-row recent-blog-posts align-top pt-half pb-half">
+												<div class="flex-col mr-half">
+													<div class="badge post-date  badge-outline">
+														<div class="badge-inner bg-fill" style="background: url('@np.Hinhanh'); border:0;">
+														</div>
+													</div>
+												</div>
+												<div class="flex-col flex-grow">
+													<a href="/chi-tiet-tin-tuc/@np.Slug" title="@np.Title">@np.Title</a>
+												</div>
+											</div>
+										</li>
+									}
+								</ul>
+
+							</aside>
+							@* <aside id="tag_cloud-9" class="widget widget_tag_cloud">
+								<span class="widget-title "><span>Tag Cloud</span></span><div class="is-divider small"></div><div class="tagcloud">
+									<a href="https://inno.com.vn/tag/cong-an-ninh-thu-vien/" class="tag-cloud-link tag-link-195 tag-link-position-1" style="font-size: 8pt;" aria-label="Cổng an ninh thư viện (1 mục)">Cổng an ninh thư viện</a>
+									<a href="https://inno.com.vn/tag/etv-series/" class="tag-cloud-link tag-link-193 tag-link-position-2" style="font-size: 8pt;" aria-label="ETV Series (1 mục)">ETV Series</a>
+									<a href="https://inno.com.vn/tag/inventory/" class="tag-cloud-link tag-link-199 tag-link-position-3" style="font-size: 8pt;" aria-label="inventory (1 mục)">inventory</a>
+									<a href="https://inno.com.vn/tag/kiosk-muon-tra-tu-phuc-vu/" class="tag-cloud-link tag-link-194 tag-link-position-4" style="font-size: 22pt;" aria-label="kiosk mượn trả tự phục vụ (2 mục)">kiosk mượn trả tự phục vụ</a>
+									<a href="https://inno.com.vn/tag/man-hinh-cho-giao-duc/" class="tag-cloud-link tag-link-192 tag-link-position-5" style="font-size: 8pt;" aria-label="Màn hình cho giáo dục (1 mục)">Màn hình cho giáo dục</a>
+									<a href="https://inno.com.vn/tag/man-hinh-hien-thi/" class="tag-cloud-link tag-link-191 tag-link-position-6" style="font-size: 8pt;" aria-label="Màn hình hiển thị (1 mục)">Màn hình hiển thị</a>
+									<a href="https://inno.com.vn/tag/tivi-giao-duc/" class="tag-cloud-link tag-link-190 tag-link-position-7" style="font-size: 8pt;" aria-label="Tivi giáo dục (1 mục)">Tivi giáo dục</a>
+									<a href="https://inno.com.vn/tag/tram-thu-thu/" class="tag-cloud-link tag-link-197 tag-link-position-8" style="font-size: 8pt;" aria-label="Trạm thủ thư (1 mục)">Trạm thủ thư</a>
+									<a href="https://inno.com.vn/tag/tu-sach-thong-minh/" class="tag-cloud-link tag-link-189 tag-link-position-9" style="font-size: 8pt;" aria-label="Tủ sách thông minh (1 mục)">Tủ sách thông minh</a>
+									<a href="https://inno.com.vn/tag/xe-kiem-ke/" class="tag-cloud-link tag-link-198 tag-link-position-10" style="font-size: 8pt;" aria-label="Xe kiểm kê (1 mục)">Xe kiểm kê</a>
+								</div>
+							</aside> *@
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</main>

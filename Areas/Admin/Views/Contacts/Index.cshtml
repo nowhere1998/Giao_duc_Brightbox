@@ -1,0 +1,140 @@
+﻿@model IEnumerable<MyShop.Models.Contact>
+
+@{
+    ViewData["Title"] = "Danh sách liên hệ";
+}
+
+<body class="bg-light">
+
+    <main class="py-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="text-primary">Danh sách liên hệ</h3>
+        </div>
+        <form method="get"
+              asp-area="Admin"
+              asp-controller="Contacts"
+              asp-action="Index"
+              class="mb-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <!-- nút submit là icon search -->
+                    <button type="submit" class="btn btn-primary" title="Tìm kiếm">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <input type="text"
+                       name="name"
+                       value="@ViewBag.searchName"
+                       class="form-control"
+                       placeholder="Tìm theo tên..." />
+            </div>
+        </form>
+        <table class="table table-hover align-middle" style="border-collapse:collapse;">
+            <thead class="table-primary">
+                <tr style="border-bottom:2px solid #cfd4da;">
+                    <th>@Html.DisplayNameFor(m => m.First().FullName)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().Email)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().Phone)</th>
+                    <th>@Html.DisplayNameFor(m => m.First().Message)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr style="border-bottom:1px solid #dee2e6;">
+                        <td>@item.FullName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Phone</td>
+                        <td>
+                            @(string.IsNullOrEmpty(item.Message)
+                                                    ? ""
+                                                    : item.Message.Length > 10
+                                                    ? item.Message.Substring(0, 10) + "..."
+                                                    : item.Message)
+
+                        @if (!string.IsNullOrEmpty(item.Message) && item.Message.Length > 50)
+                            {
+                                <a href="javascript:void(0)"
+                                   class="ms-2 text-primary text-decoration-none"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#messageModal"
+                                   data-name="@item.FullName"
+                                   data-email="@item.Email"
+                                   data-message="@item.Message">
+                                    Xem
+                                </a>
+
+                            }
+                        </td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+
+                @if (ViewBag.Page > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { name = ViewBag.searchName, page = ViewBag.Page - 1 })">«</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { name = ViewBag.searchName, page = i })">@i</a>
+                    </li>
+                }
+
+                @if (ViewBag.Page < ViewBag.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { name = ViewBag.searchName, page = ViewBag.Page + 1 })">»</a>
+                    </li>
+                }
+
+            </ul>
+        </nav>
+    </main>
+    <div class="modal fade" id="messageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi tiết tin nhắn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p><strong>Họ tên:</strong> <span id="modalName"></span></p>
+                    <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+                    <hr />
+                    <p><strong>Nội dung:</strong></p>
+                    <div class="border rounded p-3 bg-light"
+                         style="white-space: pre-wrap; text-align: left;">
+                        <span id="modalMessage"></span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var messageModal = document.getElementById('messageModal');
+        messageModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+
+            document.getElementById('modalName').innerText = button.getAttribute('data-name');
+            document.getElementById('modalEmail').innerText = button.getAttribute('data-email');
+            document.getElementById('modalMessage').innerText = button.getAttribute('data-message');
+        });
+    </script>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

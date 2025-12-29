@@ -1,0 +1,6 @@
+
+
+
+
+
+{"id":16,"count":9,"description":"","link":"https:\/\/inno.com.vn\/uncategorized\/","name":"Uncategorized","slug":"uncategorized","taxonomy":"product_cat","parent":0,"meta":[],"acf":[],"_links":{"self":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/product_cat\/16","targetHints":{"allow":["GET"]}}],"collection":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/product_cat"}],"about":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/taxonomies\/product_cat"}],"wp:post_type":[{"href":"https:\/\/inno.com.vn\/wp-json\/wp\/v2\/product?product_cat=16"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}
