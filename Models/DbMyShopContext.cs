@@ -17,45 +17,97 @@ public partial class DbMyShopContext : DbContext
 
     public virtual DbSet<Advertise> Advertises { get; set; }
 
-    public virtual DbSet<Branch> Branches { get; set; }
+    public virtual DbSet<CateRss> CateRsses { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
+
+    public virtual DbSet<Comment> Comments { get; set; }
 
     public virtual DbSet<Config> Configs { get; set; }
 
     public virtual DbSet<Contact> Contacts { get; set; }
 
-    public virtual DbSet<Customer> Customers { get; set; }
+    public virtual DbSet<Document> Documents { get; set; }
 
-    public virtual DbSet<Dealer> Dealers { get; set; }
+    public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+
+    public virtual DbSet<DocumentTypeUser> DocumentTypeUsers { get; set; }
+
+    public virtual DbSet<Feedback> Feedbacks { get; set; }
+
+    public virtual DbSet<GroupLibrary> GroupLibraries { get; set; }
+
+    public virtual DbSet<GroupLibraryUser> GroupLibraryUsers { get; set; }
+
+    public virtual DbSet<GroupMember> GroupMembers { get; set; }
 
     public virtual DbSet<GroupNews> GroupNews { get; set; }
 
+    public virtual DbSet<GroupNewsUser> GroupNewsUsers { get; set; }
+
+    public virtual DbSet<GroupSupport> GroupSupports { get; set; }
+
+    public virtual DbSet<Language> Languages { get; set; }
+
+    public virtual DbSet<Library> Libraries { get; set; }
+
+    public virtual DbSet<Link> Links { get; set; }
+
+    public virtual DbSet<ListDangkyhocCackhoa> ListDangkyhocCackhoas { get; set; }
+
+    public virtual DbSet<Member> Members { get; set; }
+
+    public virtual DbSet<Module> Modules { get; set; }
+
     public virtual DbSet<News> News { get; set; }
-
-    public virtual DbSet<Order> Orders { get; set; }
-
-    public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
     public virtual DbSet<Page> Pages { get; set; }
 
+    public virtual DbSet<Permission> Permissions { get; set; }
+
+    public virtual DbSet<PhieuDk> PhieuDks { get; set; }
+
+    public virtual DbSet<Post> Posts { get; set; }
+
     public virtual DbSet<Product> Products { get; set; }
 
-    public virtual DbSet<ProductImage> ProductImages { get; set; }
+    public virtual DbSet<Staff> Staff { get; set; }
 
-    public virtual DbSet<ProductSpec> ProductSpecs { get; set; }
+    public virtual DbSet<Support> Supports { get; set; }
+
+    public virtual DbSet<TbCounter> TbCounters { get; set; }
+
+    public virtual DbSet<TbGiatriDangky> TbGiatriDangkies { get; set; }
+
+    public virtual DbSet<TbSukien> TbSukiens { get; set; }
+
+    public virtual DbSet<TbTtdangky> TbTtdangkies { get; set; }
+
+    public virtual DbSet<TbValueCombo> TbValueCombos { get; set; }
+
+    public virtual DbSet<Toggle> Toggles { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserGroup> UserGroups { get; set; }
+
+    public virtual DbSet<Vote> Votes { get; set; }
+
+    public virtual DbSet<VoteDetail> VoteDetails { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=LAPTOPCUATHAI\\SQLEXPRESS2014;Database=BrightBox;uid=LucVanThai;pwd=toikhongbiet;MultipleActiveResultSets=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Advertise>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__advertis__3214EC079BF6AF2C");
+            entity.HasKey(e => e.Id).HasName("PRK_Advertise_Id");
 
-            entity.ToTable("advertise");
+            entity.ToTable("Advertise");
 
+            entity.Property(e => e.Active).HasDefaultValue(true);
             entity.Property(e => e.Content).HasColumnType("ntext");
             entity.Property(e => e.Image)
                 .HasMaxLength(255)
@@ -72,64 +124,86 @@ public partial class DbMyShopContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<Branch>(entity =>
+        modelBuilder.Entity<CateRss>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__branches__3213E83F82F95A1E");
+            entity.ToTable("CateRSS");
 
-            entity.ToTable("branches");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Address).HasColumnName("address");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Email)
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Active).HasColumnName("active");
+            entity.Property(e => e.Beginstring)
                 .HasMaxLength(255)
-                .HasColumnName("email");
-            entity.Property(e => e.Name)
+                .HasColumnName("beginstring");
+            entity.Property(e => e.Cateid).HasColumnName("cateid");
+            entity.Property(e => e.Endstring)
                 .HasMaxLength(255)
-                .HasColumnName("name");
-            entity.Property(e => e.Phone)
-                .HasMaxLength(100)
-                .HasColumnName("phone");
-            entity.Property(e => e.Region)
-                .HasMaxLength(100)
-                .HasColumnName("region");
+                .HasColumnName("endstring");
+            entity.Property(e => e.Imgfolderpath)
+                .HasMaxLength(255)
+                .HasColumnName("imgfolderpath");
+            entity.Property(e => e.Rsslink).HasMaxLength(255);
+            entity.Property(e => e.Source)
+                .HasMaxLength(255)
+                .HasColumnName("source");
+            entity.Property(e => e.Ulrimgnew)
+                .HasMaxLength(255)
+                .HasColumnName("ulrimgnew");
+            entity.Property(e => e.Urlimg)
+                .HasMaxLength(255)
+                .HasColumnName("urlimg");
+            entity.Property(e => e.Urlimgold)
+                .HasMaxLength(255)
+                .HasColumnName("urlimgold");
+            entity.Property(e => e.Urlimgupdate)
+                .HasMaxLength(255)
+                .HasColumnName("urlimgupdate");
         });
 
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83F9AF502C7");
+            entity.HasKey(e => e.Id).HasName("PRK_Category_Id");
 
-            entity.ToTable("categories");
+            entity.ToTable("Category", tb => tb.HasTrigger("tg_Update_Level_Category"));
 
-            entity.HasIndex(e => e.Slug, "UQ__categori__32DD1E4CEB8EB851").IsUnique();
+            entity.Property(e => e.Description).HasMaxLength(256);
+            entity.Property(e => e.Image)
+                .HasMaxLength(256)
+                .HasDefaultValueSql("((0))");
+            entity.Property(e => e.Keyword).HasMaxLength(512);
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Level)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Tag).HasMaxLength(256);
+            entity.Property(e => e.Title).HasMaxLength(256);
+        });
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Name)
-                .HasMaxLength(255)
-                .HasColumnName("name");
-            entity.Property(e => e.ParentId).HasColumnName("parent_id");
-            entity.Property(e => e.Slug)
-                .HasMaxLength(255)
-                .HasColumnName("slug");
-            entity.Property(e => e.UpdatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
+        modelBuilder.Entity<Comment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Comment_Id");
 
-            entity.HasOne(d => d.Parent).WithMany(p => p.InverseParent)
-                .HasForeignKey(d => d.ParentId)
-                .HasConstraintName("fk_categories_parent");
+            entity.ToTable("Comment");
+
+            entity.Property(e => e.Address).HasMaxLength(256);
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.Email).HasMaxLength(256);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Phone).HasMaxLength(50);
+
+            entity.HasOne(d => d.News).WithMany(p => p.Comments)
+                .HasForeignKey(d => d.NewsId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Comment_NewsId");
         });
 
         modelBuilder.Entity<Config>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__config__3214EC072A02F346");
+            entity.HasKey(e => e.Id).HasName("PRK_Config_Id");
 
-            entity.ToTable("config");
+            entity.ToTable("Config");
 
             entity.Property(e => e.Contact).HasColumnType("ntext");
             entity.Property(e => e.Copyright).HasColumnType("ntext");
@@ -205,100 +279,170 @@ public partial class DbMyShopContext : DbContext
 
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__contacts__3213E83FFF2CA1B5");
+            entity.HasKey(e => e.Id).HasName("PRK_Contact_Id");
 
-            entity.ToTable("contacts");
+            entity.ToTable("Contact");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Message)
-                .HasMaxLength(500)
-                .HasColumnName("message");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Email)
-                .HasMaxLength(255)
-                .HasColumnName("email");
-            entity.Property(e => e.FullName)
-                .HasMaxLength(255)
-                .HasColumnName("full_name");
-            entity.Property(e => e.Phone)
+            entity.Property(e => e.Address).HasMaxLength(512);
+            entity.Property(e => e.Code)
                 .HasMaxLength(50)
-                .HasColumnName("phone");
-            entity.Property(e => e.Status)
-                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Company).HasMaxLength(512);
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Mail)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Tel)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Document>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Document_Id");
+
+            entity.ToTable("Document");
+
+            entity.Property(e => e.Code)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.CreateDate).HasColumnType("datetime");
+            entity.Property(e => e.EffectiveDate).HasColumnType("datetime");
+            entity.Property(e => e.File).HasMaxLength(512);
+            entity.Property(e => e.Info).HasColumnType("ntext");
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+
+            entity.HasOne(d => d.Member).WithMany(p => p.Documents)
+                .HasForeignKey(d => d.MemberId)
+                .HasConstraintName("FRK_Document_MemberId");
+
+            entity.HasOne(d => d.Type).WithMany(p => p.Documents)
+                .HasForeignKey(d => d.TypeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Document_TypeId");
+        });
+
+        modelBuilder.Entity<DocumentType>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_DocumentType_Id");
+
+            entity.ToTable("DocumentType", tb => tb.HasTrigger("tg_Update_DocumentTypeUser_DocumentType"));
+
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<DocumentTypeUser>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_DocumentTypeUser_Id");
+
+            entity.ToTable("DocumentTypeUser");
+
+            entity.Property(e => e.Check).HasDefaultValue(true);
+
+            entity.HasOne(d => d.DocumentType).WithMany(p => p.DocumentTypeUsers)
+                .HasForeignKey(d => d.DocumentTypeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_DocumentTypeUser_DocumentTypeId");
+
+            entity.HasOne(d => d.User).WithMany(p => p.DocumentTypeUsers)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_DocumentTypeUser_UserId");
+        });
+
+        modelBuilder.Entity<Feedback>(entity =>
+        {
+            entity.ToTable("Feedback");
+
+            entity.Property(e => e.Code)
+                .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("status");
+                .HasColumnName("code");
+            entity.Property(e => e.Coso).HasMaxLength(250);
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.Lop).HasMaxLength(512);
+            entity.Property(e => e.Mail)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Ngaysinh).HasMaxLength(512);
+            entity.Property(e => e.Tel)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+            entity.Property(e => e.Ykien).HasMaxLength(400);
         });
 
-        modelBuilder.Entity<Customer>(entity =>
+        modelBuilder.Entity<GroupLibrary>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__customer__CD65CB858C7A8236");
+            entity.HasKey(e => e.Id).HasName("PRK_GroupLibrary_Id");
 
-            entity.ToTable("customers");
+            entity.ToTable("GroupLibrary", tb =>
+                {
+                    tb.HasTrigger("tg_Update_GroupLibraryUser_GroupLibrary");
+                    tb.HasTrigger("tg_Update_Level_GroupLibrary");
+                });
 
-            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
-            entity.Property(e => e.Address).HasColumnName("address");
-            entity.Property(e => e.Birthday).HasColumnName("birthday");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Email)
-                .HasMaxLength(255)
-                .HasColumnName("email");
-            entity.Property(e => e.FullName)
-                .HasMaxLength(255)
-                .HasColumnName("full_name");
-            entity.Property(e => e.Gender)
-                .HasMaxLength(20)
-                .HasColumnName("gender");
-            entity.Property(e => e.PasswordHash)
-                .HasMaxLength(255)
-                .HasColumnName("password_hash");
-            entity.Property(e => e.Phone)
-                .HasMaxLength(50)
-                .HasColumnName("phone");
-            entity.Property(e => e.ShippingAddress).HasColumnName("shipping_address");
-            entity.Property(e => e.UpdatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Image).HasMaxLength(256);
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Level)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Tag).HasMaxLength(256);
         });
 
-        modelBuilder.Entity<Dealer>(entity =>
+        modelBuilder.Entity<GroupLibraryUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__dealers__3213E83F447EEEE8");
+            entity.HasKey(e => e.Id).HasName("PRK_GroupLibraryUser_Id");
 
-            entity.ToTable("dealers");
+            entity.ToTable("GroupLibraryUser");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Address).HasColumnName("address");
-            entity.Property(e => e.ContactPerson)
-                .HasMaxLength(255)
-                .HasColumnName("contact_person");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Email)
-                .HasMaxLength(255)
-                .HasColumnName("email");
-            entity.Property(e => e.Name)
-                .HasMaxLength(255)
-                .HasColumnName("name");
-            entity.Property(e => e.Phone)
-                .HasMaxLength(100)
-                .HasColumnName("phone");
-            entity.Property(e => e.Region)
-                .HasMaxLength(100)
-                .HasColumnName("region");
+            entity.Property(e => e.Check).HasDefaultValue(true);
+
+            entity.HasOne(d => d.GroupLibrary).WithMany(p => p.GroupLibraryUsers)
+                .HasForeignKey(d => d.GroupLibraryId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_GroupLibraryUser_GroupLibraryId");
+
+            entity.HasOne(d => d.User).WithMany(p => p.GroupLibraryUsers)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_GroupLibraryUser_UserId");
+        });
+
+        modelBuilder.Entity<GroupMember>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_GroupMember_Id");
+
+            entity.ToTable("GroupMember");
+
+            entity.Property(e => e.Name).HasMaxLength(256);
         });
 
         modelBuilder.Entity<GroupNews>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__GroupNew__3214EC070EDC241F");
-            entity.ToTable("GroupNews", tb =>
-            {
-                tb.HasTrigger("tg_Update_Level_GroupNews"); // 👈 TÊN TRIGGER THẬT TRONG SQL
-            });
+            entity.HasKey(e => e.Id).HasName("PRK_GroupNews_Id");
+
+            entity.ToTable(tb =>
+                {
+                    tb.HasTrigger("tg_Update_GroupNewsUser_GroupNews");
+                    tb.HasTrigger("tg_Update_Level_GroupNews");
+                });
 
             entity.Property(e => e.Description).HasMaxLength(256);
             entity.Property(e => e.Hinhanh)
@@ -312,156 +456,218 @@ public partial class DbMyShopContext : DbContext
                 .HasMaxLength(256)
                 .IsUnicode(false);
             entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Priority).HasDefaultValue(0);
             entity.Property(e => e.Tag).HasMaxLength(256);
             entity.Property(e => e.Title).HasMaxLength(256);
         });
 
+        modelBuilder.Entity<GroupNewsUser>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_GroupNewsUser_Id");
+
+            entity.ToTable("GroupNewsUser");
+
+            entity.Property(e => e.Check).HasDefaultValue(true);
+
+            entity.HasOne(d => d.GroupNews).WithMany(p => p.GroupNewsUsers)
+                .HasForeignKey(d => d.GroupNewsId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_GroupNewsUser_GroupNewsId");
+
+            entity.HasOne(d => d.User).WithMany(p => p.GroupNewsUsers)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_GroupNewsUser_UserId");
+        });
+
+        modelBuilder.Entity<GroupSupport>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_GroupSupport_Id");
+
+            entity.ToTable("GroupSupport");
+
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<Language>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Language_Id");
+
+            entity.ToTable("Language");
+
+            entity.Property(e => e.Id)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Active).HasDefaultValue(true);
+            entity.Property(e => e.Folder)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Image)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Library>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Library_Id");
+
+            entity.ToTable("Library");
+
+            entity.Property(e => e.File).HasMaxLength(512);
+            entity.Property(e => e.Image).HasMaxLength(256);
+            entity.Property(e => e.Info).HasMaxLength(100);
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Tag).HasMaxLength(256);
+
+            entity.HasOne(d => d.GroupLibrary).WithMany(p => p.Libraries)
+                .HasForeignKey(d => d.GroupLibraryId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Library_GroupLibraryId");
+        });
+
+        modelBuilder.Entity<Link>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Link_Id");
+
+            entity.ToTable("Link");
+
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Line1).HasMaxLength(512);
+            entity.Property(e => e.Line2).HasMaxLength(512);
+            entity.Property(e => e.Link1)
+                .HasMaxLength(512)
+                .IsUnicode(false);
+            entity.Property(e => e.Link2)
+                .HasMaxLength(512)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<ListDangkyhocCackhoa>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("List_dangkyhoc_cackhoa");
+
+            entity.Property(e => e.Dienthoai)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Email)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.Hoten).HasMaxLength(200);
+            entity.Property(e => e.Khoa)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Khoahoc)
+                .HasMaxLength(15)
+                .IsUnicode(false);
+            entity.Property(e => e.Namsinh)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Ngaydangky).HasColumnType("datetime");
+            entity.Property(e => e.Nguon)
+                .HasMaxLength(300)
+                .HasColumnName("nguon");
+            entity.Property(e => e.Sinhvientruong).HasMaxLength(400);
+        });
+
+        modelBuilder.Entity<Member>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Member_Id");
+
+            entity.ToTable("Member");
+
+            entity.Property(e => e.Email).HasMaxLength(256);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Password)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+            entity.Property(e => e.Username)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.GroupMember).WithMany(p => p.Members)
+                .HasForeignKey(d => d.GroupMemberId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Member_GroupMemberId");
+        });
+
+        modelBuilder.Entity<Module>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Module_Id");
+
+            entity.ToTable("Module", tb =>
+                {
+                    tb.HasTrigger("tg_Update_Level_Module");
+                    tb.HasTrigger("tg_Update_Permission_Module");
+                });
+
+            entity.Property(e => e.Code).HasMaxLength(32);
+            entity.Property(e => e.Image)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.Level)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Page).HasMaxLength(256);
+        });
+
         modelBuilder.Entity<News>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__news__3213E83F96034635");
+            entity.HasKey(e => e.Id).HasName("PRK_News_Id");
 
-            entity.ToTable("news");
+            entity.Property(e => e.Content).HasMaxLength(912);
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(556);
+            entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.File)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.Image)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.Keyword).HasMaxLength(512);
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.RegisterLink)
+                .HasMaxLength(250)
+                .IsUnicode(false);
+            entity.Property(e => e.Tag).HasMaxLength(556);
+            entity.Property(e => e.Tags).HasMaxLength(1000);
+            entity.Property(e => e.Title).HasMaxLength(556);
+            entity.Property(e => e.Video)
+                .HasMaxLength(256)
+                .IsUnicode(false);
 
-            entity.HasIndex(e => e.Slug, "UQ__news__32DD1E4CE26D4397").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.PostedById).HasColumnName("posted_by_id");
-            entity.Property(e => e.Content)
-                .HasColumnType("ntext")
-                .HasColumnName("content");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Excerpt).HasColumnName("excerpt");
-            entity.Property(e => e.GroupId).HasColumnName("group_id");
-            entity.Property(e => e.PublishedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("published_at");
-            entity.Property(e => e.Slug)
-                .HasMaxLength(255)
-                .HasColumnName("slug");
-            entity.Property(e => e.Status).HasColumnName("status");
-            entity.Property(e => e.Title)
-                .HasMaxLength(512)
-                .HasColumnName("title");
-            entity.Property(e => e.UpdatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
-            entity.Property(e => e.AuthorName)
-                            .HasMaxLength(255)
-                            .HasColumnName("author_name");
-            entity.Property(e => e.Hinhanh)
-               .HasMaxLength(300);
-            entity.HasOne(d => d.PostedBy).WithMany(p => p.News)
-                .HasForeignKey(d => d.PostedById)
-                .HasConstraintName("fk_news_author");
-
-            entity.HasOne(d => d.Group).WithMany(p => p.News)
-                .HasForeignKey(d => d.GroupId)
-                .HasConstraintName("fk_news_group");
-        });
-
-
-
-        modelBuilder.Entity<Order>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__orders__3213E83F737BC3A5");
-
-            entity.ToTable("orders");
-
-            entity.HasIndex(e => e.OrderCode, "UQ__orders__99D12D3F5100E481").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
-            entity.Property(e => e.DiscountAmount)
-                .HasColumnType("decimal(15, 2)")
-                .HasColumnName("discount_amount");
-            entity.Property(e => e.Email)
-                .HasMaxLength(255)
-                .HasColumnName("email");
-            entity.Property(e => e.FullName)
-                .HasMaxLength(255)
-                .HasColumnName("full_name");
-            entity.Property(e => e.Note).HasColumnName("note");
-            entity.Property(e => e.OrderCode)
-                .HasMaxLength(50)
-                .HasColumnName("order_code");
-            entity.Property(e => e.OrderStatus)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("order_status");
-            entity.Property(e => e.PaymentMethod)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("payment_method");
-            entity.Property(e => e.PaymentStatus)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("payment_status");
-            entity.Property(e => e.Phone)
-                .HasMaxLength(50)
-                .HasColumnName("phone");
-            entity.Property(e => e.ShippingAddress).HasColumnName("shipping_address");
-            entity.Property(e => e.ShippingFee)
-                .HasColumnType("decimal(15, 2)")
-                .HasColumnName("shipping_fee");
-            entity.Property(e => e.SubtotalAmount)
-                .HasColumnType("decimal(15, 2)")
-                .HasColumnName("subtotal_amount");
-            entity.Property(e => e.TotalAmount)
-                .HasColumnType("decimal(15, 2)")
-                .HasColumnName("total_amount");
-            entity.Property(e => e.UpdatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
-
-            entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("fk_orders_customer");
-        });
-
-        modelBuilder.Entity<OrderDetail>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__order_de__3213E83F850EE356");
-
-            entity.ToTable("order_details");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.OrderId).HasColumnName("order_id");
-            entity.Property(e => e.ProductId).HasColumnName("product_id");
-            entity.Property(e => e.Quantity).HasColumnName("quantity");
-            entity.Property(e => e.Total)
-                .HasColumnType("decimal(15, 2)")
-                .HasColumnName("total");
-
-            entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.OrderId)
-                .HasConstraintName("fk_orderdetails_order");
-
-            entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("fk_orderdetails_product");
+            entity.HasOne(d => d.GroupNews).WithMany(p => p.News)
+                .HasForeignKey(d => d.GroupNewsId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_News_GroupNewsId");
         });
 
         modelBuilder.Entity<Page>(entity =>
         {
-            entity.HasKey(e => e.Id)
-                  .HasName("PK__page__3214EC079E814B9E");
+            entity.HasKey(e => e.Id).HasName("PRK_Page_Id");
 
-            entity.ToTable("page", tb =>
-            {
-                tb.HasTrigger("tg_Update_Level_page"); // 👈 TÊN TRIGGER THẬT TRONG SQL
-            });
+            entity.ToTable("Page", tb => tb.HasTrigger("tg_Update_Level_Page"));
 
             entity.Property(e => e.Content).HasMaxLength(4000);
             entity.Property(e => e.Description).HasMaxLength(256);
             entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.Index).HasDefaultValue(0);
             entity.Property(e => e.Keyword).HasMaxLength(512);
             entity.Property(e => e.Lang)
                 .HasMaxLength(5)
@@ -480,128 +686,328 @@ public partial class DbMyShopContext : DbContext
             entity.Property(e => e.Title).HasMaxLength(256);
         });
 
-        modelBuilder.Entity<Product>(entity =>
+        modelBuilder.Entity<Permission>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__products__3213E83F36771480");
+            entity.HasKey(e => e.Id).HasName("PRK_Permission_Id");
 
-            entity.ToTable("products");
+            entity.ToTable("Permission");
 
-            entity.HasIndex(e => e.Slug, "UQ__products__32DD1E4CA31D4908").IsUnique();
+            entity.Property(e => e.Right).HasMaxLength(50);
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CategoryId).HasColumnName("category_id");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.DealerId).HasColumnName("dealer_id");
-            entity.Property(e => e.Description)
-                .HasColumnType("ntext")
-                .HasColumnName("description");
-            entity.Property(e => e.Image)
-                .HasMaxLength(500)
-                .IsUnicode(false)
-                .HasColumnName("image");
-            entity.Property(e => e.Name)
-                .HasMaxLength(512)
-                .HasColumnName("name");
-            entity.Property(e => e.Price)
-                .HasColumnType("decimal(15, 2)")
-                .HasColumnName("price");
-            entity.Property(e => e.SalePrice)
-                .HasColumnType("decimal(15, 2)")
-                .HasColumnName("sale_price");
-            entity.Property(e => e.Slug)
-                .HasMaxLength(255)
-                .HasColumnName("slug");
-            entity.Property(e => e.Status)
+            entity.HasOne(d => d.Module).WithMany(p => p.Permissions)
+                .HasForeignKey(d => d.ModuleId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Permission_ModuleId");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Permissions)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Permission_UserId");
+        });
+
+        modelBuilder.Entity<PhieuDk>(entity =>
+        {
+            entity.ToTable("PhieuDK");
+
+            entity.Property(e => e.Cmnd)
                 .HasMaxLength(50)
                 .IsUnicode(false)
-                .HasColumnName("status");
-            entity.Property(e => e.UpdatedAt)
+                .HasColumnName("CMND");
+            entity.Property(e => e.Diachi).HasMaxLength(400);
+            entity.Property(e => e.Email)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.Ghichu).HasMaxLength(200);
+            entity.Property(e => e.Hoten).HasMaxLength(200);
+            entity.Property(e => e.NganhDk)
+                .HasMaxLength(200)
+                .HasColumnName("NganhDK");
+            entity.Property(e => e.NgayDk)
                 .HasColumnType("datetime")
-                .HasColumnName("updated_at");
+                .HasColumnName("NgayDK");
+            entity.Property(e => e.Ngaycap)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Ngaysinh).HasColumnType("datetime");
+            entity.Property(e => e.Noicap).HasMaxLength(200);
+            entity.Property(e => e.PhuongthucTs)
+                .HasMaxLength(300)
+                .HasColumnName("PhuongthucTS");
+            entity.Property(e => e.SoDt)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("SoDT");
+            entity.Property(e => e.Tentruong).HasMaxLength(200);
+            entity.Property(e => e.Tongdiem)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Trinhdo).HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<Post>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Post_Id");
+
+            entity.ToTable("Post");
+
+            entity.Property(e => e.Address).HasMaxLength(256);
+            entity.Property(e => e.Content).HasMaxLength(512);
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(256);
+            entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.Email).HasMaxLength(256);
+            entity.Property(e => e.Keyword).HasMaxLength(512);
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Phone).HasMaxLength(50);
+            entity.Property(e => e.Title).HasMaxLength(256);
+            entity.Property(e => e.Website).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<Product>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Product_Id");
+
+            entity.ToTable("Product");
+
+            entity.Property(e => e.Content).HasMaxLength(512);
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(256);
+            entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.Image)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.Keyword).HasMaxLength(512);
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Tag).HasMaxLength(256);
+            entity.Property(e => e.Title).HasMaxLength(256);
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
-                .HasConstraintName("fk_products_category");
-
-            entity.HasOne(d => d.Dealer).WithMany(p => p.Products)
-                .HasForeignKey(d => d.DealerId)
-                .HasConstraintName("fk_products_dealer");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Product_CategoryId");
         });
 
-        modelBuilder.Entity<ProductImage>(entity =>
+        modelBuilder.Entity<Staff>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__product___3213E83FA2573AEF");
+            entity.HasKey(e => e.Id).HasName("PRK_Staff_Id");
 
-            entity.ToTable("product_images");
+            entity.Property(e => e.Address).HasMaxLength(256);
+            entity.Property(e => e.BirthDate).HasMaxLength(50);
+            entity.Property(e => e.Department).HasMaxLength(256);
+            entity.Property(e => e.Email)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            entity.Property(e => e.Fax)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            entity.Property(e => e.Fname)
+                .HasMaxLength(128)
+                .HasColumnName("FName");
+            entity.Property(e => e.Job).HasMaxLength(128);
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Letter).HasMaxLength(10);
+            entity.Property(e => e.Lname)
+                .HasMaxLength(128)
+                .HasColumnName("LName");
+            entity.Property(e => e.Mobile)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            entity.Property(e => e.Position).HasMaxLength(128);
+            entity.Property(e => e.Sex).HasMaxLength(20);
+            entity.Property(e => e.Tel)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+        });
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.ImageUrl)
-                .HasMaxLength(500)
+        modelBuilder.Entity<Support>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Support_Id");
+
+            entity.ToTable("Support");
+
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Nick)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            entity.Property(e => e.Priority).HasDefaultValue(0);
+            entity.Property(e => e.Tel).HasMaxLength(256);
+
+            entity.HasOne(d => d.GroupSupport).WithMany(p => p.Supports)
+                .HasForeignKey(d => d.GroupSupportId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Support_GroupSupportId");
+        });
+
+        modelBuilder.Entity<TbCounter>(entity =>
+        {
+            entity.ToTable("tbCounter");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Ngaytao).HasColumnType("smalldatetime");
+            entity.Property(e => e.Tenweb).HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<TbGiatriDangky>(entity =>
+        {
+            entity.HasKey(e => e.Idgt);
+
+            entity.ToTable("tbGiatriDangky");
+
+            entity.Property(e => e.Idgt).HasColumnName("IDGT");
+            entity.Property(e => e.Giatri).HasMaxLength(500);
+            entity.Property(e => e.NgayDk)
+                .HasColumnType("smalldatetime")
+                .HasColumnName("NgayDK");
+
+            entity.HasOne(d => d.IdttNavigation).WithMany(p => p.TbGiatriDangkies)
+                .HasForeignKey(d => d.Idtt)
+                .HasConstraintName("FK_tbGiatriDangky_tbTTdangky");
+        });
+
+        modelBuilder.Entity<TbSukien>(entity =>
+        {
+            entity.HasKey(e => e.MaSk);
+
+            entity.ToTable("tbSukien");
+
+            entity.Property(e => e.MaSk).HasColumnName("MaSK");
+            entity.Property(e => e.Accid).HasColumnName("accid");
+            entity.Property(e => e.Iviews).HasColumnName("iviews");
+            entity.Property(e => e.Keyname)
+                .HasMaxLength(600)
                 .IsUnicode(false)
-                .HasColumnName("image_url");
-            entity.Property(e => e.ProductId).HasColumnName("product_id");
-
-            entity.HasOne(d => d.Product).WithMany(p => p.ProductImages)
-                .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("fk_product_images_product");
+                .HasColumnName("keyname");
+            entity.Property(e => e.Metadescription)
+                .HasMaxLength(1000)
+                .HasColumnName("metadescription");
+            entity.Property(e => e.Metakeyword)
+                .HasMaxLength(1000)
+                .HasColumnName("metakeyword");
+            entity.Property(e => e.Metatitle)
+                .HasMaxLength(1000)
+                .HasColumnName("metatitle");
+            entity.Property(e => e.NguonLink).HasMaxLength(300);
+            entity.Property(e => e.Noidung).HasColumnType("ntext");
+            entity.Property(e => e.Tag)
+                .HasMaxLength(1000)
+                .HasColumnName("tag");
+            entity.Property(e => e.Tensukien).HasMaxLength(300);
         });
 
-        modelBuilder.Entity<ProductSpec>(entity =>
+        modelBuilder.Entity<TbTtdangky>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__product___3213E83FC2F42CC2");
+            entity.HasKey(e => e.Idtt);
 
-            entity.ToTable("product_specs");
+            entity.ToTable("tbTTdangky");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.ProductId).HasColumnName("product_id");
-            entity.Property(e => e.SpecName)
-                .HasMaxLength(255)
-                .HasColumnName("spec_name");
-            entity.Property(e => e.SpecValue)
-                .HasMaxLength(255)
-                .HasColumnName("spec_value");
+            entity.Property(e => e.MaSk).HasColumnName("MaSK");
+            entity.Property(e => e.Nhan).HasMaxLength(300);
 
-            entity.HasOne(d => d.Product).WithMany(p => p.ProductSpecs)
-                .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("fk_productspec_product");
+            entity.HasOne(d => d.MaSkNavigation).WithMany(p => p.TbTtdangkies)
+                .HasForeignKey(d => d.MaSk)
+                .HasConstraintName("FK_tbTTdangky_tbSukien");
+        });
+
+        modelBuilder.Entity<TbValueCombo>(entity =>
+        {
+            entity.ToTable("tbValueCombo");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Giatri).HasMaxLength(400);
+
+            entity.HasOne(d => d.IdttNavigation).WithMany(p => p.TbValueCombos)
+                .HasForeignKey(d => d.Idtt)
+                .HasConstraintName("FK_tbValueCombo_tbTTdangky");
+        });
+
+        modelBuilder.Entity<Toggle>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Toggle_Id");
+
+            entity.ToTable("Toggle");
+
+            entity.Property(e => e.Detail).HasColumnType("ntext");
+            entity.Property(e => e.Name).HasMaxLength(250);
+
+            entity.HasOne(d => d.News).WithMany(p => p.Toggles)
+                .HasForeignKey(d => d.NewsId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_Toggle_NewsId");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F219CC15B");
+            entity.HasKey(e => e.Id).HasName("PRK_User_ID");
 
-            entity.ToTable("users");
+            entity.ToTable("User", tb =>
+                {
+                    tb.HasTrigger("tg_Update_DocumentTypeUser_User");
+                    tb.HasTrigger("tg_Update_GroupLibraryUser_User");
+                    tb.HasTrigger("tg_Update_GroupNewsUser_User");
+                    tb.HasTrigger("tg_Update_Level_User");
+                    tb.HasTrigger("tg_Update_Permission_User");
+                });
 
-            entity.HasIndex(e => e.Email, "UQ__users__AB6E6164BAF9505E").IsUnique();
-
-            entity.HasIndex(e => e.Username, "UQ__users__F3DBC5729D0D7C74").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Email)
-                .HasMaxLength(255)
-                .HasColumnName("email");
-            entity.Property(e => e.FullName)
-                .HasMaxLength(255)
-                .HasColumnName("full_name");
-            entity.Property(e => e.PasswordHash)
-                .HasMaxLength(255)
-                .HasColumnName("password_hash");
-            entity.Property(e => e.Role).HasColumnName("role");
-            entity.Property(e => e.Status).HasColumnName("status");
-            entity.Property(e => e.UpdatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("updated_at");
+            entity.Property(e => e.Level)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.Password)
+                .HasMaxLength(64)
+                .IsUnicode(false);
             entity.Property(e => e.Username)
-                .HasMaxLength(100)
-                .HasColumnName("username");
+                .HasMaxLength(64)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<UserGroup>(entity =>
+        {
+            entity.ToTable("UserGroup");
+        });
+
+        modelBuilder.Entity<Vote>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_Vote_Id");
+
+            entity.ToTable("Vote");
+
+            entity.Property(e => e.Lang)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Name).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<VoteDetail>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRK_VoteDetail_Id");
+
+            entity.ToTable("VoteDetail");
+
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Ip)
+                .HasMaxLength(256)
+                .HasColumnName("IP");
+
+            entity.HasOne(d => d.News).WithMany(p => p.VoteDetails)
+                .HasForeignKey(d => d.NewsId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_VoteDetail_NewsId");
+
+            entity.HasOne(d => d.Vote).WithMany(p => p.VoteDetails)
+                .HasForeignKey(d => d.VoteId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FRK_VoteDetail_VoteId");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -3,15 +3,25 @@ using System.Collections.Generic;
 
 namespace MyShop.Models;
 
-public partial class Category
+public partial class Post
 {
     public int Id { get; set; }
 
     public string? Name { get; set; }
 
-    public string? Tag { get; set; }
+    public string? Address { get; set; }
 
-    public string? Level { get; set; }
+    public string? Phone { get; set; }
+
+    public string? Email { get; set; }
+
+    public string? Website { get; set; }
+
+    public string? Content { get; set; }
+
+    public string? Detail { get; set; }
+
+    public DateTime? Date { get; set; }
 
     public string? Title { get; set; }
 
@@ -19,15 +29,9 @@ public partial class Category
 
     public string? Keyword { get; set; }
 
-    public int? Ord { get; set; }
-
-    public string? Image { get; set; }
-
-    public int? Index { get; set; }
+    public int? Priority { get; set; }
 
     public int? Active { get; set; }
 
     public string? Lang { get; set; }
-
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

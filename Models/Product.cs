@@ -1,60 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MyShop.Models
+namespace MyShop.Models;
+
+public partial class Product
 {
-    public partial class Product
-    {
-        [Display(Name = "Mã sản phẩm")]
-        public long Id { get; set; }
+    public int Id { get; set; }
 
-        [Display(Name = "Danh mục")]
-        public int CategoryId { get; set; }
+    public string? Name { get; set; }
 
-        [Display(Name = "Tên sản phẩm")]
-        public string? Name { get; set; }
+    public string? Tag { get; set; }
 
-        [Display(Name = "Đường dẫn (Slug)")]
-        public string? Slug { get; set; }
+    public string? Image { get; set; }
 
-        [Display(Name = "Nhà cung cấp")]
-        public int? DealerId { get; set; }
+    public string? Content { get; set; }
 
-        [Display(Name = "Giá gốc")]
-        public decimal? Price { get; set; }
+    public string? Detail { get; set; }
 
-        [Display(Name = "Giá khuyến mãi")]
-        public decimal? SalePrice { get; set; }
+    public DateTime? Date { get; set; }
 
-        [Display(Name = "Hình ảnh chính")]
-        public string? Image { get; set; }
+    public string? Title { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Hình ảnh phụ")]
-        public string? GalleryImages { get; set; }
+    public string? Description { get; set; }
 
-        [Display(Name = "Mô tả")]
-        public string? Description { get; set; }
+    public string? Keyword { get; set; }
 
-        [Display(Name = "Trạng thái")]
-        public string? Status { get; set; }
+    public int? Priority { get; set; }
 
-        [Display(Name = "Ngày tạo")]
-        public DateTime? CreatedAt { get; set; }
+    public int? Index { get; set; }
 
-        [Display(Name = "Ngày cập nhật")]
-        public DateTime? UpdatedAt { get; set; }
+    public int? Active { get; set; }
 
-        public virtual Category? Category { get; set; }
+    public int? CategoryId { get; set; }
 
-        public virtual Dealer? Dealer { get; set; }
+    public string? Lang { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
-
-        public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
-
-        public virtual ICollection<ProductSpec> ProductSpecs { get; set; } = new List<ProductSpec>();
-    }
+    public virtual Category? Category { get; set; }
 }

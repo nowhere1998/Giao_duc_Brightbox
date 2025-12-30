@@ -1,50 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace MyShop.Models
+namespace MyShop.Models;
+
+public partial class News
 {
-    public partial class News
-    {
-        [Display(Name = "Mã tin tức")]
-        public long Id { get; set; }
+    public long Id { get; set; }
 
-        [Display(Name = "Tiêu đề")]
-        public string? Title { get; set; }
+    public string? Name { get; set; }
 
-        [Display(Name = "Slug")]
-        public string? Slug { get; set; }
+    public string? Tag { get; set; }
 
-        [Display(Name = "Tóm tắt")]
-        public string? Excerpt { get; set; }
+    public string? Image { get; set; }
 
-        [Display(Name = "Nội dung")]
-        public string? Content { get; set; }
+    public string? File { get; set; }
 
-        [Display(Name = "Người đăng bài")]
-        public long? PostedById { get; set; }
+    public string? Video { get; set; }
 
-        [Display(Name = "Tác giả")]
-        public string? AuthorName { get; set; }
+    public string? Content { get; set; }
 
-        [Display(Name = "Nhóm tin tức")]
-        public int? GroupId { get; set; }
+    public string? Detail { get; set; }
 
-        [Display(Name = "Trạng thái")]
-        public int? Status { get; set; }
+    public DateTime? Date { get; set; }
 
-        [Display(Name = "Ngày xuất bản")]
-        public DateTime? PublishedAt { get; set; }
+    public string? Title { get; set; }
 
-        [Display(Name = "Ngày tạo")]
-        public DateTime? CreatedAt { get; set; }
+    public string? Description { get; set; }
 
-        [Display(Name = "Ngày cập nhật")]
-        public DateTime? UpdatedAt { get; set; }
-        public string? Hinhanh { get; set; }
+    public string? Keyword { get; set; }
 
-        public virtual User? PostedBy { get; set; }
+    public int? Priority { get; set; }
 
-        public virtual GroupNews? Group { get; set; }
-    }
+    public int? Index { get; set; }
+
+    public int? Reportage { get; set; }
+
+    public int? Spotlight { get; set; }
+
+    public int? Latest { get; set; }
+
+    public int? Active { get; set; }
+
+    public int? GroupNewsId { get; set; }
+
+    public string? Lang { get; set; }
+
+    public string? Tags { get; set; }
+
+    public int? Comment { get; set; }
+
+    public int? Register { get; set; }
+
+    public string? RegisterLink { get; set; }
+
+    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
+    public virtual GroupNews? GroupNews { get; set; }
+
+    public virtual ICollection<Toggle> Toggles { get; set; } = new List<Toggle>();
+
+    public virtual ICollection<VoteDetail> VoteDetails { get; set; } = new List<VoteDetail>();
 }
