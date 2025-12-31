@@ -57,4 +57,4 @@ nunit-*.xml
 /bin/
 /obj/
 /Migrations/
-appsetting.json
+appsettings.json
