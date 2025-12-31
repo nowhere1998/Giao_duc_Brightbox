@@ -1,0 +1,16 @@
+﻿/*
+Theme Name: Mypage
+Theme URI: https://www.mypage.vn
+Author: Mypage
+Author URI: https://www.mypage.vn
+Description: Responsive Wordpress + eCommerce Theme.
+Version: 6.0.6
+Tags: woocommerce, corporate, ecommerce, responsive, blue, black, green, white, light, dark, red, two-columns, three-columns, four-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready, accessibility-ready
+Text Domain: mypage
+*/
+
+/*************** ADD YOUR CUSTOM CSS HERE  ***************/
+
+.bypostauthor {
+    display: block;
+}
