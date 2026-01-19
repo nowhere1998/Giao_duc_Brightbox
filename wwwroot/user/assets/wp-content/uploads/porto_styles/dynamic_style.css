@@ -1152,11 +1152,11 @@ body .ads-container-blue, body.boxed .ads-container-full, #main.main-boxed .ads-
 }
 
 .dir-arrow {
-    background: transparent url(https:/user/assets/wp-content/themes/mypage/images/arrows.png) no-repeat 0 0
+    background: transparent url(/user/assets/wp-content/themes/mypage/images/arrows.png) no-repeat 0 0
 }
 
     .dir-arrow.arrow-light {
-        background: transparent url(https:/user/assets/wp-content/themes/mypage/images/arrows-dark.png) no-repeat 0 0
+        background: transparent url(/user/assets/wp-content/themes/mypage/images/arrows-dark.png) no-repeat 0 0
     }
 
 hr, .divider, .slider-title .line, .section-title .line, .vc_separator .vc_sep_holder.vc_sep_holder_l .vc_sep_line, .vc_separator .vc_sep_holder.vc_sep_holder_r .vc_sep_line {
@@ -1168,7 +1168,7 @@ hr, .divider, .slider-title .line, .section-title .line, .vc_separator .vc_sep_h
     }
 
 .porto-history .thumb {
-    background: transparent url(https:/user/assets/wp-content/themes/mypage/images/history-thumb.png) no-repeat 0 0
+    background: transparent url(/user/assets/wp-content/themes/mypage/images/history-thumb.png) no-repeat 0 0
 }
 
 #header.sticky-header .header-main.sticky, #header.sticky-header .main-menu-wrap, .fixed-header #header.sticky-header .main-menu-wrap {
@@ -1916,7 +1916,7 @@ html .btn-v-dark, .cart-popup .button.checkout, .wishlist_table .add_to_cart.but
 
 .page-top {
     background-color: #eff1f3;
-    background-image: url(/user/assets/wp-content/uploads/2021/04/img-21.jpg);
+    background-image: url(/user/assets/wp-content/uploads/2021/04/bg-3.jpg);
     background-size: cover
 }
 

@@ -57,6 +57,18 @@ namespace MyShop.Controllers
             return View();
         }
 
+        [Route("dang-nhap")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        
+        [Route("dang-ky")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         //public IActionResult Error()
         //{
