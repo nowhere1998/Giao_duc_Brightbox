@@ -1,0 +1,60 @@
+﻿@model MyShop.Models.TbTtdangky
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TbTtdangky</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nhan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nhan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Kieudieukhien)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Kieudieukhien)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rong)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rong)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Trong)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Trong)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Thutu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Thutu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaSkNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaSkNavigation.MaSk)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Idtt">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

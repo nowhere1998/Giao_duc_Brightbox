@@ -1,0 +1,95 @@
+﻿@model IEnumerable<MyShop.Models.TbSukien>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tensukien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Noidung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NguonLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hienthi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iviews)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Metatitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Metakeyword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Metadescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Keyname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tensukien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Noidung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguonLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hienthi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iviews)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Metatitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Metakeyword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Metadescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Keyname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaSk">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MaSk">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaSk">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

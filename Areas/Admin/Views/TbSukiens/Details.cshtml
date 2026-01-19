@@ -1,0 +1,84 @@
+﻿@model MyShop.Models.TbSukien
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TbSukien</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tensukien)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tensukien)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Noidung)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Noidung)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NguonLink)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NguonLink)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hienthi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hienthi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Accid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Accid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Iviews)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Iviews)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Metatitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Metatitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Metakeyword)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Metakeyword)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Metadescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Metadescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tag)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tag)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Keyname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Keyname)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaSk">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

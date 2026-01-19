@@ -1,0 +1,84 @@
+﻿@model MyShop.Models.CateRss
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CateRss</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cateid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cateid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rsslink)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rsslink)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Beginstring)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Beginstring)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Endstring)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Endstring)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Urlimg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Urlimg)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Urlimgupdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Urlimgupdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Urlimgold)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Urlimgold)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ulrimgnew)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ulrimgnew)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Imgfolderpath)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Imgfolderpath)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

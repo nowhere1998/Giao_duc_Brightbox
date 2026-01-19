@@ -1,0 +1,499 @@
+﻿﻿@{
+Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang quản trị</title>
+    <link rel="icon" type="image/x-icon" href="~/admin/assets/images/avatar-removebg-preview.png" />
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/admin/assets/plugins/fontawesome-free/css/all.min.css" />
+
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/admin/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/admin/assets/dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="~/admin/assets/css/style.css" />
+
+    <!-- CKEditor -->
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+    <style>
+        .error {
+            color: red;
+        }
+
+        .content-wrapper h1 {
+            text-align: center;
+        }
+
+        .star::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+
+    @RenderSection("Styles", required: false)
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble"
+                 src="~/admin/assets/dist/img/AdminLTELogo.png"
+                 alt="AdminLTELogo" height="60" width="60" />
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/admin/" class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Search -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline" action="Search" method="get">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search"
+                                       placeholder="Search name" aria-label="Search" name="search" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <!-- Logout -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/logout">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Sidebar -->
+        <!-- Sidebar -->
+        <aside class="main-sidebar sidebar-light-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="/admin" class="brand-link">
+                <img src="~/admin/assets/dist/img/AdminLTELogo.png" class="brand-image img-circle elevation-3" style="opacity:.8" />
+                <span class="brand-text font-weight-light">BrightBox</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- User panel -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/admin/assets/images/avatar.jpg" class="img-circle elevation-2" alt="User Image" />
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block" style="text-transform: uppercase;">
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" class="d-block text-uppercase">
+                                    @User.FindFirst("FullName")?.Value
+                                </a>
+                            }
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                @* Menu giữ nguyên *@
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column"
+                        data-widget="treeview" role="menu" data-accordion="false">
+
+                        <li class="nav-item">
+                            <a href="/admin" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Trang tổng quan</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Advertises" class="nav-link">
+                                <i class="nav-icon fas fa-bullhorn"></i>
+                                <p>Quảng cáo</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Categories" class="nav-link">
+                                <i class="nav-icon fas fa-list"></i>
+                                <p>Danh mục</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/CateRsses" class="nav-link">
+                                <i class="nav-icon fas fa-rss"></i>
+                                <p>Danh mục RSS</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Comments" class="nav-link">
+                                <i class="nav-icon fas fa-comments"></i>
+                                <p>Bình luận</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Configs/edit" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>Cấu hình hệ thống</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Contacts" class="nav-link">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>Liên hệ</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Documents" class="nav-link">
+                                <i class="nav-icon fas fa-folder-open"></i>
+                                <p>Tài liệu</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/DocumentTypes" class="nav-link">
+                                <i class="nav-icon fas fa-folder"></i>
+                                <p>Loại tài liệu</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/DocumentTypeUsers" class="nav-link">
+                                <i class="nav-icon fas fa-user-shield"></i>
+                                <p>Phân quyền tài liệu</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Feedbacks" class="nav-link">
+                                <i class="nav-icon fas fa-comment-dots"></i>
+                                <p>Phản hồi</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/GroupLibraries" class="nav-link">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Nhóm thư viện</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/GroupLibraryUsers" class="nav-link">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>Nhóm thư viện - Người dùng</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/GroupMembers" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>Nhóm thành viên</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/GroupNews" class="nav-link">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>Nhóm tin tức</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/GroupNewsUsers" class="nav-link">
+                                <i class="nav-icon fas fa-user-edit"></i>
+                                <p>Nhóm tin - Người dùng</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/GroupSupports" class="nav-link">
+                                <i class="nav-icon fas fa-headset"></i>
+                                <p>Nhóm hỗ trợ</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Languages" class="nav-link">
+                                <i class="nav-icon fas fa-language"></i>
+                                <p>Ngôn ngữ</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Libraries" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>Thư viện</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Links" class="nav-link">
+                                <i class="nav-icon fas fa-link"></i>
+                                <p>Liên kết</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Members" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <p>Học viên</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Modules" class="nav-link">
+                                <i class="nav-icon fas fa-puzzle-piece"></i>
+                                <p>Module</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/News" class="nav-link">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>Tin tức</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Pages" class="nav-link">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Trang nội dung</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Permissions" class="nav-link">
+                                <i class="nav-icon fas fa-shield-alt"></i>
+                                <p>Phân quyền</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/PhieuDks" class="nav-link">
+                                <i class="nav-icon fas fa-file-signature"></i>
+                                <p>Phiếu đăng ký</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Posts" class="nav-link">
+                                <i class="nav-icon fas fa-pen"></i>
+                                <p>Bài viết</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Products" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Sản phẩm / Khóa học</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Staffs" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>Nhân viên</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Supports" class="nav-link">
+                                <i class="nav-icon fas fa-headset"></i>
+                                <p>Hỗ trợ</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/TbCounters" class="nav-link">
+                                <i class="nav-icon fas fa-sort-numeric-up"></i>
+                                <p>Bộ đếm</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/TbGiatriDangkes" class="nav-link">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Giá trị đăng ký</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/TbSukiens" class="nav-link">
+                                <i class="nav-icon fas fa-calendar-alt"></i>
+                                <p>Sự kiện</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/TbTddangkies" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>Thông tin đăng ký</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/TbValueComboes" class="nav-link">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Combo giá trị</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Toggles" class="nav-link">
+                                <i class="nav-icon fas fa-toggle-on"></i>
+                                <p>Bật / Tắt hệ thống</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Users" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Người dùng</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Votes" class="nav-link">
+                                <i class="nav-icon fas fa-vote-yea"></i>
+                                <p>Bình chọn</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/VoteDetails" class="nav-link">
+                                <i class="nav-icon fas fa-poll"></i>
+                                <p>Chi tiết bình chọn</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </div>
+        </aside>
+
+        <!-- Content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <strong>
+                Copyright &copy; 2014-2021
+                <a href="https://adminlte.io">AdminLTE.io</a>.
+            </strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.1.0
+            </div>
+        </footer>
+    </div>
+
+    <!-- REQUIRED SCRIPTS -->
+    <script src="~/admin/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="~/admin/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admin/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="~/admin/assets/dist/js/adminlte.js"></script>
+
+    <!-- Optional Plugins -->
+    <script src="~/admin/assets/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="~/admin/assets/plugins/raphael/raphael.min.js"></script>
+    <script src="~/admin/assets/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="~/admin/assets/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <script src="~/admin/assets/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/admin/assets/dist/js/pages/dashboard2.js"></script>
+
+    <!-- jQuery UI + elFinder -->
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/elfinder/css/elfinder.full.css" />
+    <link rel="stylesheet" href="~/elfinder/css/theme.min.css" />
+    <link rel="stylesheet" href="~/elfinder-material-theme/Material/css/theme-gray.css" />
+
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/elfinder/js/elfinder.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            const btn = $('#btnBrowse');
+            if (btn.length) {
+                btn.on('click', function () {
+                    $('<div id="elfinder" />').dialogelfinder({
+                        url: '/quan-ly-tep-tin/connector',
+                        baseUrl: "/elfinder/",
+                        width: 840,
+                        height: 450,
+                        destroyOnClose: true,
+                        title: 'Quản lý tệp tin',
+                        getFileCallback: function (files, fm) {
+                            $('#Image').val('/' + files[0].path);
+                            $('#PictureView').attr('src', '/' + files[0].path);
+                        },
+                        commandsOptions: {
+                            getfile: {
+                                multiple: true,
+                                oncomplete: 'close',
+                                folders: false
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<style>
+    html, body {
+        background: #fff;
+    }
+
+    .content-wrapper {
+        background: #fff;
+    }
+</style>
