@@ -1,0 +1,85 @@
+﻿@model MyShop.Models.Category
+
+@{
+    ViewData["Title"] = "Thêm danh mục";
+}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-center mb-3">
+        <h3 class="text-primary">Thêm danh mục</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <form asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <!-- Tên danh mục -->
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Tên danh mục</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Slug chuyển xuống dưới -->
+                <div class="mb-3">
+                    <label asp-for="Tag" class="form-label">Slug</label>
+                    <input asp-for="Tag" readonly class="form-control" />
+                    <span asp-validation-for="Tag" class="text-danger"></span>
+                </div>
+
+                <!-- Tên danh mục -->
+                <div class="mb-3">
+                    <label asp-for="Ord" class="form-label">Thứ tự</label>
+                    <input asp-for="Ord" class="form-control" />
+                    <span asp-validation-for="Ord" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="Active" class="form-check-label text-secondary mr-4">Kích hoạt</label>
+                    <input type="checkbox"
+                           id="Active"
+                           name="Active"
+                           value="1"
+                           class="form-check-input"
+                           @((Model?.Active == 1) ? "checked" : "") />
+                </div>
+                <div class="text-end">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Trở lại
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Lưu lại
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function toSlug(str) {
+            return str
+                .toLowerCase()
+                .replace(/đ/g, "d")
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // bỏ dấu tiếng Việt
+                .replace(/[^a-z0-9\s-]/g, "")                     // bỏ ký tự đặc biệt
+                .trim()
+                .replace(/\s+/g, "-")                             // khoảng trắng → "-"
+                .replace(/-+/g, "-");                              // bỏ trùng dấu "-"
+        }
+
+        document.getElementById("Name").addEventListener("input", function () {
+            document.getElementById("Tag").value = toSlug(this.value);
+        });
+    </script>
+}
+

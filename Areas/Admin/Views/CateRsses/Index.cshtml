@@ -1,0 +1,95 @@
+﻿@model IEnumerable<MyShop.Models.CateRss>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cateid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rsslink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Beginstring)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endstring)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urlimg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urlimgupdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urlimgold)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ulrimgnew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imgfolderpath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cateid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rsslink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beginstring)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endstring)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Source)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Urlimg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Urlimgupdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Urlimgold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ulrimgnew)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imgfolderpath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

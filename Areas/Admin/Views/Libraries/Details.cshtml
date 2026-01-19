@@ -1,0 +1,78 @@
+﻿@model MyShop.Models.Library
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Library</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tag)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tag)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.File)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.File)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Info)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Info)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MemberId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Lang)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lang)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GroupLibrary)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GroupLibrary.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,152 @@
+﻿@model MyShop.Models.Advertise
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" href="~/css/adminstyle.css" />
+<div class="container">
+    
+    <form asp-area="Admin" asp-controller="Advertises" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="table-title" style="margin-top:20px">
+</div>
+        <br />
+        <br />
+        <label for="" class="form-">Vị trí : </label>
+    <select class="form-check-inline" asp-for="Position">
+        <option value="1">Banner</option>
+        <option value="2">Slide trang chủ</option>
+        <option value="3">Bên phải trang</option>
+        <option value="4">Giảng viên</option>
+        <option value="5">Đối tác</option>
+        <option value="6">Logo</option>
+        <option value="7">Banner trên cùng</option>
+    </select>
+        <input type="hidden" class="form-control" asp-for="Id">
+        <div class="row">
+            <div class="col">
+                <label for="" class="form-label">Tên quảng cáo</label>
+                <input type="text" class="form-control" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>  
+             <div class="col">
+    <label for="" class="form-label">PageId:</label>
+    <select asp-for="PageId" class="form-control">
+    <option value="">-- Chọn --</option>
+
+    @foreach (var item in ViewBag.Page)
+    {
+        var selected = item.Id == Model.PageId ? "selected" : "";
+        @Html.Raw($"<option value='{item.Id}' {selected}>{item.Name}</option>")
+    }
+    </select>
+
+
+</div>
+        </div>​
+         <div class="form-group">
+             <label for="" class="form-label">Hình ảnh : </label>
+                <button type="button" id="btnBrowse">Chọn ảnh</button>
+                <input asp-for="Image" class=""/>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            <div>
+                <img id="PictureView" class="mt-3" src="@(string.IsNullOrEmpty(Model.Image) ? "" : Model.Image)" width="100" />
+            </div>
+            <span asp-validation-for="Image" class="text-danger"></span>
+         </div>
+        <div class="row">
+            <div class="col">
+                <label for="" class="form-label">Độ rộng</label>
+                <input type="number" class="form-control" asp-for="Width">
+            </div>
+            <div class="col">
+                <label for="" class="form-label">Chiều cao</label>
+                <input type="number" class="form-control" asp-for="Height">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="" class="form-label">Liên kết</label>
+                <input type="text" class="form-control" asp-for="Link">
+            </div>
+            <div class="col">
+                <label for="" class="form-label">Kiểu liên kết</label>
+                  <select asp-for="Target" class="form-select">
+                    <option value="_self">Trang hiện tại</option>
+                    <option value="_blank">Trang mới</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Nội dung</label>
+            <textarea asp-for="Content"></textarea>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="" class="form-label">Thứ tự</label>
+                <input type="number" class="form-control" asp-for="Ord">
+            </div>
+        </div>
+        <br />
+        <div class="mb-3 mt-3">
+    <div class="form-check">
+        <label for="Active" class="form-check-label">Kích hoạt</label>
+        <input type="checkbox" id="Active" class="form-check-input ml-2"
+               name="Active" value="true" @(Model?.Active == true ? "checked" : "") />
+    </div>
+</div>
+        <br />
+        <div class="table-title" style="margin-top:20px">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 style="color:black"></h2>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-primary" asp-controller="Advertises" asp-action="Index">Trở lại<i class='fas'>&#xf3e5;</i></a>
+            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Lưu lại</button>
+        </div>
+    </div>
+</div>
+    </form>
+</div>
+<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="~/elfinder/css/elfinder.full.css" />
+<link rel="stylesheet" href="~/elfinder/css/theme.min.css" />
+<link rel="stylesheet" href="~/elfinder-material-theme/Material/css/theme-gray.css" />
+@section Scripts {
+    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/elfinder/js/elfinder.min.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($('#btnBrowse') != undefined) {
+                $('#btnBrowse').click(function () {
+                    var fm = $('<div id="elfinder" />').dialogelfinder({
+                        url: '/quan-ly-tep-tin/connector',
+                        baseUrl: "/elfinder/",
+                        width: 840,
+                        height: 450,
+                        destroyOnClose: true,
+                        title: 'Quản lý tệp tin',
+                        getFileCallback: function (files, fm) {
+                            $('#Image').val('/' + files[0].path);
+                            $('#PictureView').attr('src', '/' + files[0].path);
+                        },
+                        commandsOptions: {
+                            getfile: {
+                                multiple: true,
+                                oncomplete: 'close',
+                                folders: false
+                            }
+                        }
+                    }).dialogelfinder('instance');
+                })
+            }
+        });
+        CKEDITOR.replace('Content');
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

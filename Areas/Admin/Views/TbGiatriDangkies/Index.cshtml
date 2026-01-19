@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MyShop.Models.TbGiatriDangky>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Giatri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdttNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Giatri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdttNavigation.Idtt)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Idgt">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Idgt">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Idgt">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,263 @@
+﻿@model MyShop.Models.Page
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container py-4">
+
+    <!-- Title + Actions -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold text-uppercase text-primary">
+            Quản lý danh mục trang
+        </h4>
+        <div class="d-flex gap-2">
+            <button type="submit" form="pageForm" class="btn btn-success mr-2">
+                <i class="fas fa-save"></i> Lưu lại
+            </button>
+            <a asp-action="Index" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Trở lại
+            </a>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <form asp-action="Edit" method="post" id="pageForm">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <!-- Tên trang -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Tên trang</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Tag</label>
+            <input asp-for="Tag" readonly class="form-control" />
+        </div>
+
+        <!-- Loại trang -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Loại trang</label>
+            <select asp-for="Type" class="form-select" id="pageType">
+                <option value="0">Trang liên kết</option>
+                <option value="1">Trang nội dung</option>
+            </select>
+        </div>
+        <!-- Nội dung chi tiết -->
+        <div class="mb-3 d-none" id="detailBox">
+            <label class="form-label fw-semibold">Nội dung chi tiết</label>
+            <textarea asp-for="Detail" class="form-control" rows="6"></textarea>
+        </div>
+        <!-- Kiểu liên kết -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Liên kết</label>
+            <select id="linkType" class="form-select">
+                <option value="custom">Nhập liên kết</option>
+                <option value="module">Liên kết module</option>
+            </select>
+        </div>
+
+        <!-- Nhập link tay -->
+        <div class="mb-3" id="customLinkBox">
+            <input type="text"
+                   id="customLink"
+                   class="form-control"
+                   value="@Model.Link" />
+        </div>
+
+        <!-- Chọn module -->
+        <div class="mb-3 d-none" id="moduleLinkBox">
+            <label class="form-label fw-semibold">Chọn module</label>
+            <select id="moduleLink" class="form-select">
+                <option value="">-- Chọn module --</option>
+
+                @foreach (var item in ViewBag.Categories as List<SelectListItem>)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+
+
+        <!-- Hidden input binding Model -->
+        <input asp-for="Link" type="hidden" id="finalLink" />
+
+
+        <!-- Kiểu hiển thị + Vị trí -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Kiểu hiển thị</label>
+                <select asp-for="Target" class="form-select">
+                    <option value="_self">Trang hiện tại</option>
+                    <option value="_blank">Trang mới</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Vị trí hiển thị</label>
+                <select asp-for="Position" class="form-select">
+                    <option value="1">Menu trên</option>
+                    <option value="2">Menu giữa</option>
+                    <option value="3">Menu dưới</option>
+                    <option value="4">Giữa dưới</option>
+                    <option value="5">Menu nhỏ trên cùng</option>
+                    <option value="6">Trên dưới</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- SEO -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Title meta</label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Description meta</label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Keyword meta</label>
+            <input asp-for="Keyword" class="form-control" />
+        </div>
+
+        <!-- Thứ tự -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Thứ tự</label>
+            <input asp-for="Ord" type="number" min="1" class="form-control" placeholder="Ví dụ: 1, 2, 3..." />
+            <span asp-validation-for="Ord" class="text-danger"></span>
+        </div>
+
+        <!-- Kích hoạt -->
+        <label class="form-label fw-semibold">Kích hoạt</label>
+        <select asp-for="Active" class="form-select">
+            <option value="1">Hiển thị</option>
+            <option value="0">Ẩn</option>
+        </select>
+
+
+        <!-- Actions bottom -->
+        <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-success mr-2">
+                <i class="fas fa-save"></i> Lưu lại
+            </button>
+            <a asp-action="Index" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Trở lại
+            </a>
+        </div>
+
+    </form>
+</div>
+
+
+@section Scripts {
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* ====== DOM ====== */
+            const pageType    = document.getElementById("pageType");
+            const detailBox   = document.getElementById("detailBox");
+            const tagInput    = document.getElementById("Tag");
+
+            const linkType    = document.getElementById("linkType");
+            const customBox   = document.getElementById("customLinkBox");
+            const moduleBox   = document.getElementById("moduleLinkBox");
+
+            const customInput = document.getElementById("customLink");
+            const moduleSelect= document.getElementById("moduleLink");
+            const finalLink   = document.getElementById("finalLink");
+
+            /* ====== PAGE TYPE ====== */
+            function handlePageTypeChange() {
+
+                if (pageType.value === "1") {
+                    // Trang nội dung
+                    detailBox.classList.remove("d-none");
+
+                    const autoLink = tagInput.value
+                        ? "/noi-dung/" + tagInput.value
+                        : "/noi-dung";
+
+                    customInput.value = autoLink;
+                    finalLink.value  = autoLink;
+
+                    customInput.disabled = true;
+                    linkType.value = "custom";
+                    linkType.disabled = true;
+
+                } else {
+                    // Trang liên kết
+                    detailBox.classList.add("d-none");
+
+                    customInput.disabled = false;
+                    linkType.disabled = false;
+
+                    finalLink.value = customInput.value;
+                }
+            }
+
+            /* ====== LINK TYPE ====== */
+            function updateLinkUI() {
+
+                if (linkType.value === "module") {
+                    customBox.classList.add("d-none");
+                    moduleBox.classList.remove("d-none");
+                    finalLink.value = moduleSelect.value;
+                } else {
+                    customBox.classList.remove("d-none");
+                    moduleBox.classList.add("d-none");
+                    finalLink.value = customInput.value;
+                }
+            }
+
+            /* ====== SLUG ====== */
+            function toSlug(str) {
+                return str
+                    .toLowerCase()
+                    .replace(/đ/g, "d")
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[^a-z0-9\s-]/g, "")
+                    .trim()
+                    .replace(/\s+/g, "-")
+                    .replace(/-+/g, "-");
+            }
+
+            /* ====== EVENTS ====== */
+            pageType.addEventListener("change", handlePageTypeChange);
+
+            linkType.addEventListener("change", updateLinkUI);
+            customInput.addEventListener("input", updateLinkUI);
+            moduleSelect.addEventListener("change", updateLinkUI);
+
+            document.getElementById("Name").addEventListener("input", function () {
+                tagInput.value = toSlug(this.value);
+
+                if (pageType.value === "1") {
+                    const autoLink = "/noi-dung/" + tagInput.value;
+                    customInput.value = autoLink;
+                    finalLink.value = autoLink;
+                }
+            });
+
+            /* ====== INIT ====== */
+            handlePageTypeChange();
+            updateLinkUI();
+        });
+    </script>
+
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/elfinder/js/elfinder.min.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+    <script>
+        $(function () {
+            CKEDITOR.replace('Detail');
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

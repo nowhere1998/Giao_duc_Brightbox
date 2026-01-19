@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MyShop.Models.TbTtdangky>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nhan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kieudieukhien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Thutu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaSkNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kieudieukhien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thutu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSkNavigation.MaSk)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Idtt">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Idtt">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Idtt">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

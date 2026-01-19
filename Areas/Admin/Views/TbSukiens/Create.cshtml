@@ -1,0 +1,83 @@
+﻿@model MyShop.Models.TbSukien
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TbSukien</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Tensukien" class="control-label"></label>
+                <input asp-for="Tensukien" class="form-control" />
+                <span asp-validation-for="Tensukien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Noidung" class="control-label"></label>
+                <input asp-for="Noidung" class="form-control" />
+                <span asp-validation-for="Noidung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NguonLink" class="control-label"></label>
+                <input asp-for="NguonLink" class="form-control" />
+                <span asp-validation-for="NguonLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hienthi" class="control-label"></label>
+                <input asp-for="Hienthi" class="form-control" />
+                <span asp-validation-for="Hienthi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accid" class="control-label"></label>
+                <input asp-for="Accid" class="form-control" />
+                <span asp-validation-for="Accid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Iviews" class="control-label"></label>
+                <input asp-for="Iviews" class="form-control" />
+                <span asp-validation-for="Iviews" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Metatitle" class="control-label"></label>
+                <input asp-for="Metatitle" class="form-control" />
+                <span asp-validation-for="Metatitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Metakeyword" class="control-label"></label>
+                <input asp-for="Metakeyword" class="form-control" />
+                <span asp-validation-for="Metakeyword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Metadescription" class="control-label"></label>
+                <input asp-for="Metadescription" class="form-control" />
+                <span asp-validation-for="Metadescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tag" class="control-label"></label>
+                <input asp-for="Tag" class="form-control" />
+                <span asp-validation-for="Tag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Keyname" class="control-label"></label>
+                <input asp-for="Keyname" class="form-control" />
+                <span asp-validation-for="Keyname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

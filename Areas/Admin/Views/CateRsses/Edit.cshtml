@@ -1,0 +1,84 @@
+﻿@model MyShop.Models.CateRss
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CateRss</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Cateid" class="control-label"></label>
+                <input asp-for="Cateid" class="form-control" />
+                <span asp-validation-for="Cateid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rsslink" class="control-label"></label>
+                <input asp-for="Rsslink" class="form-control" />
+                <span asp-validation-for="Rsslink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Beginstring" class="control-label"></label>
+                <input asp-for="Beginstring" class="form-control" />
+                <span asp-validation-for="Beginstring" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endstring" class="control-label"></label>
+                <input asp-for="Endstring" class="form-control" />
+                <span asp-validation-for="Endstring" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Source" class="control-label"></label>
+                <input asp-for="Source" class="form-control" />
+                <span asp-validation-for="Source" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Urlimg" class="control-label"></label>
+                <input asp-for="Urlimg" class="form-control" />
+                <span asp-validation-for="Urlimg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Urlimgupdate" class="control-label"></label>
+                <input asp-for="Urlimgupdate" class="form-control" />
+                <span asp-validation-for="Urlimgupdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Urlimgold" class="control-label"></label>
+                <input asp-for="Urlimgold" class="form-control" />
+                <span asp-validation-for="Urlimgold" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ulrimgnew" class="control-label"></label>
+                <input asp-for="Ulrimgnew" class="form-control" />
+                <span asp-validation-for="Ulrimgnew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Imgfolderpath" class="control-label"></label>
+                <input asp-for="Imgfolderpath" class="form-control" />
+                <span asp-validation-for="Imgfolderpath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Active" class="control-label"></label>
+                <input asp-for="Active" class="form-control" />
+                <span asp-validation-for="Active" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

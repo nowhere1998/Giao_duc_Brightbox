@@ -1,0 +1,77 @@
+﻿@model MyShop.Models.Library
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Library</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tag" class="control-label"></label>
+                <input asp-for="Tag" class="form-control" />
+                <span asp-validation-for="Tag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input asp-for="File" class="form-control" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Info" class="control-label"></label>
+                <input asp-for="Info" class="form-control" />
+                <span asp-validation-for="Info" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Active" class="control-label"></label>
+                <input asp-for="Active" class="form-control" />
+                <span asp-validation-for="Active" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GroupLibraryId" class="control-label"></label>
+                <select asp-for="GroupLibraryId" class ="form-control" asp-items="ViewBag.GroupLibraryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberId" class="control-label"></label>
+                <input asp-for="MemberId" class="form-control" />
+                <span asp-validation-for="MemberId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lang" class="control-label"></label>
+                <input asp-for="Lang" class="form-control" />
+                <span asp-validation-for="Lang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
