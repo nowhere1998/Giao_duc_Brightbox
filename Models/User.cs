@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyShop.Models;
 
@@ -17,6 +18,8 @@ public partial class User
 
     public int? Admin { get; set; }
 
+    [Display(Name = "Thứ tự")]
+    [Required(ErrorMessage = "Thứ tự không được để trống")]
     public int? Ord { get; set; }
 
     public int? Active { get; set; }

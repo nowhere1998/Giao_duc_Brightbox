@@ -1,142 +1,131 @@
 ﻿@model MyShop.Models.News
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm bài viết";
 }
 
-<h1>Create</h1>
+<link rel="stylesheet" href="~/css/adminstyle.css" />
 
-<h4>News</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tag" class="control-label"></label>
-                <input asp-for="Tag" class="form-control" />
-                <span asp-validation-for="Tag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="File" class="control-label"></label>
-                <input asp-for="File" class="form-control" />
-                <span asp-validation-for="File" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Video" class="control-label"></label>
-                <input asp-for="Video" class="form-control" />
-                <span asp-validation-for="Video" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Detail" class="control-label"></label>
-                <input asp-for="Detail" class="form-control" />
-                <span asp-validation-for="Detail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Keyword" class="control-label"></label>
-                <input asp-for="Keyword" class="form-control" />
-                <span asp-validation-for="Keyword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Priority" class="control-label"></label>
-                <input asp-for="Priority" class="form-control" />
-                <span asp-validation-for="Priority" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Index" class="control-label"></label>
-                <input asp-for="Index" class="form-control" />
-                <span asp-validation-for="Index" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Reportage" class="control-label"></label>
-                <input asp-for="Reportage" class="form-control" />
-                <span asp-validation-for="Reportage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Spotlight" class="control-label"></label>
-                <input asp-for="Spotlight" class="form-control" />
-                <span asp-validation-for="Spotlight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Latest" class="control-label"></label>
-                <input asp-for="Latest" class="form-control" />
-                <span asp-validation-for="Latest" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GroupNewsId" class="control-label"></label>
-                <select asp-for="GroupNewsId" class ="form-control" asp-items="ViewBag.GroupNewsId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Lang" class="control-label"></label>
-                <input asp-for="Lang" class="form-control" />
-                <span asp-validation-for="Lang" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tags" class="control-label"></label>
-                <input asp-for="Tags" class="form-control" />
-                <span asp-validation-for="Tags" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Comment" class="control-label"></label>
-                <input asp-for="Comment" class="form-control" />
-                <span asp-validation-for="Comment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Register" class="control-label"></label>
-                <input asp-for="Register" class="form-control" />
-                <span asp-validation-for="Register" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RegisterLink" class="control-label"></label>
-                <input asp-for="RegisterLink" class="form-control" />
-                <span asp-validation-for="RegisterLink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<div class="container mt-4">
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <h3 class="text-primary mb-3">Thêm bài viết</h3>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Tiêu đề</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Tag" class="form-label">Tag</label>
+            <input asp-for="Tag" id="Tag" readonly class="form-control" />
+            <span asp-validation-for="Tag" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="GroupNewsId" class="form-label">Nhóm tin</label>
+                <select asp-for="GroupNewsId" class="form-select" asp-items="ViewBag.GroupId">
+                    <option value="">-- Chọn nhóm --</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label asp-for="Active" class="form-label">Trạng thái</label>
+                <select asp-for="Active" class="form-select">
+                    <option value="1">Hiển thị</option>
+                    <option value="0">Ẩn</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Content" class="form-label">Nội dung</label>
+            <textarea asp-for="Content" id="Content" class="form-control" rows="6"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Detail" class="form-label">Nội dung chi tiết</label>
+            <textarea asp-for="Detail" id="Content" class="form-control" rows="6"></textarea>
+            <span asp-validation-for="Detail" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Mô tả</label>
+            <textarea asp-for="Description" id="Content" class="form-control" rows="6"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Video" class="form-label">Video</label>
+            <input asp-for="Video" class="form-control" />
+            <span asp-validation-for="Video" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Hình ảnh</label>
+            <input name="photo" type="file" class="form-control" />
+        </div>
+
+        <div class="mt-5">
+            <a asp-action="Index" class="btn btn-secondary">Trở lại</a>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i> Lưu
+            </button>
+        </div>
+
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    </script>
+    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/elfinder/js/elfinder.min.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($('#btnBrowse') != undefined) {
+                $('#btnBrowse').click(function () {
+                    var fm = $('<div id="elfinder" />').dialogelfinder({
+                        url: '/quan-ly-tep-tin/connector',
+                        baseUrl: "/elfinder/",
+                        width: 840,
+                        height: 450,
+                        destroyOnClose: true,
+                        title: 'Quản lý tệp tin',
+                        getFileCallback: function (files, fm) {
+                            $('#Image').val('/' + files[0].path);
+                            $('#PictureView').attr('src', '/' + files[0].path);
+                        },
+                        commandsOptions: {
+                            getfile: {
+                                multiple: true,
+                                oncomplete: 'close',
+                                folders: false
+                            }
+                        }
+                    }).dialogelfinder('instance');
+                })
+            }
+        });
+        CKEDITOR.replace('Detail');
+    </script>
+
+    <script>
+        function toSlug(str) {
+            return str
+                .toLowerCase()
+                .replace(/đ/g, "d")
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // bỏ dấu tiếng Việt
+                .replace(/[^a-z0-9\s-]/g, "")                     // bỏ ký tự đặc biệt
+                .trim()
+                .replace(/\s+/g, "-")                             // khoảng trắng → "-"
+                .replace(/-+/g, "-");                              // bỏ trùng dấu "-"
+        }
+
+        document.getElementById("Title").addEventListener("input", function () {
+            document.getElementById("Tag").value = toSlug(this.value);
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

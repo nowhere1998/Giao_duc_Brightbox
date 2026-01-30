@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyShop.Areas.Admin.Controllers
 {
@@ -16,151 +15,158 @@ namespace MyShop.Areas.Admin.Controllers
     {
         private readonly DbMyShopContext _context;
 
+        // ✅ Inject DbContext (KHÔNG new)
         public LibrariesController(DbMyShopContext context)
         {
             _context = context;
         }
 
         // GET: Admin/Libraries
-        public async Task<IActionResult> Index()
+        public IActionResult Index(
+    int page = 1,
+    string GroupLibraryId = null,
+    string newsTitle = null,
+    string Active = null)
         {
-            var dbMyShopContext = _context.Libraries.Include(l => l.GroupLibrary);
-            return View(await dbMyShopContext.ToListAsync());
-        }
+            int pageSize = 10;
 
-        // GET: Admin/Libraries/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            var libraries = _context.Libraries
+                .Include(x => x.GroupLibrary)
+                .AsNoTracking()
+                .AsQueryable();
+
+            // Lọc GroupLibrary
+            if (!string.IsNullOrEmpty(GroupLibraryId) &&
+                int.TryParse(GroupLibraryId, out int groupId))
             {
-                return NotFound();
+                libraries = libraries.Where(x => x.GroupLibraryId == groupId);
             }
 
-            var library = await _context.Libraries
-                .Include(l => l.GroupLibrary)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (library == null)
+            // Lọc theo tên
+            if (!string.IsNullOrEmpty(newsTitle))
             {
-                return NotFound();
+                libraries = libraries.Where(x => x.Name.Contains(newsTitle));
             }
 
-            return View(library);
+            // Lọc Active
+            if (!string.IsNullOrEmpty(Active) &&
+                int.TryParse(Active, out int isActive))
+            {
+                libraries = libraries.Where(x => x.Active == isActive);
+            }
+
+            // Tổng bản ghi
+            int totalItems = libraries.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            // Dữ liệu trang hiện tại
+            var data = libraries
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            // ===== ViewBag cho phân trang =====
+            ViewBag.Page = page;
+            ViewBag.TotalPages = totalPages;
+
+            // Giữ filter khi bấm trang
+            ViewBag.newsTitle = newsTitle;
+            ViewBag.GroupLibraryId = GroupLibraryId;
+            ViewBag.Active = Active;
+
+            // Dropdown
+            ViewBag.GroupLibraries = _context.GroupLibraries.ToList();
+
+            return View(data);
         }
+
 
         // GET: Admin/Libraries/Create
         public IActionResult Create()
         {
-            ViewData["GroupLibraryId"] = new SelectList(_context.GroupLibraries, "Id", "Id");
+            ViewBag.GroupLibraries = _context.GroupLibraries.ToList();
+            ViewBag.Members = _context.Members.ToList();
             return View();
         }
 
         // POST: Admin/Libraries/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Tag,Image,File,Info,Priority,Active,GroupLibraryId,MemberId,Lang")] Library library)
+        public IActionResult Create(Library data)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(library);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["GroupLibraryId"] = new SelectList(_context.GroupLibraries, "Id", "Id", library.GroupLibraryId);
-            return View(library);
-        }
+            data.Active ??= 0;
 
-        // GET: Admin/Libraries/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            // Giá trị mặc định
+            data.Tag = "";
+            data.Info = "";
+            data.File = "";
+            data.MemberId = 0;
+            data.Lang = "";
+            data.Priority = 0;
+            _context.Libraries.Add(data);
+            _context.SaveChanges();
 
-            var library = await _context.Libraries.FindAsync(id);
-            if (library == null)
-            {
-                return NotFound();
-            }
-            ViewData["GroupLibraryId"] = new SelectList(_context.GroupLibraries, "Id", "Id", library.GroupLibraryId);
-            return View(library);
-        }
-
-        // POST: Admin/Libraries/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Tag,Image,File,Info,Priority,Active,GroupLibraryId,MemberId,Lang")] Library library)
-        {
-            if (id != library.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(library);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LibraryExists(library.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["GroupLibraryId"] = new SelectList(_context.GroupLibraries, "Id", "Id", library.GroupLibraryId);
-            return View(library);
-        }
-
-        // GET: Admin/Libraries/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var library = await _context.Libraries
-                .Include(l => l.GroupLibrary)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (library == null)
-            {
-                return NotFound();
-            }
-
-            return View(library);
-        }
-
-        // POST: Admin/Libraries/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var library = await _context.Libraries.FindAsync(id);
-            if (library != null)
-            {
-                _context.Libraries.Remove(library);
-            }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LibraryExists(int id)
+        // GET: Admin/Libraries/Edit/5
+        public IActionResult Edit(int id)
         {
-            return _context.Libraries.Any(e => e.Id == id);
+            var library = _context.Libraries.FirstOrDefault(x => x.Id == id);
+            if (library == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.GroupLibraries = _context.GroupLibraries.ToList();
+            ViewBag.Members = _context.Members.ToList();
+
+            return View(library);
+        }
+
+        // POST: Admin/Libraries/Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Library data)
+        {
+            data.Active ??= 0;
+
+            var dbLibrary = _context.Libraries.FirstOrDefault(x => x.Id == data.Id);
+            if (dbLibrary == null)
+            {
+                return NotFound();
+            }
+
+
+
+            // Update field
+            dbLibrary.Name = data.Name;
+            dbLibrary.GroupLibraryId = data.GroupLibraryId;
+            dbLibrary.Active = data.Active;
+            dbLibrary.Tag = "";
+            dbLibrary.Info = "";
+            dbLibrary.File = "";
+            dbLibrary.MemberId = 0;
+            dbLibrary.Lang = "";
+            dbLibrary.Priority = 0;
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Admin/Libraries/Delete/5
+        public IActionResult Delete(int id)
+        {
+            var library = _context.Libraries.FirstOrDefault(x => x.Id == id);
+            if (library == null)
+            {
+                return NotFound();
+            }
+
+            _context.Libraries.Remove(library);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

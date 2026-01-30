@@ -1,71 +1,126 @@
 ﻿@model IEnumerable<MyShop.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách người dùng";
 }
 
-<h1>Index</h1>
+<main class="py-4">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Level)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Admin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ord)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Level)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Admin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ord)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="text-primary">Danh sách người dùng</h3>
+
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fa fa-plus"></i> Thêm mới
+        </a>
+    </div>
+    <form method="get"
+          asp-area="Admin"
+          asp-controller="Users"
+          asp-action="Index"
+          class="mb-3">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <!-- nút submit là icon search -->
+                <button type="submit" class="btn btn-primary" title="Tìm kiếm">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <input type="text"
+                   name="name"
+                   value="@ViewBag.searchName"
+                   class="form-control"
+                   placeholder="Tìm theo tên..." />
+        </div>
+    </form>
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["Error"]
+        </div>
+    }
+    <!-- TABLE -->
+    <table class="table table-hover align-middle" style="border-collapse:collapse;">
+        <thead class="table-primary">
+            <tr style="border-bottom:2px solid #cfd4da;">
+                <th>Tên đăng nhập</th>
+                <th>Họ tên</th>
+                <th>Quyền</th>
+                <th>Trạng thái</th>
+                <th class="text-center">Hành động</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="border-bottom:1px solid #dee2e6;">
+                    <td>@item.Username</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <span>
+                            @if (item.Admin == 1)
+                            {
+                                <span>Quản trị viên</span>
+                            }
+                            else
+                            {
+                                <span>Người dùng</span>
+                            }
+                        </span>
+                    </td>
+                    <td>
+                        @if (item.Active == 1)
+                        {
+                            <span class="badge bg-success">Hoạt động</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Khoá</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-primary me-1"
+                           asp-action="Edit"
+                           asp-route-id="@item.Id">
+                            <i class="fa fa-edit"></i>
+                        </a>
+
+                        <a class="btn btn-sm btn-outline-danger"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"
+                           asp-action="Delete"
+                           asp-route-id="@item.Id">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            @if (ViewBag.Page > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { name = ViewBag.searchName, page = ViewBag.Page - 1 })">«</a>
+                </li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { name = ViewBag.searchName, page = i })">@i</a>
+                </li>
+            }
+
+            @if (ViewBag.Page < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { name = ViewBag.searchName, page = ViewBag.Page + 1 })">»</a>
+                </li>
+            }
+
+        </ul>
+    </nav>
+</main>

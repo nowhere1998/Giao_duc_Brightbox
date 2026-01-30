@@ -108,7 +108,7 @@ Layout = null;
             <!-- Brand Logo -->
             <a href="/admin" class="brand-link">
                 <img src="~/admin/assets/dist/img/AdminLTELogo.png" class="brand-image img-circle elevation-3" style="opacity:.8" />
-                <span class="brand-text font-weight-light">BrightBox</span>
+                <span class="brand-text font-weight-light">HanCo</span>
             </a>
 
             <!-- Sidebar -->
@@ -122,7 +122,7 @@ Layout = null;
                         <a href="#" class="d-block" style="text-transform: uppercase;">
                             @if (User.Identity != null && User.Identity.IsAuthenticated)
                             {
-                                <a href="#" class="d-block text-uppercase">
+                                <a asp-action="ChangePassword" asp-controller="users" class="d-block text-uppercase">
                                     @User.FindFirst("FullName")?.Value
                                 </a>
                             }
@@ -157,19 +157,19 @@ Layout = null;
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/CateRsses" class="nav-link">
                                 <i class="nav-icon fas fa-rss"></i>
                                 <p>Danh mục RSS</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/Comments" class="nav-link">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>Bình luận</p>
                             </a>
-                        </li>
+                        </li> *@
 
                         <li class="nav-item">
                             <a href="/admin/Configs/edit" class="nav-link">
@@ -185,7 +185,7 @@ Layout = null;
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/Documents" class="nav-link">
                                 <i class="nav-icon fas fa-folder-open"></i>
                                 <p>Tài liệu</p>
@@ -211,7 +211,7 @@ Layout = null;
                                 <i class="nav-icon fas fa-comment-dots"></i>
                                 <p>Phản hồi</p>
                             </a>
-                        </li>
+                        </li> *@
 
                         <li class="nav-item">
                             <a href="/admin/GroupLibraries" class="nav-link">
@@ -219,8 +219,16 @@ Layout = null;
                                 <p>Nhóm thư viện</p>
                             </a>
                         </li>
-
                         <li class="nav-item">
+
+                            <a href="/admin/Libraries" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>Thư viện</p>
+                            </a>
+                        </li>
+
+
+                        @* <li class="nav-item">
                             <a href="/admin/GroupLibraryUsers" class="nav-link">
                                 <i class="nav-icon fas fa-users-cog"></i>
                                 <p>Nhóm thư viện - Người dùng</p>
@@ -232,7 +240,7 @@ Layout = null;
                                 <i class="nav-icon fas fa-user-friends"></i>
                                 <p>Nhóm thành viên</p>
                             </a>
-                        </li>
+                        </li> *@
 
                         <li class="nav-item">
                             <a href="/admin/GroupNews" class="nav-link">
@@ -240,8 +248,14 @@ Layout = null;
                                 <p>Nhóm tin tức</p>
                             </a>
                         </li>
-
                         <li class="nav-item">
+                            <a href="/admin/News" class="nav-link">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>Tin tức</p>
+                            </a>
+                        </li>
+
+                        @* <li class="nav-item">
                             <a href="/admin/GroupNewsUsers" class="nav-link">
                                 <i class="nav-icon fas fa-user-edit"></i>
                                 <p>Nhóm tin - Người dùng</p>
@@ -253,23 +267,18 @@ Layout = null;
                                 <i class="nav-icon fas fa-headset"></i>
                                 <p>Nhóm hỗ trợ</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/Languages" class="nav-link">
                                 <i class="nav-icon fas fa-language"></i>
                                 <p>Ngôn ngữ</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
-                            <a href="/admin/Libraries" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>Thư viện</p>
-                            </a>
-                        </li>
 
-                        <li class="nav-item">
+
+                        @* <li class="nav-item">
                             <a href="/admin/Links" class="nav-link">
                                 <i class="nav-icon fas fa-link"></i>
                                 <p>Liên kết</p>
@@ -281,21 +290,16 @@ Layout = null;
                                 <i class="nav-icon fas fa-user-graduate"></i>
                                 <p>Học viên</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
+                        @*   <li class="nav-item">
                             <a href="/admin/Modules" class="nav-link">
                                 <i class="nav-icon fas fa-puzzle-piece"></i>
                                 <p>Module</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
-                            <a href="/admin/News" class="nav-link">
-                                <i class="nav-icon fas fa-newspaper"></i>
-                                <p>Tin tức</p>
-                            </a>
-                        </li>
+
 
                         <li class="nav-item">
                             <a href="/admin/Pages" class="nav-link">
@@ -304,7 +308,7 @@ Layout = null;
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/Permissions" class="nav-link">
                                 <i class="nav-icon fas fa-shield-alt"></i>
                                 <p>Phân quyền</p>
@@ -316,14 +320,14 @@ Layout = null;
                                 <i class="nav-icon fas fa-file-signature"></i>
                                 <p>Phiếu đăng ký</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
+                        @*   <li class="nav-item">
                             <a href="/admin/Posts" class="nav-link">
                                 <i class="nav-icon fas fa-pen"></i>
                                 <p>Bài viết</p>
                             </a>
-                        </li>
+                        </li> *@
 
                         <li class="nav-item">
                             <a href="/admin/Products" class="nav-link">
@@ -332,21 +336,21 @@ Layout = null;
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/Staffs" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
                                 <p>Nhân viên</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/Supports" class="nav-link">
                                 <i class="nav-icon fas fa-headset"></i>
                                 <p>Hỗ trợ</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/TbCounters" class="nav-link">
                                 <i class="nav-icon fas fa-sort-numeric-up"></i>
                                 <p>Bộ đếm</p>
@@ -365,9 +369,9 @@ Layout = null;
                                 <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>Sự kiện</p>
                             </a>
-                        </li>
+                        </li> *@
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/TbTddangkies" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
                                 <p>Thông tin đăng ký</p>
@@ -386,7 +390,7 @@ Layout = null;
                                 <i class="nav-icon fas fa-toggle-on"></i>
                                 <p>Bật / Tắt hệ thống</p>
                             </a>
-                        </li>
+                        </li> *@
 
                         <li class="nav-item">
                             <a href="/admin/Users" class="nav-link">
@@ -395,7 +399,7 @@ Layout = null;
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a href="/admin/Votes" class="nav-link">
                                 <i class="nav-icon fas fa-vote-yea"></i>
                                 <p>Bình chọn</p>
@@ -407,7 +411,7 @@ Layout = null;
                                 <i class="nav-icon fas fa-poll"></i>
                                 <p>Chi tiết bình chọn</p>
                             </a>
-                        </li>
+                        </li> *@
 
                     </ul>
                 </nav>

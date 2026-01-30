@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿    using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,11 +23,44 @@ namespace MyShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? categoryId, string? name, int page = 1, int pageSize = 30)
         {
-            var dbMyShopContext = _context.Products.Include(p => p.Category);
-            return View(await dbMyShopContext.ToListAsync());
+            LoadCategories(); // 🔥 LUÔN LOAD CATEGORY
+
+            var query = _context.Products
+                .Include(x => x.Category)
+                .AsNoTracking()
+                .AsQueryable();
+
+            // 🔹 LỌC THEO CATEGORY
+            if (categoryId.HasValue)
+            {
+                query = query.Where(x => x.CategoryId == categoryId);
+            }
+
+            // 🔹 LỌC THEO TÊN
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(x =>
+                    x.Name.ToLower().Contains(name.ToLower().Trim()));
+            }
+
+            var totalCount = await query.CountAsync();
+
+            var data = await query
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.SelectedCategoryId = categoryId; // để giữ dropdown
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+            return View(data);
         }
+
 
         // GET: Admin/Products/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -50,7 +84,7 @@ namespace MyShop.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
+            LoadCategories();
             return View();
         }
 
@@ -59,51 +93,93 @@ namespace MyShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Tag,Image,Content,Detail,Date,Title,Description,Keyword,Priority,Index,Active,CategoryId,Lang")] Product product)
+        public async Task<IActionResult> Create(Product model)
         {
+            // --- Xử lý upload ảnh chính ---
+            var files = HttpContext.Request.Form.Files;
+            if (files.Count > 0 && files[0].Length > 0)
+            {
+                var file = files[0];
+                var fileName = file.FileName;
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                    model.Image = fileName;
+                }
+            }
+            var exists = await _context.Products.AnyAsync(p => p.Tag == model.Tag);
+            if (exists)
+            {
+                LoadCategories();
+                ModelState.AddModelError("Name", "Tên đã tồn tại, vui lòng đổi tên khác.");
+            }
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            return View(product);
+            LoadCategories();
+            return View(model);
         }
+
 
         // GET: Admin/Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (product == null)
-            {
                 return NotFound();
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
+            LoadCategories();
             return View(product);
         }
+
 
         // POST: Admin/Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Tag,Image,Content,Detail,Date,Title,Description,Keyword,Priority,Index,Active,CategoryId,Lang")] Product product)
+        public async Task<IActionResult> Edit(int id, Product product)
         {
             if (id != product.Id)
             {
                 return NotFound();
+            }
+            var exists = await _context.Products.AnyAsync(p => p.Tag == product.Tag && p.Id != product.Id);
+
+            if (exists)
+            {
+                LoadCategories();
+                ModelState.AddModelError("Name", "Tên đã tồn tại, vui lòng nhập tên khác.");
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // --- XỬ LÝ ẢNH CHÍNH ---
+                    var files = HttpContext.Request.Form.Files;
+                    if (files.Count > 0 && files[0].Length > 0)
+                    {
+                        var file = files[0];
+                        var fileName = file.FileName;
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                            product.Image = "/" + fileName; // Lưu đường dẫn ảnh
+                        }
+                    }
+
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
@@ -120,7 +196,8 @@ namespace MyShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
+
+            LoadCategories();
             return View(product);
         }
 
@@ -161,6 +238,62 @@ namespace MyShop.Areas.Admin.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
+        }
+
+        private void LoadCategories()
+        {
+            var categories = _context.Categories
+                .AsNoTracking()
+                .Where(x => !string.IsNullOrEmpty(x.Level))
+                .OrderBy(x => x.Level)
+                .ToList();
+
+            var result = new List<SelectListItem>();
+
+            // Lấy danh mục gốc (cấp 1)
+            var roots = categories.Where(x => x.Level.Length == 5);
+
+            foreach (var root in roots)
+            {
+                BuildCategoryTree(categories, result, root, "");
+            }
+
+            ViewBag.Categories = result;
+        }
+
+
+        private void BuildCategoryTree(
+    List<Category> source,
+    List<SelectListItem> result,
+    Category current,
+    string parentPath)
+        {
+            // Build URL
+            string currentPath = string.IsNullOrEmpty(parentPath)
+                ? "/san-pham/" + current.Tag
+                : parentPath + "/" + current.Tag;
+
+            // Tính cấp
+            int depth = current.Level.Length / 5 - 1;
+            string prefix = depth > 0 ? new string('—', depth) + " " : "";
+
+            // Add current item
+            result.Add(new SelectListItem
+            {
+                Text = prefix + current.Name,
+                Value = current.Id.ToString()
+            });
+
+            // Lấy con trực tiếp
+            var children = source.Where(x =>
+                x.Level.StartsWith(current.Level) &&
+                x.Level.Length == current.Level.Length + 5
+            );
+
+            foreach (var child in children)
+            {
+                BuildCategoryTree(source, result, child, currentPath);
+            }
         }
     }
 }

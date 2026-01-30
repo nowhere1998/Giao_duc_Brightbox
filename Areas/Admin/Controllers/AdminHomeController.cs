@@ -62,6 +62,7 @@ namespace MyShop.Areas.Admin.Controllers
             var identity = new ClaimsIdentity(new[] {
             new Claim("UserId", acc.Id.ToString()),
             new Claim("UserName", acc.Username),
+            new Claim("FullName", acc.Name),
         }, "MyShopSecurityScheme");
 
             var principal = new ClaimsPrincipal(identity);

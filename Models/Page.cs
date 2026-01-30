@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyShop.Models;
 
@@ -33,6 +34,8 @@ public partial class Page
 
     public int? Position { get; set; }
 
+    [Display(Name = "Thứ tự")]
+    [Required(ErrorMessage = "Thứ tự không được để trống")]
     public int? Ord { get; set; }
 
     public int? Active { get; set; }
