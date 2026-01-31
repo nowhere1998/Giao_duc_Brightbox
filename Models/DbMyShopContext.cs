@@ -23,10 +23,12 @@ public partial class DbMyShopContext : DbContext
 
     public virtual DbSet<Comment> Comments { get; set; }
 
+    public virtual DbSet<CommentPro> CommentPros { get; set; }
+
     public virtual DbSet<Config> Configs { get; set; }
 
     public virtual DbSet<Contact> Contacts { get; set; }
-
+    public virtual DbSet<Customer> Customers { get; set; } = null!;
     public virtual DbSet<Document> Documents { get; set; }
 
     public virtual DbSet<DocumentType> DocumentTypes { get; set; }
@@ -196,6 +198,35 @@ public partial class DbMyShopContext : DbContext
                 .HasConstraintName("FRK_Comment_NewsId");
         });
 
+        modelBuilder.Entity<CommentPro>(entity =>
+        {
+            entity.ToTable("commentPro"); // đúng tên bảng mới
+
+            entity.Property(e => e.Comment1)
+                .HasColumnName("Comment");
+
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime");
+
+            entity.Property(e => e.Email)
+                .HasMaxLength(250);
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(250);
+
+            entity.HasOne(d => d.Product)
+                .WithMany(p => p.CommentPros)
+                .HasForeignKey(d => d.ProductId)
+                .HasConstraintName("FK_commentPro_Product");
+
+            entity.HasOne(d => d.Customer)
+                .WithMany(c => c.CommentPros) // hoặc .WithMany()
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_commentPro_Customer");
+        });
+
+
         modelBuilder.Entity<Config>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRK_Config_Id");
@@ -298,6 +329,39 @@ public partial class DbMyShopContext : DbContext
                 .HasMaxLength(64)
                 .IsUnicode(false);
         });
+
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.ToTable("Customer");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id)
+                .HasColumnName("Id");
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(250);
+
+            entity.Property(e => e.Email)
+                .HasMaxLength(250);
+
+            entity.Property(e => e.Address)
+                .HasMaxLength(250);
+
+            entity.Property(e => e.Phone)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+            entity.Property(e => e.Password)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+            entity.Property(e => e.UserName)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Active);
+        });
+
 
         modelBuilder.Entity<Document>(entity =>
         {

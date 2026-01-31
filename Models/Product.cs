@@ -36,4 +36,7 @@ public partial class Product
     public string? Lang { get; set; }
 
     public virtual Category? Category { get; set; }
+    public virtual ICollection<CommentPro> CommentPros { get; set; }
+    = new List<CommentPro>();
+
 }
