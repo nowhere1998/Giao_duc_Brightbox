@@ -34,7 +34,7 @@ namespace MyShop.Areas.Admin.Controllers
         }
 
         //trong AdminHomeController
-       [Route("login")]
+        [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login(string userName, string password)
         {

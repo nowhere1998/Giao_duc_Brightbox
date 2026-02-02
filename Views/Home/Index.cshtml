@@ -11,14 +11,27 @@
 		<rs-module-wrap id="rev_slider_1_1_wrapper" data-source="gallery" style="background:transparent;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
 			<rs-module id="rev_slider_1_1" style="" data-version="6.4.2">
 				<rs-slides>
-					<rs-slide data-key="rs-2" data-title="Slide" data-thumb="/user/assets/wp-content/uploads/2021/04/slide-1-50x100.jpg" data-in="o:0;" data-out="a:false;">
-						<img src="/user/assets/wp-content/uploads/2021/04/slide-1.jpg" title="Trang chủ" class="rev-slidebg" data-no-retina>
-						<!---->
-					</rs-slide>
-					<rs-slide data-key="rs-3" data-title="Slide" data-thumb="/user/assets/wp-content/uploads/2021/04/slide-1-50x100.jpg" data-in="o:0;" data-out="a:false;">
-						<img src="/user/assets/wp-content/uploads/2021/04/slide-1.jpg" title="Trang chủ" class="rev-slidebg" data-no-retina>
-						<!---->
-					</rs-slide>
+					@if (ViewBag.Slides != null)
+					{
+						var index = 1;
+						foreach (var s in ViewBag.Slides)
+						{
+							<rs-slide data-key="rs-@index"
+									  data-title="@(s.Name ?? "Slide")"
+									  data-in="o:0;"
+									  data-out="a:false;">
+
+								<img src="@s.Image"
+									 title="@(s.Name ?? "Trang chủ")"
+									 class="rev-slidebg"
+									 data-no-retina 
+									 style="object-fit:cover"/>
+
+							</rs-slide>
+
+							index++;
+						}
+					}
 				</rs-slides>
 			</rs-module>
 			<script type="text/javascript">
@@ -193,14 +206,13 @@
 													</div>
 
 
-													<a class="btn btn-primary" href="https:/user/assets/khoa-hoc/">Xem Thêm</a>
+													<a class="btn btn-primary" href="https:/khoa-hoc">Xem Thêm</a>
 												</div>
 
 												<p class="portfolio_description">Lựa chọn khóa học ngay hôm nay để nhận ưu đãi tốt nhất</p>
 
 												<div class="portfolio-row portfolio-row-3 classic">
-
-
+													@* list khóa học *@
 													<article class="portfolio portfolio-grid portfolio-col-3 thiet-ke-do-hoa post-503 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-thiet-ke-do-hoa">
 														<span class="entry-title" style="display: none;">Dàn trang với Adobe Indesign</span><span class="vcard" style="display: none;"><span class="fn"><a href="https:/user/assets/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:27:10+07:00</span>		<div class="portfolio-item outimage">
 
@@ -214,7 +226,7 @@
 															<div class="rating_student">
 																<div class="portfolio_rating">
 																	<div class="star-rating">
-																		<span style="width:92%"> <strong class="rating">4.6</strong> out of 5 </span>
+																		<span style="width:@(2*100/5)%"> <strong class="rating">4.6</strong> out of 5 </span>
 																	</div>
 																	<div class="star-number">4.6</div>
 																</div>
@@ -236,79 +248,8 @@
 
 														</div>
 													</article>
-													<article class="portfolio portfolio-grid portfolio-col-3 tin-hoc-van-phong post-497 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-tin-hoc-van-phong">
-														<span class="entry-title" style="display: none;">Powerpoint chuyên nghiệp</span><span class="vcard" style="display: none;"><span class="fn"><a href="https:/user/assets/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:25:13+07:00</span>		<div class="portfolio-item outimage">
 
-															<a class="text-decoration-none portfolio-link" href="https:/user/assets/khoa-hoc/powerpoint-chuyen-nghiep/">
-																<span class="thumb-info thumb-info-hide-wrapper-bg thumb-info-no-zoom">
-																	<span class="thumb-info-wrapper">
-																		<img class="img-responsive" src="https:/user/assets/wp-content/uploads/2020/06/img-2-367x278.jpg" alt="" width="367" height="278" />
-																	</span>
-																</span>
-															</a>
-															<div class="rating_student">
-																<div class="portfolio_rating">
-																	<div class="star-rating">
-																		<span style="width:98%"> <strong class="rating">4.9</strong> out of 5 </span>
-																	</div>
-																	<div class="star-number">4.9</div>
-																</div>
-																<div class="portfolio_student">
-																	<span>12,283 học viên</span>
-																</div>
-															</div>
-
-															<h4 class="portfolio-title"><a class="text-decoration-none" href="https:/user/assets/khoa-hoc/powerpoint-chuyen-nghiep/">Powerpoint chuyên nghiệp</a></h4>
-															<p class="portfolio_opening">Ngày khai giảng: Đang cập nhật</p>
-
-															<div class="portfolio_teacher">
-																<div class="portfolio_teacher_thumbnail">
-																	<img alt="teacher" class="img-responsive img-circle" src="https:/user/assets/wp-content/uploads/2020/06/img-4.png">
-																</div>
-																<p><strong>Nguyễn Tiến Huy </strong><span>MBA RMIT Vietnam - Nhà sáng lập... ...và....</span></p>
-															</div>
-
-
-														</div>
-													</article>
-													<article class="portfolio portfolio-grid portfolio-col-3 tin-hoc-van-phong post-495 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-tin-hoc-van-phong">
-														<span class="entry-title" style="display: none;">Excel chuyên nghiệp</span><span class="vcard" style="display: none;"><span class="fn"><a href="https:/user/assets/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:24:35+07:00</span>		<div class="portfolio-item outimage">
-
-															<a class="text-decoration-none portfolio-link" href="https:/user/assets/khoa-hoc/excel-chuyen-nghiep/">
-																<span class="thumb-info thumb-info-hide-wrapper-bg thumb-info-no-zoom">
-																	<span class="thumb-info-wrapper">
-																		<img class="img-responsive" src="https:/user/assets/wp-content/uploads/2020/06/img-2-367x278.jpg" alt="" width="367" height="278" />
-																	</span>
-																</span>
-															</a>
-															<div class="rating_student">
-																<div class="portfolio_rating">
-																	<div class="star-rating">
-																		<span style="width:96%"> <strong class="rating">4.8</strong> out of 5 </span>
-																	</div>
-																	<div class="star-number">4.8</div>
-																</div>
-																<div class="portfolio_student">
-																	<span>12,283 học viên</span>
-																</div>
-															</div>
-
-															<h4 class="portfolio-title"><a class="text-decoration-none" href="https:/user/assets/khoa-hoc/excel-chuyen-nghiep/">Excel chuyên nghiệp</a></h4>
-															<p class="portfolio_opening">Ngày khai giảng: Đang cập nhật</p>
-
-															<div class="portfolio_teacher">
-																<div class="portfolio_teacher_thumbnail">
-																	<img alt="teacher" class="img-responsive img-circle" src="https:/user/assets/wp-content/uploads/2020/06/img-4.png">
-																</div>
-																<p><strong>Nguyễn Tiến Huy </strong><span>MBA RMIT Vietnam - Nhà sáng lập... ...và....</span></p>
-															</div>
-
-
-														</div>
-													</article>
-
-
-
+													@* end list khóa học *@
 												</div>
 
 

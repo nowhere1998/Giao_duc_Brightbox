@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MyShop.Models.User
+@{
 	ViewData["Title"] = "Đăng ký";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -31,44 +32,58 @@
 
 													<div class="um-form" data-mode="register">
 
-														<form method="post" action="">
+														<form method="post" action="/dang-ky">
+															@Html.AntiForgeryToken()
+                                                            <div class="um-row _um_row_1 " style="margin: 0 0 30px 0;">
+                                                                @* <div class="um-col-121">
+                                                                    <div id="um_field_544_last_name" class="um-field um-field-text  um-field-last_name um-field-text um-field-type_text" data-key="last_name">
+                                                                        <div class="um-field-area">
+                                                                            <input autocomplete="off" class="um-form-field valid " type="text" name="last_name-544" id="last_name-544" value="" placeholder="Họ tên đệm*" data-validate="" data-key="last_name" />
 
-															<div class="um-row _um_row_1 " style="margin: 0 0 30px 0;">
-																<div class="um-col-121">
-																	<div id="um_field_544_last_name" class="um-field um-field-text  um-field-last_name um-field-text um-field-type_text" data-key="last_name">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="um-col-122">
+                                                                    <div id="um_field_544_first_name" class="um-field um-field-text  um-field-first_name um-field-text um-field-type_text" data-key="first_name">
+                                                                        <div class="um-field-area">
+                                                                            <input autocomplete="off" class="um-form-field valid " type="text" name="first_name-544" id="first_name-544" value="" placeholder="Tên*" data-validate="" data-key="first_name" />
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div> *@
+                                                                <div class="um-clear"></div>
+                                                                <div class="um-col-1">
+																	<div id="um_field_544_user_email" class="um-field um-field-text  um-field-user_email um-field-text um-field-type_text">
 																		<div class="um-field-area">
-																			<input autocomplete="off" class="um-form-field valid " type="text" name="last_name-544" id="last_name-544" value="" placeholder="Họ tên đệm*" data-validate="" data-key="last_name" />
+																			<input class="um-form-field valid " type="text" name="name" id="user_email-544" value="@ViewBag.Name" placeholder="Họ và tên" />
 
 																		</div>
 																	</div>
-																</div><div class="um-col-122">
-																	<div id="um_field_544_first_name" class="um-field um-field-text  um-field-first_name um-field-text um-field-type_text" data-key="first_name">
-																		<div class="um-field-area">
-																			<input autocomplete="off" class="um-form-field valid " type="text" name="first_name-544" id="first_name-544" value="" placeholder="Tên*" data-validate="" data-key="first_name" />
+                                                                    <div id="um_field_544_user_email" class="um-field um-field-text  um-field-user_email um-field-text um-field-type_text">
+                                                                        <div class="um-field-area">
+																			<input class="um-form-field valid " type="text" name="username" id="user_email-544" value="@ViewBag.UserName" placeholder="Tên tài khoản" />
 
-																		</div>
-																	</div>
-																</div><div class="um-clear"></div><div class="um-col-1">
-																	<div id="um_field_544_user_email" class="um-field um-field-text  um-field-user_email um-field-text um-field-type_text" data-key="user_email">
-																		<div class="um-field-area">
-																			<input autocomplete="off" class="um-form-field valid " type="text" name="user_email-544" id="user_email-544" value="" placeholder="E-mail" data-validate="unique_email" data-key="user_email" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="um_field_544_user_password" class="um-field um-field-password  um-field-user_password um-field-password um-field-type_password" data-key="user_password">
+                                                                        <div class="um-field-area">
+                                                                            <input class="um-form-field valid " type="password" name="password" id="user_password-544" value="" placeholder="Mật khẩu*" data-validate="" data-key="user_password" />
 
-																		</div>
-																	</div><div id="um_field_544_phone_number" class="um-field um-field-text  um-field-phone_number um-field-text um-field-type_text" data-key="phone_number">
-																		<div class="um-field-area">
-																			<input autocomplete="off" class="um-form-field valid " type="text" name="phone_number-544" id="phone_number-544" value="" placeholder="Số điện thoại*" data-validate="phone_number" data-key="phone_number" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="um_field_544_confirm_user_password" class="um-field um-field-password  um-field-user_password um-field-password um-field-type_password" data-key="confirm_user_password">
+                                                                        <div class="um-field-area">
+                                                                            <input class="um-form-field valid " type="password" name="confirmPassword" id="confirm_user_password-544" value="" placeholder="Xác nhận Mật khẩu*" data-validate="" data-key="confirm_user_password" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="um-field um-field-block  um-field-block um-field-type_block" data-key="um_block_544_7">
+                                                                        Bằng cách nhấn vào nút Tạo tài khoản, bạn đồng ý với
+                                                                        <a href="https://tech1.mypagedemo.com/brightbox/chinh-sach-bao-mat-thong-tin/">Chính sách bảo mật và Cookie</a> của chúng tôi. Bạn có thể sẽ nhận được tin nhắn hoặc email của chúng tôi.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-																		</div>
-																	</div><div id="um_field_544_user_password" class="um-field um-field-password  um-field-user_password um-field-password um-field-type_password" data-key="user_password">
-																		<div class="um-field-area">
-																			<input class="um-form-field valid " type="password" name="user_password-544" id="user_password-544" value="" placeholder="Mật khẩu*" data-validate="" data-key="user_password" />
-
-																		</div>
-																	</div><div id="um_field_544_confirm_user_password" class="um-field um-field-password  um-field-user_password um-field-password um-field-type_password" data-key="confirm_user_password"><div class="um-field-area"><input class="um-form-field valid " type="password" name="confirm_user_password-544" id="confirm_user_password-544" value="" placeholder="Xác nhận Mật khẩu*" data-validate="" data-key="confirm_user_password" /></div></div><div class="um-field um-field-block  um-field-block um-field-type_block" data-key="um_block_544_7">Bằng cách nhấn vào nút Tạo tài khoản, bạn đồng ý với <a href="https://tech1.mypagedemo.com/brightbox/chinh-sach-bao-mat-thong-tin/">Chính sách bảo mật và Cookie</a> của chúng tôi. Bạn có thể sẽ nhận được tin nhắn hoặc email của chúng tôi.</div>
-																</div>
-															</div>		<input type="hidden" name="form_id" id="form_id_544" value="544" />
-
-															<p class="um_request_name">
+                                                            <p class="um_request_name">
 																<label for="um_request_544">Only fill in if you are not human</label>
 																<input type="hidden" name="um_request" id="um_request_544" class="input" value="" size="25" autocomplete="off" />
 															</p>
