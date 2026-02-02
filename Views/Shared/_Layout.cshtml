@@ -3,6 +3,7 @@
 <html lang="vi">
 <head>
 	@await Component.InvokeAsync("Header")
+	@RenderSection("Styles", required: false)
 </head>
 <body data-rsssl=1 class="home page-template-default page page-id-2 wp-embed-responsive full blog-1 wpb-js-composer js-comp-ver-6.6.0 vc_responsive">
 
@@ -17,7 +18,7 @@
 		<!-- end header wrapper -->
 
 		@RenderBody()
-		@RenderSection("Styles", required: false)
+		
 
 
 		<div class="footer-wrapper">

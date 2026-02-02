@@ -1,11 +1,12 @@
-﻿<header id="header" class="header-corporate header-10">
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<header id="header" class="header-corporate header-10">
 
 	<div class="header-main header-body" style="top: 0px;">
 		<div class="header-container container">
 			<div class="header-left">
 				<h1 class="logo">
 					<a href="/" title="Bright Box - Learn great things everyday" rel="home">
-						<img class="img-responsive standard-logo retina-logo" src="/user/assets/wp-content/uploads/2021/04/logo_web.png" alt="Bright Box" />
+						<img class="img-responsive standard-logo retina-logo" src="@ViewBag.Logo.Image" alt="@ViewBag.Logo.Name" style="width:@(ViewBag.Logo.Width+"px"); height:@(ViewBag.Logo.Height+"px")" />
 					</a>
 				</h1>
 			</div>
@@ -14,56 +15,58 @@
 				<div class="header-right-top">
 					<div class="header-contact">
 						<ul class="nav nav-pills nav-top">
-							<li class="mr-2"><a href="tel:+84395162979" target="_blank" class="d-inline-flex align-items-center"><i class="fas fa-phone-alt"></i>+84 39 516 2979</a></li>
+							<li class="mr-2"><a href="#" target="_blank" class="d-inline-flex align-items-center"><i class="fas fa-phone-alt"></i>@ViewBag.Config.HotLine</a></li>
 						</ul>
-					</div><ul id="menu-menu-tren" class="top-links mega-menu">
-						<li id="nav-menu-item-302" class="register_popup featured menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#">Đăng ký khóa học</a></li>
-						<li id="nav-menu-item-303" class="account_link menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="/dang-nhap">Tạo tài khoản / Đăng nhập</a></li>
-					</ul>
+					</div>
+					@if (HttpContextAccessor.HttpContext.Session.GetString("username") != null)
+					{
+						<ul id="menu-menu-tren" class="top-links mega-menu">
+							<li id="nav-menu-item-302" class="register_popup featured menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#">Xin chào @HttpContextAccessor.HttpContext.Session.GetString("username")</a></li>
+							<li id="nav-menu-item-303" class="account_link menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="/dang-xuat">Đăng xuất</a></li>
+						</ul>
+					}
+					else
+					{
+						<ul id="menu-menu-tren" class="top-links mega-menu">
+							<li id="nav-menu-item-302" class="register_popup featured menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="/dang-ky">Đăng ký khóa học</a></li>
+							<li id="nav-menu-item-303" class="account_link menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="/dang-nhap">Tạo tài khoản / Đăng nhập</a></li>
+						</ul>
+					}
 				</div>
 				<div class="header-right-bottom">
 					<div id="main-menu">
 						<ul id="menu-menu-chinh" class="main-menu mega-menu">
-							<li id="nav-menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item active narrow"><a href="/" class=" current">Trang chủ</a></li>
-							<li id="nav-menu-item-317" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-sub narrow">
-								<a href="/khoa-hoc">Khóa học</a>
-								<div class="popup">
-									<div class="inner" style="">
-										<ul class="sub-menu">
-											<li id="nav-menu-item-511" class="menu-item menu-item-type-post_type menu-item-object-portfolio" data-cols="1"><a href="https:/user/assets/khoa-hoc/thiet-ke-do-hoa-co-ban/">Thiết kế đồ họa (Cơ bản)</a></li>
-										</ul>
-									</div>
-								</div>
-							</li>
-							<li id="nav-menu-item-318" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-sub narrow">
-								<a href="viec-lam/">Việc làm</a>
-								<div class="popup">
-									<div class="inner" style="">
-										<ul class="sub-menu">
-											<li id="nav-menu-item-648" class="menu-item menu-item-type-post_type menu-item-object-page" data-cols="1"><a href="https:/user/assets/giang-vien-bright-box/">Giảng viên Bright Box</a></li>
-										</ul>
-									</div>
-								</div>
-							</li>
-							<li id="nav-menu-item-315" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-sub narrow">
-								<a href="blog/">Blog</a>
-								<div class="popup">
-									<div class="inner" style="">
-										<ul class="sub-menu">
-											<li id="nav-menu-item-542" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/tin-tuc/">Tin tức</a></li>
-											<li id="nav-menu-item-543" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/xu-huong/">Xu hướng</a></li>
-											<li id="nav-menu-item-536" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/thiet-ke-do-hoa/">Thiết kế đồ họa</a></li>
-											<li id="nav-menu-item-537" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/thiet-ke-noi-that/">Thiết kế nội thất</a></li>
-											<li id="nav-menu-item-538" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/thiet-ke-website/">Thiết kế website</a></li>
-											<li id="nav-menu-item-535" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/dung-phim/">Dựng phim</a></li>
-											<li id="nav-menu-item-539" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/tieng-han/">Tiếng Hàn</a></li>
-											<li id="nav-menu-item-540" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/tieng-hoa/">Tiếng Hoa</a></li>
-											<li id="nav-menu-item-541" class="menu-item menu-item-type-taxonomy menu-item-object-category" data-cols="1"><a href="https:/user/assets/danh-muc/tieng-nhat/">Tiếng Nhật</a></li>
-										</ul>
-									</div>
-								</div>
-							</li>
-							<li id="nav-menu-item-316" class="menu-item menu-item-type-post_type menu-item-object-page narrow"><a href="https:/user/assets/dich-vu-sang-tao/">Dịch vụ sáng tạo</a></li>
+							@foreach (PageL1 pl1 in ViewBag.PagesL1)
+							{
+								@if (pl1.HasChild)
+								{
+									<li id="nav-menu-item-317" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-sub narrow">
+										<a href="@pl1.Page.Link">@pl1.Page.Name</a>
+										<div class="popup">
+											<div class="inner" style="">
+												<ul class="sub-menu">
+													@foreach (var pl2 in ViewBag.PagesL2)
+													{
+														@if (pl2.Level.Substring(0, 5) == pl1.Page.Level)
+														{
+															<li id="nav-menu-item-511" class="menu-item menu-item-type-post_type menu-item-object-portfolio" data-cols="1">
+																<a href="@pl2.Link">@pl2.Name</a>
+															</li>
+														}
+													}
+												</ul>
+											</div>
+										</div>
+									</li>
+								}
+								else
+								{
+									<li id="nav-menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item active narrow">
+										<a href="@pl1.Page.Link" class=" current">@pl1.Page.Name</a>
+									</li>
+								}
+
+							}
 						</ul>
 					</div>
 					<div class="searchform-popup search-popup">

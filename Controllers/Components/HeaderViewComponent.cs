@@ -15,6 +15,7 @@ namespace MyShop.Controllers.Components
         {
             var config = _context.Configs.FirstOrDefault() ?? new Config();
 
+            ViewBag.Config = config;
             return View("Default", config);
         }
     }

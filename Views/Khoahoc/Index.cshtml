@@ -47,16 +47,13 @@
 
 						<div class="header_portfolio_page">
 							<div class="portfolio-filter">
-								<ul class="portfolio-filter nav sort-source sort-source-style-3">
-									<li class="active" data-filter="*"><a href="#">Tất cả</a></li>
-									<li data-filter="hot-nhat"><a href="#">Hot nhất</a></li>
-									<li data-filter="thiet-ke-do-hoa"><a href="#">Thiết kế đồ họa</a></li>
-									<li data-filter="thiet-ke-noi-that"><a href="#">Thiết kế nội thất</a></li>
-									<li data-filter="ngoai-ngu"><a href="#">Ngoại ngữ</a></li>
-									<li data-filter="tin-hoc-van-phong"><a href="#">Tin học văn phòng</a></li>
-									<li data-filter="dung-phim"><a href="#">Dựng phim</a></li>
-									<li data-filter="thiet-ke-website"><a href="#">Thiết kế Website</a></li>
-									<li data-filter="sketchnote"><a href="#">Sketchnote</a></li>
+								<ul class="nav sort-source sort-source-style-3">
+									<li class="@(string.IsNullOrEmpty(ViewBag.Slug) ? "active" : "")"><a href="/khoa-hoc">Tất cả</a></li>
+									@foreach(Category category in ViewBag.Categories)
+									{
+										<li class="@(ViewBag.Slug == category.Tag ? "active" : "")"><a href="/khoa-hoc/@category.Tag">@category.Name</a></li>
+									}
+									
 								</ul>
 							</div>
 							<div class="searchform-popup search-popup">

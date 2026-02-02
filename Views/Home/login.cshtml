@@ -31,23 +31,23 @@
 
 													<div class="um-form">
 
-														<form method="post" action="" autocomplete="off">
-
+														<form method="post" action="/dang-nhap">
+															@Html.AntiForgeryToken()
 															<div class="um-row _um_row_1 " style="margin: 0 0 30px 0;">
 																<div class="um-col-1">
 																	<div id="um_field_545_user_email" class="um-field um-field-text  um-field-user_email um-field-text um-field-type_text" data-key="user_email">
 																		<div class="um-field-area">
-																			<input autocomplete="off" class="um-form-field valid " type="text" name="user_email-545" id="user_email-545" value="" placeholder="E-mail" data-validate="unique_email" data-key="user_email" />
+																			<input autocomplete="off" class="um-form-field valid " type="text" name="userName" id="user_email-545" value="" placeholder="E-mail" data-validate="unique_email" data-key="user_email" />
 
 																		</div>
 																	</div><div id="um_field_545_user_password" class="um-field um-field-password  um-field-user_password um-field-password um-field-type_password" data-key="user_password">
 																		<div class="um-field-area">
-																			<input class="um-form-field valid " type="password" name="user_password-545" id="user_password-545" value="" placeholder="Mật khẩu" data-validate="" data-key="user_password" />
+																			<input class="um-form-field valid " type="password" name="password" id="user_password-545" value="" placeholder="Mật khẩu" data-validate="" data-key="user_password" />
 
 																		</div>
 																	</div>
 																</div>
-															</div>		<input type="hidden" name="form_id" id="form_id_545" value="545" />
+															</div>		
 
 															<p class="um_request_name">
 																<label for="um_request_545">Only fill in if you are not human</label>

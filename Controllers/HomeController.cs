@@ -1,7 +1,10 @@
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using MyShop.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace MyShop.Controllers
 {
@@ -16,6 +19,8 @@ namespace MyShop.Controllers
             _context = context;
         }
 
+        [Route("/")]
+        [Route("/trang-chu")]
         public IActionResult Index()
         {
             //var categories = _context.Categories
@@ -30,10 +35,10 @@ namespace MyShop.Controllers
             //var products = _context.Products
             //    .Where(p => p.Status == "active")
             //    .ToList();
-            //var banners = _context.Advertises
-            //    .Where(x => x.Position == 1)
-            //    .OrderBy(x => x.Ord)
-            //    .ToList();
+            var slides = _context.Advertises
+                .Where(x => x.Position == 2 && x.Active)
+                .OrderBy(x => x.Ord)
+                .ToList();
             //var news = _context.News
             //    .OrderByDescending(x => x.Id)
             //    .Where(x => x.Status == 1)
@@ -42,7 +47,7 @@ namespace MyShop.Controllers
             //ViewBag.News = news;
             //ViewBag.Categories = categories;
             //ViewBag.Products = products;
-            //ViewBag.Banners = banners;
+            ViewBag.Slides = slides;
             return View();
         }
 
@@ -62,17 +67,73 @@ namespace MyShop.Controllers
         {
             return View();
         }
-        
-        [Route("dang-ky")]
-        public IActionResult Register()
+
+        [Route("dang-nhap")]
+        [HttpPost]
+        public async Task<IActionResult> Login(string userName, string password)
         {
+            string passmd5 = "";
+            passmd5 = Cipher.GenerateMD5(password);
+            var acc = _context.Users.SingleOrDefault(x => x.Username == userName && x.Password == passmd5 && x.Active == 1) ?? new User();
+            if (acc != null)
+            {
+                HttpContext.Session.SetString("username", acc.Name);
+                HttpContext.Session.SetString("accountId", acc.Id.ToString());
+
+                return RedirectToAction("Index");
+            }
+            ViewBag.error = "<p class='alert alert-danger'>Email or password is incorrect!</p>";
+            ViewBag.UserName = userName;
+            ViewBag.password = password;
             return View();
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        [Route("dang-ky")]
+        [HttpGet]
+		public IActionResult Register()
+		{
+			return View();
+		}
+
+        [Route("dang-ky")]
+		[HttpPost]
+		public async Task<IActionResult> Register(string name = "", string userName = "", string password = "", string confirmPassword = "")
+		{
+            var acc = new User();
+            acc.Name = name;
+            acc.Username = userName;
+            acc.Password = password;
+			if (_context.Users.Any(x => x.Username.ToLower() == acc.Username.ToLower().Trim()))
+			{
+				ViewBag.ErrorUserName = "Tên tài khoản đã tồn tại!";
+			}
+			if (confirmPassword.Equals(acc.Password))
+			{
+				acc.Password = Cipher.GenerateMD5(acc.Password);
+			}
+			else
+			{
+				ViewBag.ErrorConfirmPassword = "Nhập mật khẩu chưa khớp!";
+			}
+			if (!string.IsNullOrEmpty(ViewBag.ErrorUserName) || !string.IsNullOrEmpty(ViewBag.ErrorConfirmPassword))
+			{
+				ViewBag.UserName = userName;
+				ViewBag.Name = name;
+				return View(acc);
+			}
+			_context.Add(acc);
+			await _context.SaveChangesAsync();
+			return Redirect("/dang-nhap");
+			
+		}
+
+
+
+		[Route("dang-xuat")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
+        }
     }
 }
