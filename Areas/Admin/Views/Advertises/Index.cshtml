@@ -40,11 +40,11 @@
         <table class="table table-hover align-middle" style="border-collapse:collapse;">
             <thead class="table-primary">
                 <tr style="border-bottom:2px solid #cfd4da;">
-                    <th>@Html.DisplayNameFor(m => m.First().Name)</th>
-                    <th>@Html.DisplayNameFor(m => m.First().Image)</th>
-                    <th>@Html.DisplayNameFor(m => m.First().Position)</th>
-                    <th>@Html.DisplayNameFor(m => m.First().Ord)</th>
-                    <th>@Html.DisplayNameFor(m => m.First().Active)</th>
+                    <th>Tên</th>
+                    <th>Ảnh</th>
+                    <th>Vị trí</th>
+                    <th>Thứ tự</th>
+                    <th>Trạng thái</th>
                     <th class="text-center">Hành động</th>
                 </tr>
             </thead>
@@ -89,6 +89,14 @@
                             else if (item.Position == 7)
                             {
                                 <span>Banner trên cùng</span>
+                            }
+                            else if (item.Position == 8)
+                            {
+                                <span>Doanh nghiệp</span>
+                            }
+                            else if (item.Position == 9)
+                            {
+                                <span>Truyền thông</span>
                             }
                             else
                             {
