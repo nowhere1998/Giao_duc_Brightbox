@@ -7,7 +7,7 @@
 <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="text-primary">Thêm sản phẩm</h3>
+        <h3 class="text-primary">Thêm khóa học</h3>
     </div>
 
     <form asp-action="Create" method="post">
@@ -37,6 +37,20 @@
                 <label asp-for="Tag" class="form-label">Tag</label>
                 <input asp-for="Tag" readonly class="form-control" />
                 <span asp-validation-for="Tag" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="Price" class="form-label">Giá sản phẩm</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="SalePrice" class="form-label">Giá khuyến mại</label>
+                <input asp-for="SalePrice" class="form-control" />
+                <span asp-validation-for="SalePrice" class="text-danger"></span>
             </div>
         </div>
 
@@ -120,6 +134,7 @@
             }
         });
         CKEDITOR.replace('Detail');
+         CKEDITOR.replace('Description');
     </script>
 
     <script type="text/javascript">

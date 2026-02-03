@@ -34,6 +34,7 @@ public partial class DbMyShopContext : DbContext
     public virtual DbSet<DocumentType> DocumentTypes { get; set; }
 
     public virtual DbSet<DocumentTypeUser> DocumentTypeUsers { get; set; }
+    public virtual DbSet<Enrollment> Enrollments  { get; set; }
 
     public virtual DbSet<Feedback> Feedbacks { get; set; }
 
@@ -421,6 +422,20 @@ public partial class DbMyShopContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FRK_DocumentTypeUser_UserId");
         });
+
+        modelBuilder.Entity<Enrollment>()
+    .HasIndex(e => new { e.CustomerId, e.ProductId })
+    .IsUnique();
+
+        modelBuilder.Entity<Enrollment>()
+            .HasOne(e => e.Customer)
+            .WithMany(c => c.Enrollments)
+            .HasForeignKey(e => e.CustomerId);
+
+        modelBuilder.Entity<Enrollment>()
+            .HasOne(e => e.Product)
+            .WithMany(p => p.Enrollments)
+            .HasForeignKey(e => e.ProductId);
 
         modelBuilder.Entity<Feedback>(entity =>
         {

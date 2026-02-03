@@ -17,4 +17,7 @@ public partial class Customer
     public virtual ICollection<CommentPro> CommentPros { get; set; }
        = new List<CommentPro>();
 
+    public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+
+
 }

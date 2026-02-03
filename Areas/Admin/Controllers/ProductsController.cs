@@ -202,37 +202,37 @@ namespace MyShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var product = _context.Products
+                .Include(p => p.CommentPros)
+                .FirstOrDefault(p => p.Id == id);
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            return View(product);
-        }
-
-        // POST: Admin/Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
+            // ✅ CHỈ kiểm tra OrderDetails
+            bool hasOrder = _context.Enrollments.Any(e => e.ProductId == id);
+            if (hasOrder)
             {
-                _context.Products.Remove(product);
+                TempData["Error"] = "Khóa học đang có học viên, không thể xóa!";
+                return RedirectToAction("Index");
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            // ✅ Xóa con trước (tránh FK)
+            if (product.CommentPros != null && product.CommentPros.Any())
+            {
+                _context.CommentPros.RemoveRange(product.CommentPros);
+            }
+
+            // ✅ Xóa sản phẩm
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+
+            TempData["Success"] = "Xóa sản phẩm thành công!";
+            return RedirectToAction("Index");
         }
 
         private bool ProductExists(int id)

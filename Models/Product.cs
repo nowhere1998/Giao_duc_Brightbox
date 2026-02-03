@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyShop.Models;
 
@@ -25,7 +26,11 @@ public partial class Product
 
     public string? Keyword { get; set; }
 
-    public int? Priority { get; set; }
+    [Column(TypeName = "decimal(10,2)")]
+    public decimal? Price { get; set; }
+
+    [Column(TypeName = "decimal(10,2)")]
+    public decimal?SalePrice { get; set; }
 
     public int? Index { get; set; }
 
@@ -38,5 +43,7 @@ public partial class Product
     public virtual Category? Category { get; set; }
     public virtual ICollection<CommentPro> CommentPros { get; set; }
     = new List<CommentPro>();
+
+    public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
 }
