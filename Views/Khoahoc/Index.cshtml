@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<MyShop.Models.Product>
+@{
 	ViewData["Title"] = "Khóa học";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -46,29 +47,50 @@
 						</div>
 
 						<div class="header_portfolio_page">
-							<div class="portfolio-filter">
-								<ul class="nav sort-source sort-source-style-3">
+							<div class="">
+								<ul class="nav sort-source sort-source-style-3" style="justify-content: left;">
 									<li class="@(string.IsNullOrEmpty(ViewBag.Slug) ? "active" : "")"><a href="/khoa-hoc">Tất cả</a></li>
 									@foreach(Category category in ViewBag.Categories)
 									{
-										<li class="@(ViewBag.Slug == category.Tag ? "active" : "")"><a href="/khoa-hoc/@category.Tag">@category.Name</a></li>
+										<li class="@(ViewBag.Slug == category.Tag ? "active" : "")"><a href="/khoa-hoc/@category.Tag">@category.Tag</a></li>
 									}
 									
 								</ul>
+								<style>
+									.header_portfolio_page {
+										padding-left: 0;
+									}
+
+										.header_portfolio_page .nav {
+											margin-left: 0;
+										}
+
+									.portfolios-container,
+									.header_portfolio_page {
+										padding-left: 15px;
+										padding-right: 15px;
+									}
+								</style>
 							</div>
 							<div class="searchform-popup search-popup">
-								<form action="" method="get" class="searchform">
+								<form method="get" class="searchform">
 									<div class="searchform-fields">
 										<span class="text">
-											<input name="s" type="text" value="" placeholder="Tìm kiếm nhanh khóa học" autocomplete="off">
+											<input name="search" type="text"
+												   value="@ViewBag.Search"
+												   placeholder="Tìm kiếm nhanh khóa học">
 										</span>
-										<input type="hidden" name="post_type" value="portfolio">
+
+										@if (!string.IsNullOrEmpty(ViewBag.Slug))
+										{
+											<input type="hidden" name="slug" value="@ViewBag.Slug" />
+										}
+
 										<span class="button-wrap">
-											<button class="btn btn-special" title="Tìm kiếm" type="submit"><i class="fas fa-search"></i></button>
+											<button class="btn btn-special" type="submit">
+												<i class="fas fa-search"></i>
+											</button>
 										</span>
-									</div>
-									<div class="live-search-list">
-										<div class="autocomplete-suggestions" style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
 									</div>
 								</form>
 							</div>
@@ -77,87 +99,111 @@
 
 						<div class="clearfix portfolio-row portfolios-container portfolio-row-3 outimage">
 
+							@if (Model.Any())
+							{
+								@foreach (Product p in Model)
+								{
+									<article class="portfolio portfolio-grid portfolio-col-3 thiet-ke-do-hoa post-503 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-thiet-ke-do-hoa">
+										<span class="entry-title" style="display: none;">Dàn trang với Adobe Indesign</span><span class="vcard" style="display: none;"><span class="fn"><a href="https://tech1.mypagedemo.com/brightbox/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:27:10+07:00</span>		<div class="portfolio-item outimage">
 
-							<article class="portfolio portfolio-grid portfolio-col-3 thiet-ke-do-hoa post-503 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-thiet-ke-do-hoa">
-								<span class="entry-title" style="display: none;">Dàn trang với Adobe Indesign</span><span class="vcard" style="display: none;"><span class="fn"><a href="https://tech1.mypagedemo.com/brightbox/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:27:10+07:00</span>		<div class="portfolio-item outimage">
-
-									<a class="text-decoration-none portfolio-link" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/dan-trang-voi-adobe-indesign/">
-										<span class="thumb-info thumb-info-hide-wrapper-bg thumb-info-no-zoom">
-											<span class="thumb-info-wrapper">
-												<img class="img-responsive" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-2-367x278.jpg" alt="" width="367" height="278" />
-											</span>
-										</span>
-									</a>
-									<div class="rating_student">
-										<div class="portfolio_rating">
-											<div class="star-rating">
-												<span style="width:92%"> <strong class="rating">1</strong> out of 5 </span>
+											<a class="text-decoration-none portfolio-link" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/dan-trang-voi-adobe-indesign/">
+												<span class="thumb-info thumb-info-hide-wrapper-bg thumb-info-no-zoom">
+													<span class="thumb-info-wrapper">
+														<img class="img-responsive" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-2-367x278.jpg" alt="" width="367" height="278" />
+													</span>
+												</span>
+											</a>
+											<div class="rating_student">
+												<div class="portfolio_rating">
+													<div class="star-rating">
+														<span style="width:92%"> <strong class="rating">1</strong> out of 5 </span>
+													</div>
+													<div class="star-number">1</div>
+												</div>
+												<div class="portfolio_student">
+													<span>12,283 học viên</span>
+												</div>
 											</div>
-											<div class="star-number">1</div>
-										</div>
-										<div class="portfolio_student">
-											<span>12,283 học viên</span>
-										</div>
-									</div>
 
-									<h4 class="portfolio-title"><a class="text-decoration-none" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/dan-trang-voi-adobe-indesign/">Dàn trang với Adobe Indesign</a></h4>
-									<p class="portfolio_opening">Ngày khai giảng: Đang cập nhật</p>
+											<h4 class="portfolio-title"><a class="text-decoration-none" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/dan-trang-voi-adobe-indesign/">Dàn trang với Adobe Indesign</a></h4>
+											<p class="portfolio_opening">Ngày khai giảng: Đang cập nhật</p>
 
-									<div class="portfolio_teacher">
-										<div class="portfolio_teacher_thumbnail">
-											<img alt="teacher" class="img-responsive img-circle" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-4.png">
-										</div>
-										<p><strong>Nguyễn Tiến Huy </strong><span>MBA RMIT Vietnam - Nhà sáng lập... ...và....</span></p>
-									</div>
-
-
-								</div>
-							</article>
-							<article class="portfolio portfolio-grid portfolio-col-3 tin-hoc-van-phong post-497 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-tin-hoc-van-phong">
-								<span class="entry-title" style="display: none;">Powerpoint chuyên nghiệp</span><span class="vcard" style="display: none;"><span class="fn"><a href="https://tech1.mypagedemo.com/brightbox/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:25:13+07:00</span>		<div class="portfolio-item outimage">
-
-									<a class="text-decoration-none portfolio-link" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/powerpoint-chuyen-nghiep/">
-										<span class="thumb-info thumb-info-hide-wrapper-bg thumb-info-no-zoom">
-											<span class="thumb-info-wrapper">
-												<img class="img-responsive" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-2-367x278.jpg" alt="" width="367" height="278" />
-											</span>
-										</span>
-									</a>
-									<div class="rating_student">
-										<div class="portfolio_rating">
-											<div class="star-rating">
-												<span style="width:98%"> <strong class="rating">4.9</strong> out of 5 </span>
+											<div class="portfolio_teacher">
+												<div class="portfolio_teacher_thumbnail">
+													<img alt="teacher" class="img-responsive img-circle" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-4.png">
+												</div>
+												<p><strong>Nguyễn Tiến Huy </strong><span>MBA RMIT Vietnam - Nhà sáng lập... ...và....</span></p>
 											</div>
-											<div class="star-number">4.9</div>
+
+
 										</div>
-										<div class="portfolio_student">
-											<span>12,283 học viên</span>
-										</div>
-									</div>
-
-									<h4 class="portfolio-title"><a class="text-decoration-none" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/powerpoint-chuyen-nghiep/">Powerpoint chuyên nghiệp</a></h4>
-									<p class="portfolio_opening">Ngày khai giảng: Đang cập nhật</p>
-
-									<div class="portfolio_teacher">
-										<div class="portfolio_teacher_thumbnail">
-											<img alt="teacher" class="img-responsive img-circle" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-4.png">
-										</div>
-										<p><strong>Nguyễn Tiến Huy </strong><span>MBA RMIT Vietnam - Nhà sáng lập... ...và....</span></p>
-									</div>
-
-
-								</div>
-							</article>
-
+									</article>
+								}
+							}
+							else
+							{
+								<p>Chưa có khóa học nào, đang cập nhật ...</p>
+							}
 
 						</div>
 
 						<div class="clearfix"></div>
 						<div class="pagination-wrap">
-							<div class="pagination" role="navigation">
-								<span aria-current="page" class="page-numbers current">1</span><a class="page-numbers" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/page/2/">2</a><a class="next page-numbers" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/page/2/">Next&nbsp;&nbsp;<i class="fas fa-long-arrow-alt-right"></i></a>
+							<div class="pagination" role="navigation" style="justify-content: center;">
+
+								@for (int i = 1; i <= ViewBag.TotalPages; i++)
+								{
+									var baseUrl = "";
+
+									if (!string.IsNullOrEmpty(ViewBag.Slug))
+									{
+										baseUrl = i == 1
+										? $"/khoa-hoc/{ViewBag.Slug}"
+										: $"/khoa-hoc/{ViewBag.Slug}/page/{i}";
+									}
+									else
+									{
+										baseUrl = i == 1
+										? "/khoa-hoc"
+										: $"/khoa-hoc/page/{i}";
+									}
+
+									// giữ search
+									if (!string.IsNullOrEmpty(ViewBag.Search))
+									{
+										baseUrl += $"?s={ViewBag.Search}";
+									}
+
+									if (i == ViewBag.Page)
+									{
+										<span class="page-numbers current">@i</span>
+									}
+									else
+									{
+										<a class="page-numbers" href="@baseUrl">@i</a>
+									}
+								}
+
+								@* Next *@
+								@if (ViewBag.Page < ViewBag.TotalPages)
+								{
+									var next = ViewBag.Page + 1;
+									var nextUrl = !string.IsNullOrEmpty(ViewBag.Slug)
+									? $"/khoa-hoc/{ViewBag.Slug}/page/{next}"
+									: $"/khoa-hoc/page/{next}";
+
+									if (!string.IsNullOrEmpty(ViewBag.Search))
+									{
+										nextUrl += $"?s={ViewBag.Search}";
+									}
+
+									<a class="next page-numbers" href="@nextUrl">
+										Next&nbsp;&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+									</a>
+								}
 							</div>
 						</div>
+
 
 					</div>
 

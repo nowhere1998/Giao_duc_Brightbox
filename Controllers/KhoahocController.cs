@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MyShop.Controllers
 {
@@ -16,14 +17,25 @@ namespace MyShop.Controllers
 		[Route("khoa-hoc/page/{page:int}")]
 		[Route("khoa-hoc/{slug}")]
 		[Route("khoa-hoc/{slug}/page/{page:int}")]
-		public IActionResult Index(long? minPrice, long? maxPrice, string? orderby, string? slug, int page = 1, string search = "")
+		public IActionResult Index(string? slug = "", int page = 1, string search = "")
 		{
-			int pageSize = 12;
+			int pageSize = 1;
 			int totalItems = 0;
 			var products = _context.Products
+				//.Include(x => x.c)
 				.Where(p => p.Active == 1)
 				.ToList();
 			var category = _context.Categories.FirstOrDefault(x => x.Tag == slug);
+
+			// 🔹 Lọc theo danh mục (slug)
+			if (!string.IsNullOrEmpty(slug))
+			{
+				category = _context.Categories.FirstOrDefault(x => x.Tag == slug);
+				if (category != null)
+				{
+					products = products.Where(p => p.CategoryId == category.Id).ToList();
+				}
+			}
 
 			//lọc theo tên
 			if (!string.IsNullOrEmpty(search))
@@ -47,7 +59,7 @@ namespace MyShop.Controllers
 
 			var categories = _context.Categories
 				.Include(x => x.Products)
-				//.Where(x => x.Products.Any())
+				.Where(x => x.Active == 1)
 				.OrderBy(x => x.Ord)
 				.ToList();
 
@@ -62,7 +74,6 @@ namespace MyShop.Controllers
 			ViewBag.TotalPages = totalPages;
 			ViewBag.Categories = categories;
 			ViewBag.Slug = slug;
-			ViewBag.Orderby = orderby;
 			ViewBag.Search = search;
 			return View(products);
 		}
