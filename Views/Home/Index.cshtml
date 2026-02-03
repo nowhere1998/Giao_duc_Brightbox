@@ -1,6 +1,18 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
 	ViewData["Title"] = "Trang chủ";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+	var path = Context.Request.Path.Value ?? "";
+	var slug = "";
+
+	if (!string.IsNullOrEmpty(path))
+	{
+		var parts = path.Trim('/').Split('/');
+		if (parts.Length >= 2)
+		{
+			slug = parts[1]; 
+		}
+	}
 }
 
 <div class="porto-html-block porto-block-html-banner"></div>
@@ -185,7 +197,7 @@
 
 											<div class="page-portfolios portfolios-grid clearfix">
 												<div class="portfolio_header">
-													<h2 class="wpb_heading title_one">Khoá học</h2>		<div class="portfolio-filter-custom">
+													<h2 class="wpb_heading title_one">Khoá học top 3</h2>		<div class="portfolio-filter-custom">
 														<div id="portfolioAjaxBox" class="ajax-box">
 															<div class="bounce-loader">
 																<div class="bounce1"></div>
@@ -196,17 +208,16 @@
 														</div>
 
 														<ul class="portfolio-filter-custom nav sort-source sort-source-style-3">
-															<li class="active" data-filter="*"><a href="#">Tất cả</a></li>
-															<li data-filter="hot-nhat"><a href="/user/assets/danh-muc-khoa-hoc/hot-nhat/">Hot nhất</a></li>
-															<li data-filter="thiet-ke-do-hoa"><a href="/user/assets/danh-muc-khoa-hoc/thiet-ke-do-hoa/">Thiết kế đồ họa</a></li>
-															<li data-filter="thiet-ke-noi-that"><a href="/user/assets/danh-muc-khoa-hoc/thiet-ke-noi-that/">Thiết kế nội thất</a></li>
-															<li data-filter="ngoai-ngu"><a href="/user/assets/danh-muc-khoa-hoc/ngoai-ngu/">Ngoại ngữ</a></li>
-															<li data-filter="tin-hoc-van-phong"><a href="/user/assets/danh-muc-khoa-hoc/tin-hoc-van-phong/">Tin học văn phòng</a></li>
+															<li class="@(string.IsNullOrEmpty(path) || path == "/" ? "active" : "")"><a href="/">Tất cả</a></li>
+															@foreach(Category c in ViewBag.categories)
+															{
+																<li class="@(path.Contains(c.Tag) ? "active" : "")"><a href="/trang-chu/@c.Tag">@c.Name</a></li>
+															}
 														</ul>
 													</div>
 
 
-													<a class="btn btn-primary" href="/khoa-hoc">Xem Thêm</a>
+													<a class="btn btn-primary" href="/khoa-hoc/@slug">Xem Thêm</a>
 												</div>
 
 												<p class="portfolio_description">Lựa chọn khóa học ngay hôm nay để nhận ưu đãi tốt nhất</p>

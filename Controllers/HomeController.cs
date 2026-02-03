@@ -21,20 +21,27 @@ namespace MyShop.Controllers
 
         [Route("/")]
         [Route("/trang-chu")]
-        public IActionResult Index()
+        [Route("/trang-chu/{slug}")]
+        public IActionResult Index(string slug = "")
         {
-            //var categories = _context.Categories
-            //    .Include(c => c.Parent)
-            //    .Include(c => c.Products)
-            //    .OrderByDescending(c => c.Id)
-            //    .Where(c => c.ParentId != null && c.Products != null)
-            //    .Where(c => c.Products.Any(p => p.Status == "active"))
-            //    .Skip(0)
-            //    .Take(10)
-            //    .ToList();
-            //var products = _context.Products
-            //    .Where(p => p.Status == "active")
-            //    .ToList();
+            var categories = _context.Categories
+                //.Include(c => c.Products)
+                .OrderByDescending(c => c.Id)
+                .Where(c => c.Products.Any(p => p.Active == 1))
+                .ToList();
+            var products = _context.Products
+                .Include(x => x.Category)
+                .Where(p => p.Active == 1)
+                .ToList();
+            var productsFilter = new List<Product>();
+            if (!string.IsNullOrEmpty(slug))
+            {
+                productsFilter = products.Where(x => x.Category.Tag == slug).ToList();
+            }
+            else
+            {
+                productsFilter = products;
+            }
             var slides = _context.Advertises
                 .Where(x => x.Position == 2 && x.Active)
                 .OrderBy(x => x.Ord)
@@ -45,8 +52,9 @@ namespace MyShop.Controllers
             //    .ToList();
 
             //ViewBag.News = news;
-            //ViewBag.Categories = categories;
-            //ViewBag.Products = products;
+            ViewBag.Categories = categories;
+            ViewBag.Products = products;
+            ViewBag.ProductsFilter = productsFilter;
             ViewBag.Slides = slides;
             return View();
         }
