@@ -22,8 +22,18 @@ namespace MyShop.Controllers
 			int pageSize = 1;
 			int totalItems = 0;
 			var products = _context.Products
-				//.Include(x => x.c)
+				.Include(p => p.Category)
+				.Include(p => p.Enrollments)
+				.Include(p => p.CommentPros)
 				.Where(p => p.Active == 1)
+				.Select(p => new ProductViewModel
+				{
+					Product = p,
+					AvgRate = p.CommentPros.Any(x => x.Rate != null)
+						? p.CommentPros.Average(x => x.Rate ?? 0)
+						: 0,
+					TotalEnroll = p.Enrollments.Count()
+				})
 				.ToList();
 			var category = _context.Categories.FirstOrDefault(x => x.Tag == slug);
 
@@ -33,7 +43,7 @@ namespace MyShop.Controllers
 				category = _context.Categories.FirstOrDefault(x => x.Tag == slug);
 				if (category != null)
 				{
-					products = products.Where(p => p.CategoryId == category.Id).ToList();
+					products = products.Where(p => p.Product.CategoryId == category.Id).ToList();
 				}
 			}
 
@@ -42,8 +52,8 @@ namespace MyShop.Controllers
 			{
 				products = products
 					.Where(x =>
-						x.Name.Trim().ToLower().Contains(search.Trim().ToLower())
-						|| x.Tag.Trim().ToLower().Contains(search.Trim().ToLower())
+						x.Product.Name.Trim().ToLower().Contains(search.Trim().ToLower())
+						|| x.Product.Tag.Trim().ToLower().Contains(search.Trim().ToLower())
 						)
 					.ToList();
 			}

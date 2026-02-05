@@ -26,17 +26,27 @@ namespace MyShop.Controllers
         {
             var categories = _context.Categories
                 //.Include(c => c.Products)
-                .OrderByDescending(c => c.Id)
-                .Where(c => c.Products.Any(p => p.Active == 1))
+                .OrderBy(c => c.Ord)
+                .Where(c => c.Active == 1 )
                 .ToList();
-            var products = _context.Products
-                .Include(x => x.Category)
-                .Where(p => p.Active == 1)
-                .ToList();
-            var productsFilter = new List<Product>();
+			var products = _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Enrollments)
+                .Include(p => p.CommentPros)
+	            .Where(p => p.Active == 1)
+	            .Select(p => new ProductViewModel
+				{
+		            Product = p,
+		            AvgRate = p.CommentPros.Any(x => x.Rate != null)
+			            ? p.CommentPros.Average(x => x.Rate ?? 0)
+			            : 0,
+					TotalEnroll = p.Enrollments.Count()
+				})
+	            .ToList();
+			var productsFilter = new List<ProductViewModel>();
             if (!string.IsNullOrEmpty(slug))
             {
-                productsFilter = products.Where(x => x.Category.Tag == slug).ToList();
+                productsFilter = products.Where(x => x.Product.Category.Tag == slug).ToList();
             }
             else
             {
@@ -56,6 +66,7 @@ namespace MyShop.Controllers
             ViewBag.Products = products;
             ViewBag.ProductsFilter = productsFilter;
             ViewBag.Slides = slides;
+            ViewBag.Slug = slug;
             return View();
         }
 
