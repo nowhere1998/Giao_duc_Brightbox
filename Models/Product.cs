@@ -45,5 +45,6 @@ public partial class Product
     = new List<CommentPro>();
 
     public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+    public ICollection<ProFaculty> ProFaculties { get; set; } = new List<ProFaculty>();
 
 }

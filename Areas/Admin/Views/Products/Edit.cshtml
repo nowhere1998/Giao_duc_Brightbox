@@ -23,6 +23,11 @@
                     <option value="">-- Chọn danh mục --</option>
                 </select>
             </div>
+            <div class="col-md-6">
+                <label asp-for="Date" class="form-label">Ngày khai giảng</label>
+                <input asp-for="Date" type="date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
         </div>
 
         <div class="row mb-3">
