@@ -12,8 +12,8 @@ namespace MyShop.Controllers.Components
 		}
 		public IViewComponentResult Invoke()
 		{
-
-			return View("Default");
+			var config = _context.Configs.FirstOrDefault() ?? new Config();
+			return View("Default", config);
 		}
 	}
 }
