@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyShop.Models.Product>
+﻿@model IEnumerable<MyShop.Models.ProductViewModel>
 @{
 	ViewData["Title"] = "Khóa học";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -65,9 +65,9 @@
 											margin-left: 0;
 										}
 
-									.portfolios-container,
+					
 									.header_portfolio_page {
-										padding-left: 15px;
+										padding-left: 0px;
 										padding-right: 15px;
 									}
 								</style>
@@ -101,32 +101,32 @@
 
 							@if (Model.Any())
 							{
-								@foreach (Product p in Model)
+								@foreach (ProductViewModel p in Model)
 								{
 									<article class="portfolio portfolio-grid portfolio-col-3 thiet-ke-do-hoa post-503 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-thiet-ke-do-hoa">
 										<span class="entry-title" style="display: none;">Dàn trang với Adobe Indesign</span><span class="vcard" style="display: none;"><span class="fn"><a href="https://tech1.mypagedemo.com/brightbox/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:27:10+07:00</span>		<div class="portfolio-item outimage">
 
-											<a class="text-decoration-none portfolio-link" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/dan-trang-voi-adobe-indesign/">
+											<a class="text-decoration-none portfolio-link" href="/khoa-hoc-chi-tiet/@p.Product.Tag">
 												<span class="thumb-info thumb-info-hide-wrapper-bg thumb-info-no-zoom">
 													<span class="thumb-info-wrapper">
-														<img class="img-responsive" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-2-367x278.jpg" alt="" width="367" height="278" />
+														<img class="img-responsive" src="@p.Product.Image" alt="" width="367" height="278" style="max-height:278px"/>
 													</span>
 												</span>
 											</a>
 											<div class="rating_student">
 												<div class="portfolio_rating">
 													<div class="star-rating">
-														<span style="width:92%"> <strong class="rating">1</strong> out of 5 </span>
+														<span style="width:@(p.AvgRate*100/5)%"> <strong class="rating">@p.AvgRate</strong> out of 5 </span>
 													</div>
-													<div class="star-number">1</div>
+													<div class="star-number">@p.AvgRate</div>
 												</div>
 												<div class="portfolio_student">
-													<span>12,283 học viên</span>
+													<span>@p.TotalEnroll</span>
 												</div>
 											</div>
 
-											<h4 class="portfolio-title"><a class="text-decoration-none" href="https://tech1.mypagedemo.com/brightbox/khoa-hoc/dan-trang-voi-adobe-indesign/">Dàn trang với Adobe Indesign</a></h4>
-											<p class="portfolio_opening">Ngày khai giảng: Đang cập nhật</p>
+											<h4 class="portfolio-title"><a class="text-decoration-none" href="/khoa-hoc-chi-tiet/@p.Product.Tag">Dàn trang với Adobe Indesign</a></h4>
+											<p class="portfolio_opening">Ngày khai giảng: @p.Product.Date</p>
 
 											<div class="portfolio_teacher">
 												<div class="portfolio_teacher_thumbnail">

@@ -249,7 +249,7 @@
 																</div>
 
 																<h4 class="portfolio-title"><a class="text-decoration-none" href="/khoa-hoc-chi-tiet/@p.Product.Tag">@p.Product.Name</a></h4>
-																<p class="portfolio_opening">Ngày khai giảng: Đang cập nhật</p>
+																<p class="portfolio_opening">Ngày khai giảng: @p.Product.Date</p>
 
 																<div class="portfolio_teacher">
 																	<div class="portfolio_teacher_thumbnail">
@@ -333,18 +333,15 @@
 							</div><div class="vc_row-full-width vc_clearfix"></div><div class="vc_row wpb_row row vc_custom_1619091207238">
 								<div class="align-center vc_column_container col-md-12">
 									<div class="wpb_wrapper vc_column-inner">
-										<h2 style="text-align: center" class="vc_custom_heading title_one">Khóa học theo chủ đề</h2><div class="vc_btn3-container  btn_one vc_btn3-inline">
-											<a class="vc_btn3 vc_btn3-shape-round btn btn-flat btn-md btn-secondary" href="/user/assets/danh-muc-khoa-hoc/thiet-ke-noi-that/" title=""># Thiết Kế Nội Thất</a>
-										</div>
-										<div class="vc_btn3-container  btn_one vc_btn3-inline">
-											<a class="vc_btn3 vc_btn3-shape-round btn btn-flat btn-md btn-secondary" href="/user/assets/danh-muc-khoa-hoc/thiet-ke-do-hoa/" title=""># Thiết Kế Đồ Họa</a>
-										</div>
-										<div class="vc_btn3-container  btn_one vc_btn3-inline">
-											<a class="vc_btn3 vc_btn3-shape-round btn btn-flat btn-md btn-secondary" href="/user/assets/danh-muc-khoa-hoc/ngoai-ngu/" title=""># Ngoại Ngữ</a>
-										</div>
-										<div class="vc_btn3-container  btn_one vc_btn3-inline">
-											<a class="vc_btn3 vc_btn3-shape-round btn btn-flat btn-md btn-secondary" href="/user/assets/danh-muc-khoa-hoc/tin-hoc-van-phong/" title=""># Tin Học Văn Phòng</a>
-										</div>
+										<h2 style="text-align: center" class="vc_custom_heading title_one">Khóa học theo chủ đề</h2>
+										@foreach(Category c in ViewBag.Categories)
+										{
+											<div class="vc_btn3-container  btn_one vc_btn3-inline">
+												<a class="vc_btn3 vc_btn3-shape-round btn btn-flat btn-md btn-secondary" href="/khoa-hoc/@c.Tag" title=""># @c.Name</a>
+											</div>
+										}
+										
+
 									</div>
 								</div>
 							</div><div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row row bg_bottom_right vc_custom_1617947597734 vc_row-has-fill">
@@ -352,56 +349,17 @@
 									<div class="wpb_wrapper vc_column-inner">
 										<h2 style="text-align: center" class="vc_custom_heading title_one">Những doanh nghiệp đã tín nhiệm Bright Box</h2><div id="porto-carousel-61763221469537f4e59a21" class="porto-carousel-wrapper  image_border" data-gutter="15" data-rtl="false">
 											<div class="porto-ultimate-carousel porto-carousel-206083882969537f4e599c7 ">
-												<div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
+												@foreach(Advertise dn in ViewBag.Doanhnghiep)
+												{
+													<div class="porto-item-wrap">
+														<div class="wpb_single_image wpb_content_element vc_align_center">
+															<div class="wpb_wrapper">
 
-															<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="/user/assets/wp-content/uploads/2020/06/img-13.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
+																<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="@dn.Image" class="vc_single_image-img attachment-full" alt="@dn.Name" loading="lazy" /></div>
+															</div>
 														</div>
 													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="/user/assets/wp-content/uploads/2020/06/img-14.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="/user/assets/wp-content/uploads/2020/06/img-12.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="/user/assets/wp-content/uploads/2020/06/img-11.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="/user/assets/wp-content/uploads/2020/06/img-10.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="/user/assets/wp-content/uploads/2020/06/img-15.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="179" height="113" src="/user/assets/wp-content/uploads/2020/06/img-13.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
-														</div>
-													</div>
-												</div>
+												}
 											</div>
 										</div><script>
 												  jQuery(document).ready(function ($) {
@@ -474,49 +432,18 @@
 										</script>
 										<div class="vc_empty_space" style="height: 30px"><span class="vc_empty_space_inner"></span></div><h2 style="text-align: center" class="vc_custom_heading title_one">Truyền thông nói về Bright Box</h2><div id="porto-carousel-21963103869537f4e81a77" class="porto-carousel-wrapper  image_border" data-gutter="15" data-rtl="false">
 											<div class="porto-ultimate-carousel porto-carousel-104496968069537f4e81a37 ">
-												<div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
+												@foreach (Advertise tt in ViewBag.Truyenthong)
+												{
+													<div class="porto-item-wrap">
+														<div class="wpb_single_image wpb_content_element vc_align_center">
+															<div class="wpb_wrapper">
 
-															<a href="#" target="_self"><div class="vc_single_image-wrapper   vc_box_border_grey"><img width="214" height="89" src="/user/assets/wp-content/uploads/2020/06/img-16.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div></a>
+																<a href="@tt.Link" target="_self"><div class="vc_single_image-wrapper   vc_box_border_grey"><img width="214" height="89" src="@tt.Image" class="vc_single_image-img attachment-full" alt="@tt.Name" loading="lazy" /></div></a>
+															</div>
 														</div>
 													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<a href="#" target="_self"><div class="vc_single_image-wrapper   vc_box_border_grey"><img width="214" height="89" src="/user/assets/wp-content/uploads/2020/06/img-17.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div></a>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<a href="#" target="_self"><div class="vc_single_image-wrapper   vc_box_border_grey"><img width="214" height="89" src="/user/assets/wp-content/uploads/2020/06/img-18.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div></a>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<a href="#" target="_self"><div class="vc_single_image-wrapper   vc_box_border_grey"><img width="214" height="89" src="/user/assets/wp-content/uploads/2020/06/img-19.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div></a>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<a href="#" target="_self"><div class="vc_single_image-wrapper   vc_box_border_grey"><img width="214" height="89" src="/user/assets/wp-content/uploads/2020/06/img-20.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div></a>
-														</div>
-													</div>
-												</div><div class="porto-item-wrap">
-													<div class="wpb_single_image wpb_content_element vc_align_center">
-														<div class="wpb_wrapper">
-
-															<a href="#" target="_self"><div class="vc_single_image-wrapper   vc_box_border_grey"><img width="214" height="89" src="/user/assets/wp-content/uploads/2020/06/img-16.jpg" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div></a>
-														</div>
-													</div>
-												</div>
+												}
+												
 											</div>
 										</div><script>
 												  jQuery(document).ready(function ($) {

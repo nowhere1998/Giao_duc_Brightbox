@@ -46,27 +46,40 @@ namespace MyShop.Controllers
 			var productsFilter = new List<ProductViewModel>();
             if (!string.IsNullOrEmpty(slug))
             {
-                productsFilter = products.Where(x => x.Product.Category.Tag == slug).ToList();
+                productsFilter = products
+                    .Where(x => x.Product.Category.Tag == slug)
+                    .Skip(0)
+                    .Take(3)
+                    .ToList();
             }
             else
             {
-                productsFilter = products;
+                productsFilter = products
+                    .Skip(0)
+					.Take(3)
+					.ToList(); 
             }
             var slides = _context.Advertises
                 .Where(x => x.Position == 2 && x.Active)
                 .OrderBy(x => x.Ord)
                 .ToList();
-            //var news = _context.News
-            //    .OrderByDescending(x => x.Id)
-            //    .Where(x => x.Status == 1)
-            //    .ToList();
+            var dn = _context.Advertises
+                .Where(x => x.Position == 8  && x.Active)
+                .OrderBy(x => x.Ord)
+                .ToList();
+			var tt = _context.Advertises
+				.Where(x => x.Position == 9 && x.Active)
+				.OrderBy(x => x.Ord)
+				.ToList();
 
-            //ViewBag.News = news;
-            ViewBag.Categories = categories;
+			//ViewBag.News = news;
+			ViewBag.Categories = categories;
             ViewBag.Products = products;
             ViewBag.ProductsFilter = productsFilter;
             ViewBag.Slides = slides;
             ViewBag.Slug = slug;
+            ViewBag.Doanhnghiep = dn;
+            ViewBag.Truyenthong = tt;
             return View();
         }
 

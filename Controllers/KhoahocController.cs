@@ -19,7 +19,7 @@ namespace MyShop.Controllers
 		[Route("khoa-hoc/{slug}/page/{page:int}")]
 		public IActionResult Index(string? slug = "", int page = 1, string search = "")
 		{
-			int pageSize = 1;
+			int pageSize = 6;
 			int totalItems = 0;
 			var products = _context.Products
 				.Include(p => p.Category)
