@@ -37,6 +37,8 @@ public partial class DbMyShopContext : DbContext
     public virtual DbSet<Enrollment> Enrollments  { get; set; }
 
     public virtual DbSet<Feedback> Feedbacks { get; set; }
+    public virtual DbSet<Faculty> Faculties { get; set; }
+    public virtual DbSet<ProFaculty> ProFaculties { get; set; }
 
     public virtual DbSet<GroupLibrary> GroupLibraries { get; set; }
 
@@ -459,7 +461,46 @@ public partial class DbMyShopContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.Ykien).HasMaxLength(400);
         });
+         modelBuilder.Entity<Faculty>(entity =>
+            {
+                entity.ToTable("Faculty");
 
+                entity.HasKey(e => e.FacultyID);
+
+                entity.Property(e => e.Name)
+                      .IsRequired()
+                      .HasMaxLength(255);
+
+                entity.Property(e => e.Description)
+                      .HasColumnType("nvarchar(max)");
+
+                entity.Property(e => e.Image)
+                      .HasMaxLength(255);
+
+                entity.Property(e => e.Active)
+                      .HasDefaultValue(1);
+            });
+        modelBuilder.Entity<ProFaculty>(entity =>
+        {
+            entity.ToTable("ProFaculty");
+            entity.HasKey(x => x.ProFacultyID);
+
+            // FK -> Faculty
+            entity.HasOne(x => x.Faculty)
+                  .WithMany(f => f.ProFaculties)
+                  .HasForeignKey(x => x.FacultyID)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            // FK -> Product
+            entity.HasOne(x => x.Product)
+                  .WithMany(p => p.ProFaculties)
+                  .HasForeignKey(x => x.ProductId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            // Không cho trùng giảng viên + khóa học
+            entity.HasIndex(x => new { x.ProductId, x.FacultyID })
+                  .IsUnique();
+        });
         modelBuilder.Entity<GroupLibrary>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRK_GroupLibrary_Id");
