@@ -38,8 +38,6 @@ public partial class DbMyShopContext : DbContext
 
     public virtual DbSet<Feedback> Feedbacks { get; set; }
     public virtual DbSet<Faculty> Faculties { get; set; }
-    public virtual DbSet<ProFaculty> ProFaculties { get; set; }
-
     public virtual DbSet<GroupLibrary> GroupLibraries { get; set; }
 
     public virtual DbSet<GroupLibraryUser> GroupLibraryUsers { get; set; }
@@ -480,27 +478,6 @@ public partial class DbMyShopContext : DbContext
                 entity.Property(e => e.Active)
                       .HasDefaultValue(1);
             });
-        modelBuilder.Entity<ProFaculty>(entity =>
-        {
-            entity.ToTable("ProFaculty");
-            entity.HasKey(x => x.ProFacultyID);
-
-            // FK -> Faculty
-            entity.HasOne(x => x.Faculty)
-                  .WithMany(f => f.ProFaculties)
-                  .HasForeignKey(x => x.FacultyID)
-                  .OnDelete(DeleteBehavior.Cascade);
-
-            // FK -> Product
-            entity.HasOne(x => x.Product)
-                  .WithMany(p => p.ProFaculties)
-                  .HasForeignKey(x => x.ProductId)
-                  .OnDelete(DeleteBehavior.Cascade);
-
-            // Không cho trùng giảng viên + khóa học
-            entity.HasIndex(x => new { x.ProductId, x.FacultyID })
-                  .IsUnique();
-        });
         modelBuilder.Entity<GroupLibrary>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRK_GroupLibrary_Id");

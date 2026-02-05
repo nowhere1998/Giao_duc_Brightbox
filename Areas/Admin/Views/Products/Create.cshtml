@@ -57,6 +57,13 @@
                 <span asp-validation-for="SalePrice" class="text-danger"></span>
             </div>
         </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="FacultyID" class="form-label">Giảng viên</label>
+                <select asp-for="FacultyID" class="form-control" asp-items="ViewBag.FacultyId"></select>
+                <span asp-validation-for="FacultyID" class="text-danger"></span>
+            </div>
+        </div>
         <div class="form-group">
             <label for="" class="form-label">Hình ảnh : </label>
             <button type="button" id="btnBrowse">Chọn ảnh chính</button>

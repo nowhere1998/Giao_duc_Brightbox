@@ -65,6 +65,7 @@
                 <tr style="border-bottom:2px solid #cfd4da;">
                     <th>Tên</th>
                     <th>Ảnh</th>
+                    <th>Giảng viên</th>
                     <th>Trạng thái</th>
                     <th class="text-center">Hành động</th>
                 </tr>
@@ -83,6 +84,7 @@
                                     <img src="@item.Image" style="height:50px;border-radius:6px;" />
                                 }
                             </td>
+                            <td>@item.Faculty?.Name</td>
                             <td>
                                 @if (item.Active == 1)
                                 {

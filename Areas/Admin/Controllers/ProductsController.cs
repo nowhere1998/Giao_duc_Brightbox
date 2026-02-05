@@ -29,6 +29,7 @@ namespace MyShop.Areas.Admin.Controllers
 
             var query = _context.Products
                 .Include(x => x.Category)
+                .Include(x => x.Faculty)
                 .AsNoTracking()
                 .AsQueryable();
 
@@ -85,6 +86,7 @@ namespace MyShop.Areas.Admin.Controllers
         public IActionResult Create()
         {
             LoadCategories();
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyID", "Name");
             return View();
         }
 
@@ -113,6 +115,7 @@ namespace MyShop.Areas.Admin.Controllers
             if (exists)
             {
                 LoadCategories();
+                ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyID", "Name");
                 ModelState.AddModelError("Name", "Tên đã tồn tại, vui lòng đổi tên khác.");
             }
             if (ModelState.IsValid)
@@ -121,6 +124,7 @@ namespace MyShop.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyID", "Name");
             LoadCategories();
             return View(model);
         }
@@ -138,6 +142,7 @@ namespace MyShop.Areas.Admin.Controllers
             if (product == null)
                 return NotFound();
             LoadCategories();
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyID", "Name" , product.FacultyID);
             return View(product);
         }
 
@@ -158,6 +163,7 @@ namespace MyShop.Areas.Admin.Controllers
             if (exists)
             {
                 LoadCategories();
+                ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyID", "Name", product.FacultyID);
                 ModelState.AddModelError("Name", "Tên đã tồn tại, vui lòng nhập tên khác.");
             }
 
@@ -196,7 +202,7 @@ namespace MyShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyID", "Name", product.FacultyID);
             LoadCategories();
             return View(product);
         }

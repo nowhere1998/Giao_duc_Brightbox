@@ -39,12 +39,12 @@ public partial class Product
     public int? CategoryId { get; set; }
 
     public string? Lang { get; set; }
-
+    public int? FacultyID { get; set; }     // khóa ngoại
+    public virtual Faculty? Faculty { get; set; }
     public virtual Category? Category { get; set; }
     public virtual ICollection<CommentPro> CommentPros { get; set; }
     = new List<CommentPro>();
 
     public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
-    public ICollection<ProFaculty> ProFaculties { get; set; } = new List<ProFaculty>();
 
 }
