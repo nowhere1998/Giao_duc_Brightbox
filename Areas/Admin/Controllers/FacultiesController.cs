@@ -20,9 +20,28 @@ namespace MyShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Faculties
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? name, int page = 1, int pageSize = 30)
         {
-            return View(await _context.Faculties.ToListAsync());
+            var query = _context.Faculties.OrderByDescending(x => x.FacultyID).AsNoTracking();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(x => x.Name.ToLower().Contains(name.ToLower().Trim())).OrderByDescending(x => x.FacultyID);
+            }
+            // Tổng số bản ghi sau khi lọc
+            var totalCount = await query.CountAsync();
+
+            // Lấy dữ liệu từng trang
+            var data = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            // Gửi biến qua View
+            ViewData["SearchName"] = name;
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            return View(data);
         }
 
         // GET: Admin/Faculties/Details/5
@@ -54,15 +73,29 @@ namespace MyShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FacultyID,Name,Description,Active,Image")] Faculty faculty)
+        public async Task<IActionResult> Create(Faculty model, IFormFile? photo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(faculty);
+
+                var file = HttpContext.Request.Form.Files.FirstOrDefault();
+                if (photo != null && photo.Length != 0)
+                {
+                    // Lưu file và đường dẫn
+                    var filePath = Path.Combine("wwwroot/images", photo.FileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await photo.CopyToAsync(stream);
+                    }
+
+                    // Gán đường dẫn cho thuộc tính Thumbnail
+                    model.Image = "/images/" + photo.FileName;
+                }
+                _context.Faculties.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(faculty);
+            return View(model);
         }
 
         // GET: Admin/Faculties/Edit/5
@@ -86,23 +119,39 @@ namespace MyShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FacultyID,Name,Description,Active,Image")] Faculty faculty)
+        public async Task<IActionResult> Edit(long id, Faculty model, IFormFile? photo, string? pictureOld)
         {
-            if (id != faculty.FacultyID)
+            if (id != model.FacultyID)
             {
                 return NotFound();
             }
+            if (photo != null && photo.Length > 0)
+            {
+                // Đường dẫn lưu ảnh mới
+                var filePath = Path.Combine("wwwroot/images", photo.FileName);
 
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await photo.CopyToAsync(stream);
+                }
+
+                model.Image = "/images/" + photo.FileName;
+            }
+            else
+            {
+                model.Image = pictureOld;
+            }
+           
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(faculty);
+                    _context.Update(model);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FacultyExists(faculty.FacultyID))
+                    if (!FacultyExists(model.FacultyID))
                     {
                         return NotFound();
                     }
@@ -113,40 +162,24 @@ namespace MyShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(faculty);
+            return View(model);
         }
-
         // GET: Admin/Faculties/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            if (id == null)
+            var model = _context.Faculties.FirstOrDefault(a => a.FacultyID == id);
+            if (model == null) return NotFound();
+
+            bool hasPro = _context.Products.Any(c => c.FacultyID == id);
+            if (hasPro)
             {
-                return NotFound();
+                TempData["Error"] = "Giảng viên đang có khóa học, không thể xóa!";
+                return RedirectToAction("Index");
             }
+            _context.Faculties.Remove(model);
+            _context.SaveChanges();
 
-            var faculty = await _context.Faculties
-                .FirstOrDefaultAsync(m => m.FacultyID == id);
-            if (faculty == null)
-            {
-                return NotFound();
-            }
-
-            return View(faculty);
-        }
-
-        // POST: Admin/Faculties/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var faculty = await _context.Faculties.FindAsync(id);
-            if (faculty != null)
-            {
-                _context.Faculties.Remove(faculty);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
 
         private bool FacultyExists(int id)

@@ -466,7 +466,6 @@ public partial class DbMyShopContext : DbContext
                 entity.HasKey(e => e.FacultyID);
 
                 entity.Property(e => e.Name)
-                      .IsRequired()
                       .HasMaxLength(255);
 
                 entity.Property(e => e.Description)
