@@ -116,7 +116,7 @@
 											<div class="rating_student">
 												<div class="portfolio_rating">
 													<div class="star-rating">
-														<span style="width:@(p.AvgRate*100/5)%"> <strong class="rating">@p.AvgRate</strong> out of 5 </span>
+														<span style="width:@(p.AvgRate*20)%"> <strong class="rating">@p.AvgRate</strong> out of 5 </span>
 													</div>
 													<div class="star-number">@p.AvgRate</div>
 												</div>
@@ -130,9 +130,9 @@
 
 											<div class="portfolio_teacher">
 												<div class="portfolio_teacher_thumbnail">
-													<img alt="teacher" class="img-responsive img-circle" src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/img-4.png">
+													<img alt="teacher" class="img-responsive img-circle" src="@p.Product.Faculty?.Image">
 												</div>
-												<p><strong>Nguyễn Tiến Huy </strong><span>MBA RMIT Vietnam - Nhà sáng lập... ...và....</span></p>
+												<p><strong>@p.Product.Faculty?.Name </strong><span>@p.Product.Faculty?.Description</span></p>
 											</div>
 
 

@@ -88,10 +88,24 @@ namespace MyShop.Controllers
 			return View(products);
 		}
 
-		[Route("khoa-hoc-chi-tiet")]
-		public IActionResult Chitiet()
+		[Route("khoa-hoc-chi-tiet/{slug}")]
+		public IActionResult Chitiet(string slug = "")
 		{
-			return View("khoa-hoc-chi-tiet");
+			var product = _context.Products
+				.Include(p => p.Category)
+				.Include(p => p.Enrollments)
+				.Include(p => p.CommentPros)
+				.Where(p => p.Active == 1 && p.Tag == slug)
+				.Select(p => new ProductViewModel
+				{
+					Product = p,
+					AvgRate = p.CommentPros.Any(x => x.Rate != null)
+						? p.CommentPros.Average(x => x.Rate ?? 0)
+						: 0,
+					TotalEnroll = p.Enrollments.Count()
+				})
+				.FirstOrDefault() ?? new ProductViewModel();
+			return View("khoa-hoc-chi-tiet", product);
 		}
 	}
 }

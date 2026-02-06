@@ -71,6 +71,9 @@ namespace MyShop.Controllers
 				.Where(x => x.Position == 9 && x.Active)
 				.OrderBy(x => x.Ord)
 				.ToList();
+            var thongke = _context.Pages
+                .Where(x => x.Position == 7 && x.Active == 1)
+                .FirstOrDefault() ?? new Page();
 
 			//ViewBag.News = news;
 			ViewBag.Categories = categories;
@@ -80,6 +83,7 @@ namespace MyShop.Controllers
             ViewBag.Slug = slug;
             ViewBag.Doanhnghiep = dn;
             ViewBag.Truyenthong = tt;
+            ViewBag.Thongke = thongke;
             return View();
         }
 
