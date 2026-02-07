@@ -33,6 +33,7 @@ namespace MyShop.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.Enrollments)
                 .Include(p => p.CommentPros)
+                .Include(p => p.Faculty)
 	            .Where(p => p.Active == 1)
 	            .Select(p => new ProductViewModel
 				{
