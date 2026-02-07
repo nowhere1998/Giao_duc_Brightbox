@@ -234,7 +234,7 @@ body .wpb_gallery .wpb_flexslider .flex-control-nav {
     padding: 15px
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .resp-tab-content {
         border-radius: 0 !important;
         border-top: none;
@@ -287,7 +287,7 @@ body .wpb_gallery .wpb_flexslider .flex-control-nav {
     width: 100%
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .resp-vtabs {
         display: block
     }
@@ -304,7 +304,7 @@ body .wpb_gallery .wpb_flexslider .flex-control-nav {
     width: 25%
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .resp-vtabs ul.resp-tabs-list {
         display: none
     }
@@ -314,7 +314,7 @@ body .wpb_gallery .wpb_flexslider .flex-control-nav {
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.04)
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .resp-vtabs .resp-tabs-container {
         display: block;
         box-shadow: none;
@@ -334,7 +334,7 @@ body .wpb_gallery .wpb_flexslider .flex-control-nav {
         display: block
     }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .resp-vtabs .resp-tab-content {
         border: 1px solid;
         border-top: none
@@ -694,7 +694,7 @@ h2.resp-accordion {
     box-shadow: none
 }
 
-@media (max-width: 991px) {
+@@media (max-width: 991px) {
     .tabs-navigation {
         display: block
     }
@@ -709,7 +709,7 @@ h2.resp-accordion {
         }
 }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .tabs .nav.nav-tabs.nav-justified li {
         display: block;
         margin-bottom: -5px
@@ -944,7 +944,7 @@ h2.resp-accordion {
         padding-bottom: 5px
     }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .toggle > .toggle-content {
         padding-left: 0
     }
@@ -1460,7 +1460,7 @@ h2.resp-accordion {
             position: absolute
         }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .testimonial.testimonial-with-quotes blockquote:before, .testimonial.testimonial-with-quotes blockquote:after {
         display: none !important
     }
@@ -1478,7 +1478,7 @@ h2.resp-accordion {
     padding: 0 40px
 }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .testimonial.testimonial-with-quotes blockquote p {
         padding: 0
     }
@@ -1660,7 +1660,7 @@ a.porto-btn-custom {
     padding: 0
 }
 
-@media (max-width: 768px) {
+@@media (max-width: 768px) {
     a.porto-btn-small {
         padding: 6px 12px
     }
@@ -1891,7 +1891,7 @@ html .vc_col-has-fill .porto-btn.porto-adjust-bottom-margin {
         background: url(../images/concept-icons.png) no-repeat 100% 0
     }
 
-@media (max-width: 991px) {
+@@media (max-width: 991px) {
     .porto-concept {
         background: none
     }
@@ -1905,7 +1905,7 @@ html .vc_col-has-fill .porto-btn.porto-adjust-bottom-margin {
         }
 }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .porto-concept .project-image {
         background-position: 0 0;
         margin-left: auto;
@@ -2087,7 +2087,7 @@ html .vc_col-has-fill .porto-btn.porto-adjust-bottom-margin {
     top: 49%
 }
 
-@media (min-width: 1170px) {
+@@media (min-width: 1170px) {
     .porto-diamonds > li:nth-child(3) {
         margin-right: 0
     }
@@ -2123,7 +2123,7 @@ html .vc_col-has-fill .porto-btn.porto-adjust-bottom-margin {
         }
 }
 
-@media (max-width: 1169px) {
+@@media (max-width: 1169px) {
     .csstransforms3d .porto-diamonds, .porto-diamonds {
         width: 748px;
         margin: 40px auto;
@@ -2155,7 +2155,7 @@ html .vc_col-has-fill .porto-btn.porto-adjust-bottom-margin {
         }
 }
 
-@media (max-width: 748px) {
+@@media (max-width: 748px) {
     .csstransforms3d .porto-diamonds, .porto-diamonds {
         margin: 40px 0 0 -222px;
         padding: 25px 0 0 50%;
@@ -2253,7 +2253,7 @@ section.exp-timeline {
                     font-size: 11px
                 }
 
-@media (max-width: 991px) {
+@@media (max-width: 991px) {
     section.exp-timeline .timeline-bar {
         left: -4.1%
     }
@@ -2271,7 +2271,7 @@ section.exp-timeline {
         }
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     section.exp-timeline {
         width: 100%;
         margin: 0
@@ -2342,7 +2342,7 @@ section.exp-timeline {
         animation: word-rotator-rotate-1-out 1.2s
     }
 
-@keyframes word-rotator-rotate-1-in {
+@@keyframes word-rotator-rotate-1-in {
     0% {
         transform: rotateX(180deg);
         opacity: 0
@@ -2363,7 +2363,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes word-rotator-rotate-1-out {
+@@keyframes word-rotator-rotate-1-out {
     0% {
         transform: rotateX(0deg);
         opacity: 1
@@ -2436,7 +2436,7 @@ section.exp-timeline {
         visibility: visible
     }
 
-@keyframes word-rotator-pulse {
+@@keyframes word-rotator-pulse {
     from, to {
         background-color: transparent
     }
@@ -2446,7 +2446,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes word-rotator-pulse-light {
+@@keyframes word-rotator-pulse-light {
     from, to {
         background-color: transparent
     }
@@ -2506,7 +2506,7 @@ section.exp-timeline {
     opacity: 1
 }
 
-@keyframes word-rotator-rotate-2-in {
+@@keyframes word-rotator-rotate-2-in {
     0% {
         opacity: 0;
         transform: translateZ(-20px) rotateX(90deg)
@@ -2523,7 +2523,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes word-rotator-rotate-2-out {
+@@keyframes word-rotator-rotate-2-out {
     0% {
         opacity: 1;
         transform: translateZ(-20px) rotateX(0)
@@ -2612,7 +2612,7 @@ section.exp-timeline {
         animation: slide-out .6s
     }
 
-@keyframes slide-in {
+@@keyframes slide-in {
     0% {
         opacity: 0;
         transform: translateY(-100%)
@@ -2629,7 +2629,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes slide-out {
+@@keyframes slide-out {
     0% {
         opacity: 1;
         transform: translateY(0)
@@ -2692,7 +2692,7 @@ section.exp-timeline {
         animation: zoom-out .8s
     }
 
-@keyframes zoom-in {
+@@keyframes zoom-in {
     0% {
         opacity: 0;
         transform: translateZ(100px)
@@ -2704,7 +2704,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes zoom-out {
+@@keyframes zoom-out {
     0% {
         opacity: 1;
         transform: translateZ(0)
@@ -2753,7 +2753,7 @@ section.exp-timeline {
     opacity: 1
 }
 
-@keyframes word-rotator-rotate-3-in {
+@@keyframes word-rotator-rotate-3-in {
     0% {
         transform: rotateY(180deg)
     }
@@ -2763,7 +2763,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes word-rotator-rotate-3-out {
+@@keyframes word-rotator-rotate-3-out {
     0% {
         transform: rotateY(0)
     }
@@ -2804,7 +2804,7 @@ section.exp-timeline {
     opacity: 1
 }
 
-@keyframes scale-up {
+@@keyframes scale-up {
     0% {
         transform: scale(0);
         opacity: 0
@@ -2821,7 +2821,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes scale-down {
+@@keyframes scale-down {
     0% {
         transform: scale(1);
         opacity: 1
@@ -2846,7 +2846,7 @@ section.exp-timeline {
         animation: push-out .6s
     }
 
-@keyframes push-in {
+@@keyframes push-in {
     0% {
         opacity: 0;
         transform: translateX(-100%)
@@ -2863,7 +2863,7 @@ section.exp-timeline {
     }
 }
 
-@keyframes push-out {
+@@keyframes push-out {
     0% {
         opacity: 1;
         transform: translateX(0)
@@ -2907,7 +2907,7 @@ section.exp-timeline {
             background: #FFF
         }
 
-@media (min-width: 992px) {
+@@media (min-width: 992px) {
     .floating-menu {
         background: transparent;
         height: 0;
@@ -2997,7 +2997,7 @@ section.exp-timeline {
                 }
 }
 
-@media (min-width: 992px) and (max-width: 1281px) {
+@@media (min-width: 992px) and (max-width: 1281px) {
     .floating-menu .floating-menu-row {
         left: -53px
     }
@@ -3012,7 +3012,7 @@ section.exp-timeline {
         }
 }
 
-@media (max-width: 991px) {
+@@media (max-width: 991px) {
     .floating-menu {
         position: absolute;
         top: 60px;
@@ -3190,7 +3190,7 @@ section.exp-timeline {
         min-height: 115px
     }
 
-@media (max-width: 650px) {
+@@media (max-width: 650px) {
     .porto-history .thumb {
         display: none
     }
@@ -3625,19 +3625,19 @@ html .porto-sicon-read {
     font-size: 1rem
 }
 
-@media (max-width: 991px) {
+@@media (max-width: 991px) {
     .porto-ibanner-layer {
         font-size: .875rem
     }
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .porto-ibanner-layer {
         font-size: .8125rem
     }
 }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .porto-ibanner-layer {
         font-size: .75rem
     }
@@ -4010,7 +4010,7 @@ html .porto-sicon-read {
         z-index: 2
     }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .pricing-table .most-popular {
         top: 0
     }
@@ -4221,7 +4221,7 @@ html .porto-sicon-read {
     top: auto
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .pricing-table-classic .most-popular {
         transform: none
     }
@@ -4266,7 +4266,7 @@ html .porto-sicon-read {
     border: 0
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .pricing-table {
         margin-left: 0px
     }
@@ -4447,7 +4447,7 @@ html .porto-sicon-read {
                 line-height: 1.6
             }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .timeline-circle {
         margin: 0px auto 35px !important
     }
@@ -4555,7 +4555,7 @@ html .porto-sicon-read {
     text-align: center
 }
 
-@media (min-width: 992px) {
+@@media (min-width: 992px) {
     .porto-process.process-horizontal {
         display: -ms-flexbox;
         display: flex
@@ -4576,7 +4576,7 @@ html .porto-sicon-read {
     overflow: visible
 }
 
-@media (min-width: 992px) {
+@@media (min-width: 992px) {
     .porto-process.process-horizontal .process-step:before {
         content: '';
         height: 2px;
@@ -5406,7 +5406,7 @@ body .slick-slide img {
         font-size: 1.2em
     }
 
-@media (min-width: 768px) {
+@@media (min-width: 768px) {
     .vc_cta3_content-container {
         display: table;
         width: 100%
@@ -5429,7 +5429,7 @@ body .slick-slide img {
     }
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .vc_general.vc_cta3 .dir-arrow {
         display: none
     }
@@ -6173,14 +6173,14 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
         margin-right: -8px
     }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .porto-onepage-category .category-section > .woocommerce {
         margin-left: -6px;
         margin-right: -6px
     }
 }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .porto-onepage-category .category-section > .woocommerce {
         margin-left: -3px;
         margin-right: -3px
@@ -6211,13 +6211,13 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
     border-radius: 5px
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@@media (min-width: 768px) and (max-width: 991px) {
     .porto-onepage-category .sub-category {
         font-size: 14px
     }
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .porto-onepage-category .sub-category {
         width: calc(100% + 2px);
         padding: 20px 0;
@@ -6263,13 +6263,13 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
         border-left: none
     }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@@media (min-width: 768px) and (max-width: 991px) {
     .porto-onepage-category .sub-category > .cat-item {
         padding: 20px 2%
     }
 }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .porto-onepage-category .sub-category > .cat-item {
         border-left: none
     }
@@ -6285,7 +6285,7 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
     padding: 9px 0
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .porto-onepage-category:not(.show-products) {
         position: static;
         width: auto;
@@ -6426,7 +6426,7 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
         display: inline-block
     }
 
-@media (max-width: 1199px) {
+@@media (max-width: 1199px) {
     .cd-product-viewer-wrapper > div {
         width: 100% !important
     }
@@ -6439,7 +6439,7 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
     overflow: hidden
 }
 
-@media (max-width: 1199px) {
+@@media (max-width: 1199px) {
     .cd-product-viewer-wrapper .product-viewer {
         width: 100% !important
     }
@@ -6562,7 +6562,7 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
     cursor: ew-resize
 }
 
-@keyframes cd-bounce {
+@@keyframes cd-bounce {
     0% {
         transform: translateX(-50%) scale(0)
     }
@@ -6630,7 +6630,7 @@ div.wpb_single_image.vc_box_border, div.wpb_single_image.vc_box_outline, div.wpb
         transition: opacity .3s, transform .3s, visibility .3s
     }
 
-@media (max-width: 575px) {
+@@media (max-width: 575px) {
     .porto-hotspot .popup-wrap {
         min-width: 160px;
         padding: 10px

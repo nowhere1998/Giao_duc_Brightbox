@@ -262,7 +262,7 @@ img.wp-smiley, img.emoji {
     display: block;
 }
 
-@media (max-width: 549px) {
+@@media (max-width: 549px) {
 
     .popup-content {
         width: 300px;
@@ -390,7 +390,7 @@ img.wp-smiley, img.emoji {
     line-height: 18px
 }
 
-@media (max-width: 549px) {
+@@media (max-width: 549px) {
     .header-main {
         height: 60px
     }
@@ -496,7 +496,7 @@ h1, h2, h3, h4, h5, h6, .heading-font {
     color: #262626;
 }
 
-@media screen and (max-width: 549px) {
+@@media screen and (max-width: 549px) {
     body {
         font-size: 100%;
     }
@@ -572,7 +572,7 @@ h1, h2, h3, h4, h5, h6, .heading-font, .banner h1, .banner h2 {
     padding-top: 100%;
 }
 
-@media screen and (min-width: 550px) {
+@@media screen and (min-width: 550px) {
     .products .box-vertical .box-image {
         min-width: 300px !important;
         width: 300px !important;
@@ -1495,7 +1495,7 @@ span.wpcf7-form-control-wrap.your-message textarea {
     height: auto;
 }
 
-@media screen and (min-width: 418px) {
+@@media screen and (min-width: 418px) {
     .tabbed-content.dich-vu .nav {
         align-items: center;
         overflow-x: scroll;
@@ -1609,7 +1609,7 @@ span.wpcf7-form-control-wrap.your-message textarea {
     animation-timing-function: ease-in;
 }
 
-@keyframes draw-arrow {
+@@keyframes draw-arrow {
     0% {
         width: 0;
     }
@@ -1816,7 +1816,7 @@ span.wpcf7-form-control-wrap.your-message textarea {
 }
 /* Responsive */
 
-@media (max-width: 480px) {
+@@media (max-width: 480px) {
     .custom-contact-form .custom-input {
         padding: 10px 12px;
         font-size: 14px;
@@ -1869,7 +1869,7 @@ span.wpcf7-form-control-wrap.your-message textarea {
         animation: spin 1s linear infinite;
     }
 
-@keyframes spin {
+@@keyframes spin {
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
@@ -1894,7 +1894,7 @@ span.wpcf7-form-control-wrap.your-message textarea {
 }
 /* Hiệu ứng xuất hiện */
 
-@keyframes slideIn {
+@@keyframes slideIn {
     0% {
         opacity: 0;
         transform: translateY(-20px) scale(0.95);
@@ -1933,7 +1933,7 @@ span.wpcf7-form-control-wrap.your-message textarea {
     animation: progressBar 2.5s ease-in-out forwards;
 }
 
-@keyframes progressBar {
+@@keyframes progressBar {
     0% {
         width: 0;
     }
@@ -1951,7 +1951,7 @@ span.wpcf7-form-control-wrap.your-message textarea {
 }
 /* Responsive */
 
-@media (max-width: 768px) {
+@@media (max-width: 768px) {
     .wpcf7-form.sent .wpcf7-response-output {
         padding: 15px !important;
         font-size: 14px !important;
@@ -2036,8 +2036,8 @@ blockquote {
 }
 /* Custom CSS Mobile */
 
-@media (max-width: 549px) {
-    @media screen and (max-width: 549px) {
+@@media (max-width: 549px) {
+    @@media screen and (max-width: 549px) {
         .slider-nav-outside .flickity-prev-next-button.previous {
             padding: 3px !important;
             border: 0 !important;
@@ -2164,7 +2164,7 @@ li.tab.has-icon.thuonghieu6 {
     margin: 0px 0px 0px 0px;
 }
 
-@media (min-width:550px) {
+@@media (min-width:550px) {
     #col-1023359413 > .col-inner {
         padding: 50px 40px 30px 50px;
         margin: -70px 0px 50px 0px;
@@ -2196,7 +2196,7 @@ li.tab.has-icon.thuonghieu6 {
     width: 70%;
 }
 
-@media (min-width:550px) {
+@@media (min-width:550px) {
     #text-box-1440129412 {
         width: 70%;
     }
@@ -2211,7 +2211,7 @@ li.tab.has-icon.thuonghieu6 {
     line-height: 1.2;
 }
 
-@media (min-width:550px) {
+@@media (min-width:550px) {
     #text-2533802168 {
         font-size: 2.75rem;
     }
@@ -2223,7 +2223,7 @@ li.tab.has-icon.thuonghieu6 {
     font-size: 0.75rem;
 }
 
-@media (min-width:550px) {
+@@media (min-width:550px) {
     #text-3372401053 {
         font-size: 0.8rem;
     }

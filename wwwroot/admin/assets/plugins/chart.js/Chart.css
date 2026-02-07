@@ -2,7 +2,7 @@
  * DOM element rendering detection
  * https://davidwalsh.name/detect-node-insertion
  */
-@keyframes chartjs-render-animation {
+@@keyframes chartjs-render-animation {
 	from { opacity: 0.99; }
 	to { opacity: 1; }
 }

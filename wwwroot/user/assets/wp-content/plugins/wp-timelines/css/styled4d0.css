@@ -215,7 +215,7 @@
 .wpex-timeline-list.show-icon .wpex-timeline > li .wpex-content-left .tlday{ font-size:70px; float:left; line-height:1; margin-top:-5px; margin-right:15px}
 .wpex-timeline-list.show-icon .wpex-timeline > li .wpex-content-left .wpex-leftdate div span{ line-height:1.3; font-size:24px;}
 .wpex-timeline-list.show-icon .wpex-timeline > li .wpex-content-left .wpex-leftdate div span:first-child{ display:block; font-size:16px; margin-bottom:3px; padding-top:3px;}
-@media(max-width:767px){
+@@media(max-width:767px){
     .wpex-timeline-list.left-tl .wpex-timeline > li .wpex-content-left + .timeline-details, 
     .wpex-timeline-list.show-icon .wpex-timeline > li .wpex-content-left + .timeline-details,
 	.wpex-timeline-list.left-tl .wpex-timeline > li .wpex-content-left, 
@@ -238,7 +238,7 @@
 .wptl-readmore-center{ text-align:right; margin-top:15px;}
 li .wptl-readmore-center > a { box-shadow:none; font-size:12px; color:#101010;}
 li .wptl-readmore-center > a:hover{ text-decoration:none;}
-@media(min-width:768px){
+@@media(min-width:768px){
 	.wpex-timeline-list .style-center > li:nth-child(odd) .wptl-readmore-center{ margin-right:55%; float:none;}
 	.wpex-timeline.style-center > li .wpex-timeline-label{margin-left:55%; margin-right:0}
 	.wpex-timeline.style-center > li:nth-child(odd) .wpex-timeline-label{ margin-right:55%; margin-left:0; border:1px solid rgba(0,0,0,0.15); border-right: 4px solid #00BCD4;}
@@ -381,7 +381,7 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 .wpex-loadmore .loadmore-timeline.loading span:not(.load-tltext):nth-child(2) {animation: wpexloading_ef 0.5s ease-in-out 0.2s infinite alternate; -webkit-animation: wpexloading_ef 0.5s ease-in-out 0.2s infinite alternate;}
 .wpex-loadmore .loadmore-timeline.loading span:not(.load-tltext):nth-child(3) {animation: wpexloading_ef 0.5s ease-in-out 0.35s infinite alternate; -webkit-animation: wpexloading_ef 0.5s ease-in-out 0.35s infinite alternate;}
 .wpex-loadmore .loadmore-timeline.loading span:not(.load-tltext):nth-child(4) {animation: wpexloading_ef 0.5s ease-in-out 0.5s infinite alternate; -webkit-animation: wpexloading_ef 0.5s ease-in-out 0.5s infinite alternate;}
-@keyframes wpexloading_ef {
+@@keyframes wpexloading_ef {
 	0% {
 		opacity:0;
 	}
@@ -437,13 +437,13 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 .wpex-timeline-list.flat-style:not(.left-tl).show-icon .wpex-timeline > li .wpex-timeline-label{ border-left:0;}
 .tlmobile-visible{ display:none !important;}
 .img-left.tlmobile-visible{ box-shadow:none; margin-bottom:5px;}
-@media(max-width:767px){
+@@media(max-width:767px){
 	.wpex-loadmore { width: 280px;}
 	.wpex-timeline-list.show-icon .wpex-timeline > li .wpex-content-left{ width:100%; }
 	.wpex-timeline-list.show-icon .wpex-timeline > li .wpex-content-left img{ margin-bottom:30px;}
 	.wpex-timeline-list.show-icon .wpex-timeline:not(.style-center) > li .wpex-content-left + .timeline-details{ width:100%; float:left; padding-left:0;}
 }
-@media(max-width:520px){
+@@media(max-width:520px){
 	.left-tl .wpex-loadmore,
 	.wpex-loadmore { width: 100px;}
 	.tlmobile-visible{ display:inline-block !important;}
@@ -471,7 +471,7 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 	padding: 7px 15px;width: auto;display: inline-block;margin: 30px 0; font-size: 13px; font-family: inherit; line-height: 1.4;
 }
 .wptl-filter-box select.wpex-taxonomy-select{ display: none; }
-@media(max-width:767px){
+@@media(max-width:767px){
 	.wptl-filter-box select.wpex-taxonomy-select{ display: inline-block; }
 	.wpex-timeline-list .wpex-taxonomy-filter{ display: none; }
 }
@@ -558,7 +558,7 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 	0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
 	20% { -webkit-transform: scaleY(1.0) }
 }
-@keyframes sk-stretchdelay {
+@@keyframes sk-stretchdelay {
 	0%, 40%, 100% { 
 	  transform: scaleY(0.4);
 	  -webkit-transform: scaleY(0.4);
@@ -581,10 +581,10 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 .wpex-timeline-list .wptl-feature-name span{font-size:20px; font-family: 'Oswald', sans-serif; line-height:1; }
 .wpex-timeline-list.show-icon .wptl-feature-name span{ border-color:#00BCD4;}
 .wpex-timeline-list:not(.show-icon) .wptl-feature-name span{ background-color:#00BCD4; color:#FFFFFF;}
-@media(max-width:767px){
+@@media(max-width:767px){
 	.wpex-timeline-list.center-tl .wptl-feature-name{ left:150px;}
 }
-@media(max-width:520px){
+@@media(max-width:520px){
 	.wpex-timeline-list.center-tl .wptl-feature-name,
 	.wpex-timeline-list .wptl-feature-name{ left:50px;}
 	.wpex-timeline-list.left-tl .wptl-feature-name{ left:42px;}
@@ -769,7 +769,7 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 .wpex-timeline-list.show-clean.left-tl .wpex-timeline > li .wpex-timeline-icon a i.fa{ left:-36px; top:0}
 .wpex-timeline-list.show-clean.left-tl li:last-child .wpex-timeline-icon:after{left: -57px;}
 .wpex-timeline-list.show-clean.left-tl .wpex-timeline-icon:before{ left:-50px;    width: calc(100% - 150px); top:4px;}
-@media (min-width: 768px){
+@@media (min-width: 768px){
 	.wpex-timeline-list.show-clean:not(.left-tl) .wpex-timeline > li:nth-child(odd) .il-img{float:left; margin: 0 20px 5px 0;}
 	.wpex-timeline-list.show-clean:not(.left-tl) li:last-child:nth-child(odd) .wpex-timeline-icon:after{ right:-42px; left:auto;}
 	.wpex-timeline-list.show-clean .wpex-timeline.style-center > li:nth-child(odd) .wpex-timeline-icon:before{ right:-40px; left:auto;}
@@ -786,7 +786,7 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 	.wpex-timeline-list.show-simple:not(.left-tl) .wpex-timeline > li:nth-child(odd) .wpex-timeline-time .s-date,
 	.wpex-timeline-list.show-simple:not(.left-tl) .wpex-timeline > li:nth-child(odd) .wpex-timeline-label{ text-align:right;}
 }
-@media(max-width:767px){
+@@media(max-width:767px){
 	.left-tl.show-clean .wpex-timeline > li .il-img,
 	.wpex-timeline-list.show-clean .wpex-timeline.style-center > li .il-img{ float: none; display: block; position: relative; margin: 0 0 15px 0;}
 	.wpex-timeline-list.show-clean .wpex-timeline.style-center > li .wpex-timeline-icon .fa{ left:-50px;}
@@ -806,7 +806,7 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 	.left-tl:not(.show-simple):not(.show-icon):not(.show-classic) .wpex-timeline > li .wpex-timeline-icon .fa.no-icon{ left:65px;}
 	.show-wide_img.left-tl .wpex-timeline > li .wpex-timeline-icon .fa:not(.no-icon):before{ font-size:0;}
 }
-@media (max-width: 520px){
+@@media (max-width: 520px){
 	.wpex-timeline-list.left-tl:not(.show-icon):not(.show-clean) li .wpex-timeline-icon a i.fa.no-icon, 	
 	.wpex-timeline-list.show-simple.left-tl:not(.show-clean) li .wpex-timeline-icon a i.fa,
 	.wpex-timeline-list.show-simple.left-tl li .wpex-timeline-icon a i.fa{ left:65px;}
@@ -823,7 +823,7 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
     margin: 0 20px 5px 0;
     box-shadow: none;
 }
-@media (min-width: 768px){
+@@media (min-width: 768px){
 	.wpex-timeline-list.show-simple-bod.left-tl ul li .timeline-details .img-left,
 	.wpex-timeline-list.show-simple-bod ul li:nth-child(even) .timeline-details .img-left{ float:right; margin: 0 0 5px 20px;}
 }
@@ -861,19 +861,19 @@ li .wptl-readmore-center > a:hover{ text-decoration:none;}
 .wpex-timeline-list.show-box-color li .tlb-time > span:empty{ display:none;}
 .wpex-timeline-list.show-box-color li .tlb-time > span:empty + span{ width:100%;}
 .wpex-timeline-list.show-box-color .wpex-timeline > li .wpex-timeline-label h2 a{text-transform: capitalize;}
-@media (min-width: 768px){
+@@media (min-width: 768px){
 	.wpex-timeline-list.show-box-color li:nth-child(odd) .tlb-time > span.tll-date{float:right; text-align: right;}
 	.wpex-timeline-list.show-box-color li:nth-child(even) .info-h{ text-align:right;}
 	.wpex-timeline-list.show-box-color .style-center > li:nth-child(odd) .wpex-timeline-icon .fa:after{ margin-left:-29px;}
 }
-@media (max-width: 767px){
+@@media (max-width: 767px){
 	.wpex-timeline-list.show-box-color li .tlb-time > span{ width:100%; text-align:left;}
 }
 /*--- cent---*/
 .wpex-timeline-list.show-simple.show-simple-cent ul li .wpex-timeline-time .tll-date{padding: 5px 10px; border:2px solid;}
 .wpex-timeline-list.show-simple-cent .tlct-shortdes h2{ text-transform:capitalize; line-height:1}
 .wpex-timeline-list.show-simple-cent .tlct-shortdes h2 + p{ margin-top:5px;}
-@media (min-width: 768px){
+@@media (min-width: 768px){
 	.wpex-timeline-list.show-simple-cent .timeline-details .img-left {
 		width: 40%;
 		float: right;

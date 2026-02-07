@@ -369,7 +369,7 @@ object.os-resize-observer {
         z-index: -1;
     }
 }
-@keyframes os-resize-observer-dummy-animation {
+@@keyframes os-resize-observer-dummy-animation {
     from {
         z-index: 0;
     }

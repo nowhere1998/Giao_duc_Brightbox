@@ -31,7 +31,7 @@
     transform: perspective(400px);
   }
 }
-@keyframes flipInX {
+@@keyframes flipInX {
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -67,7 +67,7 @@
   }
 }
 
-@keyframes fadeIn {
+@@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -85,7 +85,7 @@
   }
 }
 
-@keyframes fadeOut {
+@@keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -141,7 +141,7 @@
   }
 }
 
-@keyframes shake {
+@@keyframes shake {
   0% {
     -webkit-transform: translate(2px, 1px) rotate(0deg);
     transform: translate(2px, 1px) rotate(0deg);
@@ -219,7 +219,7 @@
   }
 }
 
-@keyframes wobble {
+@@keyframes wobble {
   0% {
     -webkit-transform: none;
     transform: none;
@@ -286,7 +286,7 @@
   white-space: nowrap;
 }
 
-@media (min-width: 992px) {
+@@media (min-width: 992px) {
   .col-xl-2 .small-box h3,
   .col-lg-2 .small-box h3,
   .col-md-2 .small-box h3 {
@@ -299,7 +299,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@@media (min-width: 1200px) {
   .col-xl-2 .small-box h3,
   .col-lg-2 .small-box h3,
   .col-md-2 .small-box h3 {
@@ -372,7 +372,7 @@
   transform: scale(1.1);
 }
 
-@media (max-width: 767.98px) {
+@@media (max-width: 767.98px) {
   .small-box {
     text-align: center;
   }
@@ -547,7 +547,7 @@
   margin: 0;
 }
 
-@media (min-width: 768px) {
+@@media (min-width: 768px) {
   .col-xl-2 .info-box .progress-description,
   .col-lg-2 .info-box .progress-description,
   .col-md-2 .info-box .progress-description {
@@ -560,7 +560,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@@media (min-width: 992px) {
   .col-xl-2 .info-box .progress-description,
   .col-lg-2 .info-box .progress-description,
   .col-md-2 .info-box .progress-description {
@@ -575,7 +575,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@@media (min-width: 1200px) {
   .col-xl-2 .info-box .progress-description,
   .col-lg-2 .info-box .progress-description,
   .col-md-2 .info-box .progress-description {

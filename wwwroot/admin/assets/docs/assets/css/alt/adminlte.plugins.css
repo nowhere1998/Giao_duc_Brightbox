@@ -31,7 +31,7 @@
     transform: perspective(400px);
   }
 }
-@keyframes flipInX {
+@@keyframes flipInX {
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -67,7 +67,7 @@
   }
 }
 
-@keyframes fadeIn {
+@@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -85,7 +85,7 @@
   }
 }
 
-@keyframes fadeOut {
+@@keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -141,7 +141,7 @@
   }
 }
 
-@keyframes shake {
+@@keyframes shake {
   0% {
     -webkit-transform: translate(2px, 1px) rotate(0deg);
     transform: translate(2px, 1px) rotate(0deg);
@@ -219,7 +219,7 @@
   }
 }
 
-@keyframes wobble {
+@@keyframes wobble {
   0% {
     -webkit-transform: none;
     transform: none;
@@ -303,7 +303,7 @@
   padding: 1rem;
 }
 
-@media (max-width: 575.98px) {
+@@media (max-width: 575.98px) {
   .fc-toolbar {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;

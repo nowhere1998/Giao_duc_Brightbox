@@ -42,7 +42,7 @@
         margin-top: -3px;
         right: 0;
 
-        @media (max-width: breakpoint-max(xs)) {
+        @@media (max-width: breakpoint-max(xs)) {
           left: 0;
           right: auto;
         }

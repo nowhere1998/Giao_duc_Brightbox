@@ -1,4 +1,4 @@
-@keyframes dtb-spinner {
+@@keyframes dtb-spinner {
   100% {
     transform: rotate(360deg);
   }
@@ -155,7 +155,7 @@ div.dt-button-background {
   z-index: 999;
 }
 
-@media screen and (max-width: 767px) {
+@@media screen and (max-width: 767px) {
   div.dt-buttons {
     float: none;
     width: 100%;

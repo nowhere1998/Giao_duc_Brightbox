@@ -1,5 +1,5 @@
 ﻿/*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.14.0 by @@fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -120,7 +120,7 @@
     animation: fa-spin 1s infinite steps(8)
 }
 
-@keyframes fa-spin {
+@@keyframes fa-spin {
     0% {
         transform: rotate(0deg)
     }
@@ -6004,11 +6004,11 @@
     width: auto
 }
 /*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.14.0 by @@fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
-@font-face {
+@@font-face {
     font-family: 'Font Awesome 5 Brands';
     font-style: normal;
     font-weight: 400;
@@ -6022,11 +6022,11 @@
     font-weight: 400
 }
 /*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.14.0 by @@fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
-@font-face {
+@@font-face {
     font-family: 'Font Awesome 5 Free';
     font-style: normal;
     font-weight: 400;
@@ -6040,11 +6040,11 @@
     font-weight: 400
 }
 /*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.14.0 by @@fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
-@font-face {
+@@font-face {
     font-family: 'Font Awesome 5 Free';
     font-style: normal;
     font-weight: 900;
@@ -6075,7 +6075,7 @@
     animation-name: fadeOut
 }
 
-@keyframes fadeOut {
+@@keyframes fadeOut {
     0% {
         opacity: 1
     }
@@ -6550,7 +6550,7 @@
     background: rgba(0,0,0,0.8)
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+@@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
     #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
         background-image: url(images/fancybox_sprite@2x.png);
         background-size: 44px 152px
@@ -6616,7 +6616,7 @@ a.fancybox-close {
     background: #fff none repeat scroll 0 0
 }
 
-@font-face {
+@@font-face {
     font-family: 'Simple-Line-Icons';
     font-weight: normal;
     font-display: swap;
@@ -7752,7 +7752,7 @@ img.mfp-img {
     cursor: pointer
 }
 
-@media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
+@@media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
     .mfp-img-mobile .mfp-image-holder {
         padding-left: 0;
         padding-right: 0
@@ -7803,7 +7803,7 @@ img.mfp-img {
     }
 }
 
-@media all and (max-width: 900px) {
+@@media all and (max-width: 900px) {
     .mfp-arrow {
         -webkit-transform: scale(0.75);
         transform: scale(0.75)
@@ -8044,7 +8044,7 @@ img.mfp-img {
     padding-left: 25px
 }
 
-@font-face {
+@@font-face {
     font-family: 'porto';
     src: url("../fonts/porto-font/porto.eot?9562728");
     src: url("../fonts/porto-font/porto.eot?9562728#iefix") format("embedded-opentype"),url("../fonts/porto-font/porto.woff2?9562728") format("woff2"),url("../fonts/porto-font/porto.woff?9562728") format("woff"),url("../fonts/porto-font/porto.ttf?9562728") format("truetype"),url("../fonts/porto-font/porto.svg?9562728#porto") format("svg");

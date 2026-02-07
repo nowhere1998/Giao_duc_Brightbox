@@ -187,7 +187,7 @@ rs-sbg-px {
     direction: rtl;
 }
 
-@font-face {
+@@font-face {
     font-family: 'revicons';
     src: url('../fonts/revicons/revicons.eot?5510888');
     src: url('../fonts/revicons/revicons.eot?5510888#iefix') format('embedded-opentype'), url('../fonts/revicons/revicons.woff?5510888') format('woff'), url('../fonts/revicons/revicons.ttf?5510888') format('truetype'), url('../fonts/revicons/revicons.svg?5510888#revicons') format('svg');
@@ -843,8 +843,8 @@ rs-cbg-mask-wrap {
 
 
 /* ANY SAFARI NEEDS IN CAROUSEL SOME HELP TO AVOID FLICKERING, LOVELY....*/
-@media not all and (min-resolution:.001dpcm) {
-    @media {
+@@media not all and (min-resolution:.001dpcm) {
+    @@media {
         rs-carousel-wrap rs-layer-wrap,
         rs-carousel-wrap rs-loop-wrap {
             -webkit-backface-visibility: hidden;
@@ -891,7 +891,7 @@ rs-fullwidth-wrap {
 /*IE11 AND IE EDGE NEED SOME SPECIAL OVERFLOW
 Removed now since iE 11 and ieEdge fullwidth Slider had spacings again on other themes.
 May need to keep in eye the Carousel and Modal sliders in Fullscreen / Fullwidth mode ! 
-@media screen and (-ms-high-contrast: none) {
+@@media screen and (-ms-high-contrast: none) {
 	rs-fullwidth-wrap { overflow: hidden; }
 }
 @supports (-ms-ime-align:auto) {
@@ -1577,7 +1577,7 @@ rs-dotted.threexthreewhite {
 
 /* SCROLL DOWN BUTTON */
 
-@keyframes rev-ani-mouse {
+@@keyframes rev-ani-mouse {
     0% {
         opacity: 1;
         top: 29%;
@@ -1948,7 +1948,7 @@ rs-loader {
     }
 
 
-@keyframes tp-rotateplane {
+@@keyframes tp-rotateplane {
     0% {
         transform: perspective(120px) rotateX(0deg) rotateY(0deg);
     }
@@ -1975,7 +1975,7 @@ rs-loader.spinner2 {
 }
 
 
-@keyframes tp-scaleout {
+@@keyframes tp-scaleout {
     0% {
         transform: scale(0.0);
     }
@@ -2015,7 +2015,7 @@ rs-loader.spinner3 {
         animation-delay: -0.16s;
     }
 
-@keyframes tp-bouncedelay {
+@@keyframes tp-bouncedelay {
     0%, 80%, 100% {
         transform: scale(0.0);
     }
@@ -2056,13 +2056,13 @@ rs-loader.spinner4 {
     }
 
 
-@keyframes tp-rotate {
+@@keyframes tp-rotate {
     100% {
         transform: rotate(360deg);
     }
 }
 
-@keyframes tp-bounce {
+@@keyframes tp-bounce {
     0%, 100% {
         transform: scale(0.0);
     }
@@ -2744,7 +2744,7 @@ rs-loader.spinner6 {
                 opacity: .9
             }
 
-@keyframes rs-revealer-6 {
+@@keyframes rs-revealer-6 {
     from {
         transform: rotate(0)
     }
@@ -2782,7 +2782,7 @@ rs-loader.spinner7 {
         animation: rs-revealer-7 .8s linear infinite
     }
 
-@keyframes rs-revealer-7 {
+@@keyframes rs-revealer-7 {
     from {
         transform: rotate(0)
     }
@@ -2832,7 +2832,7 @@ rs-loader.spinner8 {
                 -webkit-animation-delay: -.8s
             }
 
-@keyframes rs-revealer-8 {
+@@keyframes rs-revealer-8 {
     0% {
         transform: scale(0,0);
         opacity: .5
@@ -2891,7 +2891,7 @@ rs-loader.spinner9 {
     }
 }
 
-@keyframes rs-revealer-9 {
+@@keyframes rs-revealer-9 {
     0%,100% {
         transform: scale(0);
         -webkit-transform: scale(0)
@@ -2956,7 +2956,7 @@ rs-loader.spinner10 {
     }
 }
 
-@keyframes rs-revealer-10 {
+@@keyframes rs-revealer-10 {
     0%,100%,40% {
         transform: scaleY(.4);
         -webkit-transform: scaleY(.4)
@@ -3047,7 +3047,7 @@ rs-loader.spinner11 {
     }
 }
 
-@keyframes rs-revealer-11 {
+@@keyframes rs-revealer-11 {
     0%,100%,70% {
         -webkit-transform: scale3D(1,1,1);
         transform: scale3D(1,1,1)
@@ -3083,7 +3083,7 @@ rs-loader.spinner12 {
     }
 }
 
-@keyframes rs-revealer-12 {
+@@keyframes rs-revealer-12 {
     0% {
         transform: rotate(0)
     }
@@ -3130,7 +3130,7 @@ rs-loader.spinner13 {
                 -webkit-animation-delay: -.5s
             }
 
-@keyframes rs-revealer-13 {
+@@keyframes rs-revealer-13 {
     0%,100% {
         transform: translate(0)
     }
@@ -3282,7 +3282,7 @@ rs-loader.spinner14 {
     }
 }
 
-@keyframes rs-revealer-14-1 {
+@@keyframes rs-revealer-14-1 {
     0% {
         transform: rotate3d(0,0,1,0deg) translate3d(0,0,0)
     }
@@ -3300,7 +3300,7 @@ rs-loader.spinner14 {
     }
 }
 
-@keyframes rs-revealer-14-2 {
+@@keyframes rs-revealer-14-2 {
     0% {
         transform: rotate3d(0,0,1,0deg) translate3d(0,0,0)
     }
@@ -3318,7 +3318,7 @@ rs-loader.spinner14 {
     }
 }
 
-@keyframes rs-revealer-14-3 {
+@@keyframes rs-revealer-14-3 {
     0% {
         transform: rotate3d(0,0,1,0deg) translate3d(0,0,0)
     }
@@ -3336,7 +3336,7 @@ rs-loader.spinner14 {
     }
 }
 
-@keyframes rs-revealer-14-4 {
+@@keyframes rs-revealer-14-4 {
     0% {
         transform: rotate3d(0,0,1,0deg) translate3d(0,0,0)
     }
@@ -3401,7 +3401,7 @@ rs-loader.spinner15 {
     }
 }
 
-@keyframes rs-revealer-15 {
+@@keyframes rs-revealer-15 {
     25% {
         transform: translateX(30px) rotate(-90deg) scale(.5);
         -webkit-transform: translateX(30px) rotate(-90deg) scale(.5)

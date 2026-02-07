@@ -53688,9 +53688,9 @@ var TTFSubset = function (_Subset) {
         hmtx: this.hmtx,
         fpgm: this.font.fpgm
 
-        // name: clone @font.name
-        // 'OS/2': clone @font['OS/2']
-        // post: clone @font.post
+        // name: clone @@font.name
+        // 'OS/2': clone @@font['OS/2']
+        // post: clone @@font.post
         // cmap: cmap
       }
     });

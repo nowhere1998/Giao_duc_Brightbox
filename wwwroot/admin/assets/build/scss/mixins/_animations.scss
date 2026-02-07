@@ -3,7 +3,7 @@
 //
 
 
-@keyframes flipInX {
+@@keyframes flipInX {
   0% {
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transition-timing-function: ease-in;
@@ -30,7 +30,7 @@
 }
 
 
-@keyframes fadeIn {
+@@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -40,7 +40,7 @@
   }
 }
 
-@keyframes fadeOut {
+@@keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -50,7 +50,7 @@
   }
 }
 
-@keyframes shake {
+@@keyframes shake {
   0% {
     transform: translate(2px, 1px) rotate(0deg);
   }
@@ -86,7 +86,7 @@
   }
 }
 
-@keyframes wobble {
+@@keyframes wobble {
   0% {
     transform: none;
   }

@@ -10,8 +10,8 @@ In this example we create a custom button class called `.btn-custom-color` with 
 ```scss
 // Bootstrap
 // ---------------------------------------------------
-@import '~bootstrap/scss/functions';
-@import '~admin-lte/build/scss/bootstrap-variables';
+@@import '~bootstrap/scss/functions';
+@@import '~admin-lte/build/scss/bootstrap-variables';
 
 // Custom Theme Color START
 $custom-color: #00FF00;
@@ -22,17 +22,17 @@ $theme-colors: map-merge((
 
 // Variables and Mixins
 // ---------------------------------------------------
-@import '~admin-lte/build/scss/variables';
-@import '~admin-lte/build/scss/mixins';
+@@import '~admin-lte/build/scss/variables';
+@@import '~admin-lte/build/scss/mixins';
 
-@import '~bootstrap/scss/bootstrap';
+@@import '~bootstrap/scss/bootstrap';
 
-@import '~admin-lte/build/scss/parts/core';
-@import '~admin-lte/build/scss/parts/components';
-@import '~admin-lte/build/scss/parts/extra-components';
-@import '~admin-lte/build/scss/parts/pages';
-@import '~admin-lte/build/scss/parts/plugins';
-@import '~admin-lte/build/scss/parts/miscellaneous';
+@@import '~admin-lte/build/scss/parts/core';
+@@import '~admin-lte/build/scss/parts/components';
+@@import '~admin-lte/build/scss/parts/extra-components';
+@@import '~admin-lte/build/scss/parts/pages';
+@@import '~admin-lte/build/scss/parts/plugins';
+@@import '~admin-lte/build/scss/parts/miscellaneous';
 
 // Custom Style START
 .my-custom-style {
@@ -50,9 +50,9 @@ In this example we create a custom class called `.btn-custom-color` with a extra
 ```scss
 // Bootstrap
 // ---------------------------------------------------
-@import '~bootstrap/scss/functions';
-@import '~admin-lte/build/scss/bootstrap-variables';
-@import '~bootstrap/scss/mixins';
+@@import '~bootstrap/scss/functions';
+@@import '~admin-lte/build/scss/bootstrap-variables';
+@@import '~bootstrap/scss/mixins';
 
 $custom-color: #00FF00;
 

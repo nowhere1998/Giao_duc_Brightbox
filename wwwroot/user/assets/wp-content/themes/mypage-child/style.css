@@ -40,7 +40,7 @@ Tags: woocommerce, corporate, ecommerce, responsive, blue, black, green, white, 
 }
 
 /* pages */
-@keyframes expandInWithBlur {
+@@keyframes expandInWithBlur {
     from {
         opacity: 0;
         filter: blur(10px);
@@ -528,7 +528,7 @@ article.post .btn-readmore {
     border-radius: 50%;
 }
 
-@media (min-width: 768px) {
+@@media (min-width: 768px) {
     ul.comments ul.children > li img.avatar, ul.comments > li img.avatar {
         width: 3rem;
         height: 3rem;
@@ -672,7 +672,7 @@ ul.comments .comment-arrow {
 }
 
 /* Responsive */
-@media (max-width: 991px) {
+@@media (max-width: 991px) {
     #header .separator {
         display: none;
     }
@@ -2271,7 +2271,7 @@ article.post .post-item.style-4 .post-image {
     z-index: 99;
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     #zalo_chat {
         bottom: 142px;
         left: 20px;
@@ -2477,7 +2477,7 @@ article.post .post-item.style-4 .post-image {
     }
 }
 
-@media (max-width:768px) {
+@@media (max-width:768px) {
     .hotline-bar {
         display: none
     }
@@ -2510,7 +2510,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
     color: #000;
 }
 
-@media (min-width: 1230px) {
+@@media (min-width: 1230px) {
     #header .header-main .header-right {
         width: 62%;
     }
@@ -2572,7 +2572,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
     }
 }
 
-@media(max-width: 1229px) {
+@@media(max-width: 1229px) {
     .register_form .register_title {
         text-align: center;
         margin-bottom: 16px;
@@ -2595,7 +2595,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
         }
 }
 
-@media (min-width: 992px) {
+@@media (min-width: 992px) {
     .portfolio_header .portfolio-filter-custom {
         margin-left: 20px;
     }
@@ -2632,7 +2632,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
     }
 }
 
-@media (max-width: 991px) {
+@@media (max-width: 991px) {
     .header-right-top {
         display: none;
     }
@@ -2681,7 +2681,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
     }
 }
 
-@media (min-width: 768px) {
+@@media (min-width: 768px) {
     .over_column.vc_column_container {
         position: static;
     }
@@ -2725,7 +2725,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
     }
 }
 
-@media (max-width: 767px) {
+@@media (max-width: 767px) {
     .wpb_text_column.wpb_content_element.desc_with_bg_one:before {
         width: 100%;
     }
@@ -2739,7 +2739,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
     }
 }
 
-@media (max-width: 600px) {
+@@media (max-width: 600px) {
     .vc_row.wpb_row.vc_inner.row.cross_with_column .vc_column_container:before {
         top: calc((100vw - 200px)/8);
         font-size: 25px;
@@ -2754,7 +2754,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
     }
 }
 
-@media (max-width: 470px) {
+@@media (max-width: 470px) {
     .title_one, .porto-u-heading.title_two .porto-u-main-heading > * {
         font-size: 26px
     }

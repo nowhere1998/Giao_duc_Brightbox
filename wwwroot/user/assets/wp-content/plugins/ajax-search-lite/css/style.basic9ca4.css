@@ -1,4 +1,4 @@
-@keyframes aslAnFadeInDrop {
+@@keyframes aslAnFadeInDrop {
     0% {
         opacity: 0;
         transform: translate(0, -50px);
@@ -22,7 +22,7 @@
     }
 }
 
-@keyframes aslAnFadeOutDrop {
+@@keyframes aslAnFadeOutDrop {
     0% {
         opacity: 1;
         transform: translate(0, 0);
@@ -398,7 +398,7 @@ div.asl_m .probox div.asl_loader-inner {
     }
 }
 
-@keyframes rotate-simple {
+@@keyframes rotate-simple {
     0% {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -741,7 +741,7 @@ div.asl_r.vertical:hover .results::-webkit-scrollbar-thumb,
 div.asl_s.searchsettings:hover .asl_sett_scroll::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 12px 12px rgba(0, 0, 0, 0.5);
 }
-@media (hover: none), (max-width: 500px) {
+@@media (hover: none), (max-width: 500px) {
     div.asl_r.vertical .results::-webkit-scrollbar-thumb,
     div.asl_s.searchsettings .asl_sett_scroll::-webkit-scrollbar-thumb {
         box-shadow: inset 0 0 12px 12px rgba(0, 0, 0, 0.5);

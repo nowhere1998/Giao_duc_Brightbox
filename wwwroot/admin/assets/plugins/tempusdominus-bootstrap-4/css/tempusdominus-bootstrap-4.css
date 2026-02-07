@@ -56,17 +56,17 @@ body.tempusdominus-bootstrap-datetimepicker-widget-day-click {
 .bootstrap-datetimepicker-widget.dropdown-menu.tempusdominus-bootstrap-datetimepicker-widget-with-calendar-weeks.tempusdominus-bootstrap-datetimepicker-widget-with-feather-icons {
   width: 17rem;
 }
-@media (min-width: 576px) {
+@@media (min-width: 576px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
     width: 38em;
   }
 }
-@media (min-width: 768px) {
+@@media (min-width: 768px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
     width: 38em;
   }
 }
-@media (min-width: 992px) {
+@@media (min-width: 992px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
     width: 38em;
   }

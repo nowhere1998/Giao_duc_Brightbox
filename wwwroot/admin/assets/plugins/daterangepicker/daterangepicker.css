@@ -335,7 +335,7 @@
 }
 
 /*  Larger Screen Styling */
-@media (min-width: 564px) {
+@@media (min-width: 564px) {
   .daterangepicker {
     width: auto;
   }
@@ -391,7 +391,7 @@
   }
 }
 
-@media (min-width: 730px) {
+@@media (min-width: 730px) {
   .daterangepicker .ranges {
     width: auto;
   }

@@ -11,10 +11,6 @@
 							<ul class="links">
 								<li><a href="https:/user/assets/gioi-thieu/">Giới thiệu</a></li>
 								<li><a href="https:/user/assets/giang-vien-bright-box/">Tuyển dụng Giảng viên</a></li>
-								<li><a href="https:/user/assets/nhan-su-bright-box/">Tuyển dụng Nhân sự</a></li>
-								<li><a href="https:/user/assets/chinh-sach-bao-mat-thong-tin/">Chính sách bảo mật thông tin</a></li>
-								<li><a href="https:/user/assets/quy-dinh-ve-thanh-toan-va-hoan-tra-hoc-phi/">Quy định về thanh toán và hoàn trả học phí</a></li>
-								<li><a href="https:/user/assets/bo-quy-tac-ung-xu-khi-tham-gia-khoa-hoc-tai-bright-box/">Bộ quy tắc ứng xử khi tham gia khóa học tại Bright Box</a></li>
 							</ul>
 						</div>
 					</aside>
@@ -23,10 +19,10 @@
 					<aside id="text-4" class="widget widget_text">
 						<p class="widget-title">Hỗ trợ khách hàng</p>			<div class="textwidget">
 							<ul class="list list-unstyled">
-								<li class="mb-1">Hotline: <a href="tel:+84395162979">+84 39 516 2979</a></li>
-								<li class="mb-1">Email: <a href="mailto:mail@example.com">mail@example.com</a></li>
-								<li>Thời gian làm việc: 9.00-21.00, Thứ 2-Chủ Nhật</li>
-								<li><a href="https:/user/assets/nhung-cau-hoi-thuong-gap/">Những câu hỏi thường gặp</a></li>
+								<li class="mb-1">Hotline: <a href="tel:@ViewBag.Config.HotLine">@ViewBag.Config.HotLine</a></li>
+								<li class="mb-1">Email: <a href="#">@ViewBag.Config.MailInfo</a></li>
+								<li>Thời gian làm việc: @ViewBag.Config.SocialLink7</li>
+@* 								<li><a href="https:/user/assets/nhung-cau-hoi-thuong-gap/">Những câu hỏi thường gặp</a></li> *@
 							</ul>
 						</div>
 					</aside>
@@ -34,14 +30,15 @@
 				<div class="col-lg-4">
 					<aside id="follow-us-widget-2" class="widget follow-us">
 						<p class="widget-title">KẾT NỐI VỚI CHÚNG TÔI</p>		<div class="share-links">
-							<a href="https://www.facebook.com/vnbrightbox" rel="nofollow" target="_blank" title="Facebook" class="share-facebook">Facebook</a>
-							<a href="#" rel="nofollow" target="_blank" title="Twitter" class="share-twitter">Twitter</a>
-							<a href="#" rel="nofollow" target="_blank" title="Youtube" class="share-youtube">Youtube</a>
-							<a href="#" rel="nofollow" target="_blank" title="Instagram" class="share-instagram">Instagram</a>
-							<a href="#" rel="nofollow" target="_blank" title="Linkedin" class="share-linkedin">Linkedin</a>
+							<a href="@ViewBag.Config.SocialLink1" rel="nofollow" target="_blank" title="Facebook" class="share-facebook">Facebook</a>
+							<a href="@ViewBag.Config.FlickrLink" rel="nofollow" target="_blank" title="Twitter" class="share-twitter">Twitter</a>
+							<a href="@ViewBag.Config.YoutubeLink" rel="nofollow" target="_blank" title="Youtube" class="share-youtube">Youtube</a>
+							<a href="@ViewBag.Config.PicasaLink" rel="nofollow" target="_blank" title="Instagram" class="share-instagram">Instagram</a>
+							<a href="@ViewBag.Config.SocialLink4" rel="nofollow" target="_blank" title="Linkedin" class="share-linkedin">Linkedin</a>
 						</div>
 
-					</aside><aside id="block-widget-3" class="widget widget-block">
+					</aside>
+					<aside id="block-widget-3" class="widget widget-block">
 						<div class="block">
 							<div class="porto-block">
 								<div class="vc_row wpb_row row">
@@ -89,11 +86,11 @@
 																			<input type="email" name="Email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control" aria-required="true" aria-invalid="false" placeholder="Email*" />
 																			</span>
 																		<span class="wpcf7-form-control-wrap tel-759">
-																			<input type="tel" name="Tel" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel form-control" aria-required="true" aria-invalid="false" placeholder="Số điện thoại*" />
+																			<input type="tel" name="Phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel form-control" aria-required="true" aria-invalid="false" placeholder="Số điện thoại*" />
 																			</span>
                                                                         <span class="wpcf7-form-control-wrap khoa-hoc">
-                                                                            <select name="khoa-hoc" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control select2_dropdown" aria-required="true" aria-invalid="false">
-                                                                                <option value=""></option>
+                                                                            <select name="ProductId" class="form-control" aria-required="true" aria-invalid="false">
+
                                                                                 <option value="Thiết kế đồ họa">Thiết kế đồ họa</option>
                                                                                 <option value="Thiết kế nội thất">Thiết kế nội thất</option>
                                                                                 <option value="Ngoại ngữ">Ngoại ngữ</option>
@@ -125,9 +122,36 @@
 		<div class="container">
 
 			<div class="footer-center">
-				<span class="footer-copyright">Copyright © 2021 <strong>Bright Box</strong> . All rights reserved.</span>
+				@Html.Raw(ViewBag.Config.Copyright)
+				@* <span class="footer-copyright">Copyright © 2021 <strong>Bright Box</strong> . All rights reserved.</span> *@
 			</div>
 
 		</div>
 	</div>
 </div>
+@section Styles 
+{
+	<style>
+		.mfp-wrap,
+		.mfp-container,
+		.mfp-content,
+		.porto-modal-content,
+		.register_form,
+		.register_form select {
+			pointer-events: auto !important;
+		}
+
+		/* Fix z-index cho dropdown */
+		select {
+			position: relative;
+			z-index: 99999;
+		}
+
+		.porto-modal-content,
+		.register_form,
+		.field_wrap {
+			overflow: visible !important;
+			transform: none !important;
+		}
+	</style>
+}

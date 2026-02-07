@@ -175,7 +175,7 @@ div.dtr-modal div.dtr-modal-background {
   background: rgba(0, 0, 0, 0.6);
 }
 
-@media screen and (max-width: 767px) {
+@@media screen and (max-width: 767px) {
   div.dtr-modal div.dtr-modal-display {
     width: 95%;
   }

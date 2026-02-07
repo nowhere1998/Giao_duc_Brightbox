@@ -281,7 +281,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   var objCKeywords = "bycopy byref in inout oneway out self super atomic nonatomic retain copy " +
   "readwrite readonly strong weak assign typeof nullable nonnull null_resettable _cmd " +
   "@interface @implementation @end @protocol @encode @property @synthesize @dynamic @class " +
-  "@public @package @private @protected @required @optional @try @catch @finally @import " +
+  "@public @package @private @protected @required @optional @try @catch @finally @@import " +
   "@selector @encode @defs @synchronized @autoreleasepool @compatibility_alias @available";
 
   var objCBuiltins = "FOUNDATION_EXPORT FOUNDATION_EXTERN NS_INLINE NS_FORMAT_FUNCTION " +
