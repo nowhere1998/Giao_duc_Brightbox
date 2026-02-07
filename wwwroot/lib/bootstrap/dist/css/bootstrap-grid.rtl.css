@@ -18,27 +18,27 @@
   margin-right: auto;
 }
 
-@@media (min-width: 576px) {
+@media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
   }
 }
-@@media (min-width: 768px) {
+@media (min-width: 768px) {
   .container-md, .container-sm, .container {
     max-width: 720px;
   }
 }
-@@media (min-width: 992px) {
+@media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
   }
 }
-@@media (min-width: 1200px) {
+@media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
   }
 }
-@@media (min-width: 1400px) {
+@media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1320px;
   }
@@ -270,7 +270,7 @@
   --bs-gutter-y: 3rem;
 }
 
-@@media (min-width: 576px) {
+@media (min-width: 576px) {
   .col-sm {
     flex: 1 0 0%;
   }
@@ -483,7 +483,7 @@
     --bs-gutter-y: 3rem;
   }
 }
-@@media (min-width: 768px) {
+@media (min-width: 768px) {
   .col-md {
     flex: 1 0 0%;
   }
@@ -696,7 +696,7 @@
     --bs-gutter-y: 3rem;
   }
 }
-@@media (min-width: 992px) {
+@media (min-width: 992px) {
   .col-lg {
     flex: 1 0 0%;
   }
@@ -909,7 +909,7 @@
     --bs-gutter-y: 3rem;
   }
 }
-@@media (min-width: 1200px) {
+@media (min-width: 1200px) {
   .col-xl {
     flex: 1 0 0%;
   }
@@ -1122,7 +1122,7 @@
     --bs-gutter-y: 3rem;
   }
 }
-@@media (min-width: 1400px) {
+@media (min-width: 1400px) {
   .col-xxl {
     flex: 1 0 0%;
   }
@@ -1937,7 +1937,7 @@
   padding-right: 3rem !important;
 }
 
-@@media (min-width: 576px) {
+@media (min-width: 576px) {
   .d-sm-inline {
     display: inline !important;
   }
@@ -2540,7 +2540,7 @@
     padding-right: 3rem !important;
   }
 }
-@@media (min-width: 768px) {
+@media (min-width: 768px) {
   .d-md-inline {
     display: inline !important;
   }
@@ -3143,7 +3143,7 @@
     padding-right: 3rem !important;
   }
 }
-@@media (min-width: 992px) {
+@media (min-width: 992px) {
   .d-lg-inline {
     display: inline !important;
   }
@@ -3746,7 +3746,7 @@
     padding-right: 3rem !important;
   }
 }
-@@media (min-width: 1200px) {
+@media (min-width: 1200px) {
   .d-xl-inline {
     display: inline !important;
   }
@@ -4349,7 +4349,7 @@
     padding-right: 3rem !important;
   }
 }
-@@media (min-width: 1400px) {
+@media (min-width: 1400px) {
   .d-xxl-inline {
     display: inline !important;
   }
@@ -4952,7 +4952,7 @@
     padding-right: 3rem !important;
   }
 }
-@@media print {
+@media print {
   .d-print-inline {
     display: inline !important;
   }

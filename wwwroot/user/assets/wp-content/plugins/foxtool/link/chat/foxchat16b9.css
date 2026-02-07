@@ -66,7 +66,7 @@ body .ft-chaton a, body .ft-chatbox-skin1 a, body .ft-chatbox-skin2 a, body .ft-
 .ft-chatbox #chatona .original-icon {
     display: none; 
 }
-@@keyframes logo {
+@keyframes logo {
   100% { box-shadow:0 0 0 20px rgba(0,210,255,0); }
 }
 .ft-chaton {
@@ -88,7 +88,7 @@ body .ft-chaton a, body .ft-chatbox-skin1 a, body .ft-chatbox-skin2 a, body .ft-
     top: 0;
     left: 0;
 }
-@@keyframes duoilen{
+@keyframes duoilen{
   from {
     opacity:0.3;
   }
@@ -306,7 +306,7 @@ body .ft-chaton a, body .ft-chatbox-skin1 a, body .ft-chatbox-skin2 a, body .ft-
 .ft-chatbox-skin1 .ft-cmai i, .ft-chatbox-skin3 .ft-cmai i{box-shadow: 0 0 0 0px #2196F3}
 .ft-chatbox-skin1 .ft-cmap i, .ft-chatbox-skin3 .ft-cmap i{box-shadow: 0 0 0 0px #8a56cd}
 .ft-chatbox-skin1 .ft-ccus i, .ft-chatbox-skin3 .ft-ccus i{box-shadow: 0 0 0 0px #555555}
-@@keyframes logoskin1 {
+@keyframes logoskin1 {
   100% {transform: translate3d(0, 0, 0) scale(1);}
   100% {box-shadow: 0 0 0 10px rgba(0,210,255,0);}
 }
@@ -357,7 +357,7 @@ body .ft-chaton a, body .ft-chatbox-skin1 a, body .ft-chatbox-skin2 a, body .ft-
 .ft-chatbox-skin4 svg:hover{
 	animation: logo3 1000ms infinite;
 }
-@@keyframes logo3 {
+@keyframes logo3 {
 	0% {transform:rotate(0deg) scale(1) skew(1deg);}
 	10% {transform:rotate(-25deg) scale(1) skew(1deg);}
 	20% {transform:rotate(25deg) scale(1) skew(1deg);}
@@ -540,7 +540,7 @@ body .ft-chaton a, body .ft-chatbox-skin1 a, body .ft-chatbox-skin2 a, body .ft-
     line-height: 0;
 	animation: logo4 1000ms infinite;
 }
-@@keyframes logo4 {
+@keyframes logo4 {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -679,7 +679,7 @@ body .ft-chaton a, body .ft-chatbox-skin1 a, body .ft-chatbox-skin2 a, body .ft-
     bottom: 23px;
 }
 /* mobile */
-@@media (max-width: 700px){
+@media (max-width: 700px){
 	.chaton-mobile{display:none}
 	.ft-boxnavi{display:block;}
 }

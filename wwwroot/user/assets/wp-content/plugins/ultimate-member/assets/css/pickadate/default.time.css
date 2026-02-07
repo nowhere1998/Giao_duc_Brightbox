@@ -25,7 +25,7 @@
     margin: 5px 0 !important;
 }
 
-@@media (min-height: 46.75em) {
+@media (min-height: 46.75em) {
     .um .picker__list-item {
     }
 }
@@ -106,7 +106,7 @@
     margin: 10px 0 0 0;
 }
 
-@@media (min-height: 40.125em) {
+@media (min-height: 40.125em) {
     .um .picker--time .picker__frame {
         margin-bottom: 10% !important;
     }

@@ -12,7 +12,7 @@
 	z-index:9;
 }
 .sidebyside-tl.show-classic a.img-left{ display:inline-block; margin-bottom:15px;}
-@@media(min-width:768px){
+@media(min-width:768px){
     .wpex-timeline-list.sidebyside-tl .wptl-feature-name{left: 0;white-space: nowrap;}
     .wpex-timeline-list.sidebyside-tl li:nth-child(odd) .wptl-feature-name{left: 100%;}
 	.wpex-timeline-list.sidebyside-tl ul.wpex.wpex-timeline.style-center:after {

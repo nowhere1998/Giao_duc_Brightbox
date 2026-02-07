@@ -183,7 +183,7 @@ button.toast-close-button {
   filter: alpha(opacity=40);
 }
 /*Responsive Design*/
-@@media all and (max-width: 240px) {
+@media all and (max-width: 240px) {
   #toast-container > div {
     padding: 8px 8px 8px 50px;
     width: 11em;
@@ -200,7 +200,7 @@ button.toast-close-button {
     right: 0.2em;
   }
 }
-@@media all and (min-width: 241px) and (max-width: 480px) {
+@media all and (min-width: 241px) and (max-width: 480px) {
   #toast-container > div {
     padding: 8px 8px 8px 50px;
     width: 18em;
@@ -217,7 +217,7 @@ button.toast-close-button {
     right: 0.2em;
   }
 }
-@@media all and (min-width: 481px) and (max-width: 768px) {
+@media all and (min-width: 481px) and (max-width: 768px) {
   #toast-container > div {
     padding: 15px 15px 15px 50px;
     width: 25em;

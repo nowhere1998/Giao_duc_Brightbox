@@ -327,7 +327,7 @@ div.dtsp-hidden {
   display: none !important;
 }
 
-@@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   div.dtsp-columns-4,
 div.dtsp-columns-5,
 div.dtsp-columns-6 {
@@ -335,7 +335,7 @@ div.dtsp-columns-6 {
     min-width: 31% !important;
   }
 }
-@@media screen and (max-width: 640px) {
+@media screen and (max-width: 640px) {
   div.dtsp-searchPanes {
     flex-direction: column !important;
   }

@@ -77,6 +77,6 @@
   100% { -moz-transform: rotate(359deg); }
 }
 
-@@keyframes spin {
+@keyframes spin {
   100% {  transform: rotate(359deg); }
 }

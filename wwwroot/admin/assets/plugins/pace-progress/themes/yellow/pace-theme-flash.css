@@ -71,7 +71,7 @@
   0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
   100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
 }
-@@keyframes pace-spinner {
+@keyframes pace-spinner {
   0% { transform: rotate(0deg); transform: rotate(0deg); }
   100% { transform: rotate(360deg); transform: rotate(360deg); }
 }

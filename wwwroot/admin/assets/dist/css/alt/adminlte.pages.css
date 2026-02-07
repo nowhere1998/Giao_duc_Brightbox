@@ -61,7 +61,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   }
 }
 
-@@keyframes flipInX {
+@keyframes flipInX {
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -97,7 +97,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   }
 }
 
-@@keyframes fadeIn {
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -115,7 +115,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   }
 }
 
-@@keyframes fadeOut {
+@keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -171,7 +171,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   }
 }
 
-@@keyframes shake {
+@keyframes shake {
   0% {
     -webkit-transform: translate(2px, 1px) rotate(0deg);
     transform: translate(2px, 1px) rotate(0deg);
@@ -249,7 +249,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   }
 }
 
-@@keyframes wobble {
+@keyframes wobble {
   0% {
     -webkit-transform: none;
     transform: none;
@@ -493,7 +493,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   width: 360px;
 }
 
-@@media (max-width: 576px) {
+@media (max-width: 576px) {
   .login-box,
   .register-box {
     margin-top: .5rem;
@@ -591,7 +591,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   width: 600px;
 }
 
-@@media (max-width: 767.98px) {
+@media (max-width: 767.98px) {
   .error-page {
     width: 100%;
   }
@@ -603,7 +603,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   font-weight: 300;
 }
 
-@@media (max-width: 767.98px) {
+@media (max-width: 767.98px) {
   .error-page > .headline {
     float: none;
     text-align: center;
@@ -615,7 +615,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   margin-left: 190px;
 }
 
-@@media (max-width: 767.98px) {
+@media (max-width: 767.98px) {
   .error-page > .error-content {
     margin-left: 0;
   }
@@ -626,7 +626,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   font-weight: 300;
 }
 
-@@media (max-width: 767.98px) {
+@media (max-width: 767.98px) {
   .error-page > .error-content > h3 {
     text-align: center;
   }
@@ -792,7 +792,7 @@ body.iframe-mode-fullscreen {
   visibility: visible;
 }
 
-@@media (hover: none) and (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   .content-wrapper.iframe-mode .btn-iframe-close {
     visibility: visible;
   }
@@ -821,7 +821,7 @@ body.iframe-mode-fullscreen {
   visibility: visible;
 }
 
-@@media (hover: none) and (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   .content-wrapper.iframe-mode .navbar-nav .nav-item:hover .btn-iframe-close, .content-wrapper.iframe-mode .navbar-nav .nav-item:focus .btn-iframe-close {
     visibility: visible;
   }

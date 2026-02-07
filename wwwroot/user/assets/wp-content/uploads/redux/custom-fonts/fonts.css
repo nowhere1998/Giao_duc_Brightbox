@@ -1,4 +1,4 @@
-﻿@@font-face {
+﻿@font-face {
     font-family: 'SVN-Mont';
     src: url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Regular.eot');
     src: local('â˜º'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Regular.woff') format('woff'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Regular.ttf') format('truetype'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Regular.svg') format('svg');
@@ -6,7 +6,7 @@
     font-style: normal;
 }
 
-@@font-face {
+@font-face {
     font-family: 'SVN-Mont';
     src: url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-SemiBold.eot');
     src: local('â˜º'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-SemiBold.woff') format('woff'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-SemiBold.ttf') format('truetype'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-SemiBold.svg') format('svg');
@@ -14,7 +14,7 @@
     font-style: normal;
 }
 
-@@font-face {
+@font-face {
     font-family: 'SVN-Mont';
     src: url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light-Italic.eot');
     src: local('â˜º'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light-Italic.woff') format('woff'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light-Italic.ttf') format('truetype'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light-Italic.svg') format('svg');
@@ -22,7 +22,7 @@
     font-style: italic;
 }
 
-@@font-face {
+@font-face {
     font-family: 'SVN-Mont';
     src: url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light.eot');
     src: local('â˜º'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light.woff') format('woff'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light.ttf') format('truetype'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Light.svg') format('svg');
@@ -30,7 +30,7 @@
     font-style: normal;
 }
 
-@@font-face {
+@font-face {
     font-family: 'SVN-Mont';
     src: url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold-Italic.eot');
     src: local('â˜º'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold-Italic.woff') format('woff'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold-Italic.ttf') format('truetype'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold-Italic.svg') format('svg');
@@ -38,7 +38,7 @@
     font-style: italic;
 }
 
-@@font-face {
+@font-face {
     font-family: 'SVN-Mont';
     src: url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold.eot');
     src: local('â˜º'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold.woff') format('woff'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold.ttf') format('truetype'), url('/user/assets/wp-content/uploads/redux/custom-fonts/custom/SVN-Mont/SVN-Mont-Bold.svg') format('svg');
@@ -46,7 +46,7 @@
     font-style: normal;
 }
 
-@@font-face {
+@font-face {
     font-family: 'UTM-ViceroyJF';
     src: url('custom/UTM-ViceroyJF/UTM-ViceroyJF.eot');
     src: local('â˜º'), url('custom/UTM-ViceroyJF/UTM-ViceroyJF.woff') format('woff'), url('custom/UTM-ViceroyJF/UTM-ViceroyJF.ttf') format('truetype'), url('custom/UTM-ViceroyJF/UTM-ViceroyJF.svg') format('svg');

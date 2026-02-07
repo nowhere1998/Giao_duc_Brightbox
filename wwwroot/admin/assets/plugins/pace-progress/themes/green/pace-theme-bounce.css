@@ -129,7 +129,7 @@
   }
 }
 
-@@keyframes pace-bounce {
+@keyframes pace-bounce {
   0% {
     top: 0;
     animation-timing-function: ease-in;
@@ -207,7 +207,7 @@
   }
 }
 
-@@keyframes pace-compress {
+@keyframes pace-compress {
   0% {
     bottom: 0;
     margin-left: -30px;

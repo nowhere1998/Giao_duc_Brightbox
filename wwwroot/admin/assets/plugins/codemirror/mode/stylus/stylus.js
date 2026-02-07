@@ -361,7 +361,7 @@
           override = "variable-2";
           return "block";
         }
-        if (/(@@import|@require|@charset)/.test(type)) {
+        if (/(@import|@require|@charset)/.test(type)) {
           return pushContext(state, stream, "block", 0);
         }
         return pushContext(state, stream, "block");
@@ -747,7 +747,7 @@
   var wordOperatorKeywords_ = ["in","and","or","not","is not","is a","is","isnt","defined","if unless"],
       blockKeywords_ = ["for","if","else","unless", "from", "to"],
       commonAtoms_ = ["null","true","false","href","title","type","not-allowed","readonly","disabled"],
-      commonDef_ = ["@@font-face", "@@keyframes", "@@media", "@viewport", "@page", "@host", "@supports", "@block", "@css"];
+      commonDef_ = ["@font-face", "@keyframes", "@media", "@viewport", "@page", "@host", "@supports", "@block", "@css"];
 
   var hintWords = tagKeywords_.concat(documentTypes_,mediaTypes_,mediaFeatures_,
                                       propertyKeywords_,nonStandardPropertyKeywords_,

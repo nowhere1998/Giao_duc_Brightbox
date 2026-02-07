@@ -211,21 +211,21 @@
             filter: alpha(opacity=0);
         }
 
-@@media (min-width: 768px) {
+@media (min-width: 768px) {
     .cropper-point.point-se {
         width: 15px;
         height: 15px;
     }
 }
 
-@@media (min-width: 992px) {
+@media (min-width: 992px) {
     .cropper-point.point-se {
         width: 10px;
         height: 10px;
     }
 }
 
-@@media (min-width: 1200px) {
+@media (min-width: 1200px) {
     .cropper-point.point-se {
         width: 5px;
         height: 5px;

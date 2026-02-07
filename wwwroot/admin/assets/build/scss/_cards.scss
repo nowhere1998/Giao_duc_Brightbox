@@ -318,7 +318,7 @@ html.maximized-card {
   margin: 10px 0;
 
   > li {
-    @@media (max-width: map-get($grid-breakpoints, sm)) {
+    @media (max-width: map-get($grid-breakpoints, sm)) {
       float: left;
       margin-right: 10px;
     }

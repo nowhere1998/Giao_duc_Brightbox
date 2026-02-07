@@ -188,7 +188,7 @@
     padding: 25px;
     vertical-align: middle;
 }
-@@media(max-width:767px){
+@media(max-width:767px){
     .wpex.horizontal-timeline.wpex-horizontal-left .timeline-media{ padding-right: 0; }
     .wpex.horizontal-timeline.wpex-horizontal-left .timeline-media,
     .wpex.horizontal-timeline.wpex-horizontal-left .timeline-media + div,
@@ -389,7 +389,7 @@
 .wpex.horizontal-timeline.tl-ct-left .wpex-timeline-label .timeline-media img{ max-height:100%;}
 .wpex.horizontal-timeline .horizontal-content .ex_s_lick-slide{ padding-left:1px;}
 .wpex.horizontal-timeline .ex_s_lick-list{ box-sizing:content-box; padding-bottom:1px;}
-@@media(min-width:1024px){
+@media(min-width:1024px){
 	.show-all-items .ex_s_lick-track,
 	.tlhl-full .ex_s_lick-track{ transform:none !important}
 }
@@ -491,7 +491,7 @@
 		-webkit-animation: wptl_load-rotate 2300ms linear infinite;
 		-moz-animation: wptl_load-rotate 2300ms linear infinite;
 }
-@@keyframes wptl_load-rotate {
+@keyframes wptl_load-rotate {
 	100% {transform: rotate(360deg);}
 }
 
