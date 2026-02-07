@@ -133,12 +133,24 @@
 	<script src='/user/assets/wp-content/themes/mypage/js/libs/easypiechart.min.js?ver=2.1.4' id='easypiechart-js'></script>
 	<script src='/user/assets/wp-content/themes/mypage/js/libs/jquery.slick.min.js?ver=6.0.6' id='jquery-slick-js'></script>
 	<script src='/user/assets/wp-content/plugins/porto-functionality/shortcodes/assets/js/ultimate-carousel-loader.min.js?ver=2.0.5' id='porto_shortcodes_ultimate_carousel_loader_js-js'></script>
-	<script>
+	@* <script>
 		jQuery('.featured-services .portfolios-grid .portfolio-row').addClass('manual');
-		jQuery('.porto-block-html-content-bottom .form-group.btn-gradient').removeClass('btn-gradient').children('.btn').removeClass('btn-primary').addClass('btn-quaternary');</script>
+		jQuery('.porto-block-html-content-bottom .form-group.btn-gradient').removeClass('btn-gradient').children('.btn').removeClass('btn-primary').addClass('btn-quaternary');</script> *@
 	<script type="text/javascript">
 		jQuery( window ).on( 'load', function() {
 			jQuery('input[name="um_request"]').val('');
+		});
+	</script>
+	<script>
+		const observer = new MutationObserver(() => {
+			document.querySelectorAll(
+				'.widget-visible'
+			).forEach(el => el.remove());
+		});
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
 		});
 	</script>
 	@RenderSection("Scripts", required: false)
