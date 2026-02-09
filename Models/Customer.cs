@@ -14,8 +14,7 @@ public partial class Customer
     public string? Password { get; set; }
     public int Active { get; set; }
 
-    public virtual ICollection<CommentPro> CommentPros { get; set; }
-       = new List<CommentPro>();
+    public virtual ICollection<CommentPro> CommentPros { get; set; } = new List<CommentPro>();
 
     public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
