@@ -105,7 +105,69 @@ namespace MyShop.Controllers
 					TotalEnroll = p.Enrollments.Count()
 				})
 				.FirstOrDefault() ?? new ProductViewModel();
+			var comments = _context.CommentPros
+				.Include(x => x.Product)
+				.Include(x => x.Customer)
+				.OrderByDescending(x => x.Id)
+				.Where(x => x.Active == 1 && x.Product.Tag == slug)
+				.ToList();
+
+			ViewBag.Comments = comments;
 			return View("khoa-hoc-chi-tiet", product);
+		}
+
+		[HttpPost]
+		public IActionResult CreateComment(CommentPro model)
+		{
+			// 🔒 CHƯA ĐĂNG NHẬP
+			//if (HttpContext.Session.GetString("username") == null)
+			//{
+			//	TempData["Error"] = "Bạn cần đăng nhập để gửi đánh giá";
+			//	return Redirect(Request.Headers["Referer"].ToString());
+			//}
+
+			// ❌ CHƯA CHỌN SAO
+			if (model.Rate == null || model.Rate < 1 || model.Rate > 5)
+			{
+				TempData["Error"] = "Vui lòng chọn số sao đánh giá";
+				return Redirect(Request.Headers["Referer"].ToString());
+			}
+
+			// ❌ NỘI DUNG RỖNG
+			if (string.IsNullOrWhiteSpace(model.Comment1))
+			{
+				TempData["Error"] = "Nội dung đánh giá không được để trống";
+				return Redirect(Request.Headers["Referer"].ToString());
+			}
+
+			// ❌ TRÙNG ĐÁNH GIÁ (1 KHÁCH / 1 KHÓA)
+			bool isExist = _context.CommentPros.Any(x =>
+				x.CustomerId == model.CustomerId &&
+				x.ProductId == model.ProductId
+			);
+
+			if (isExist)
+			{
+				TempData["Error"] = "Bạn đã đánh giá khóa học này rồi";
+				return Redirect(Request.Headers["Referer"].ToString());
+			}
+
+			// ✅ LƯU COMMENT
+			var comment = new CommentPro
+			{
+				CustomerId = model.CustomerId,
+				ProductId = model.ProductId,
+				Rate = model.Rate,
+				Comment1 = model.Comment1,
+				Date = DateTime.Now,
+				Active = 0 
+			};
+
+			_context.CommentPros.Add(comment);
+			_context.SaveChanges();
+
+			TempData["Success"] = "Cảm ơn bạn! Đánh giá của bạn đang chờ duyệt ❤️";
+			return Redirect(Request.Headers["Referer"].ToString());
 		}
 	}
 }

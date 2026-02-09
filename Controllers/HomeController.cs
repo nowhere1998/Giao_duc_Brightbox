@@ -75,25 +75,16 @@ namespace MyShop.Controllers
             var thongke = _context.Pages
                 .Where(x => x.Position == 7 && x.Active == 1)
                 .FirstOrDefault() ?? new Page();
-			var customers = _context.Customers
-	            .Where(x => x.Active == 1)
-	            .OrderByDescending(x => x.Id)
-	            .Select(x => new
-	            {
-		            Customer = x,
-		            CommentPro = x.CommentPros
-                        .Where(x => 
-                            x.Active == 1
-                            && (x.Rate > 4 || x.Rate <=5)
-                        )
-			            .OrderByDescending(cp => cp.Id) 
-			            .FirstOrDefault()
-	            })
+			var comments = _context.CommentPros
+                .Include(x => x.Product)
+                .Include(x => x.Customer)
+                .OrderByDescending(x => x.Id)
+                .Where(x => x.Active == 1)
                 .Skip(0)
                 .Take(3)
-	            .ToList();
+                .ToList();
 
-			ViewBag.Students = customers;
+			ViewBag.Comments = comments;
 			ViewBag.Categories = categories;
             ViewBag.Products = products;
             ViewBag.ProductsFilter = productsFilter;
