@@ -12,6 +12,7 @@ public partial class CommentPro
     public int? CustomerId { get; set; }
     public int? ProductId { get; set; }
     public string? ImageUrl { get; set; }
+    public int? Active { get; set; }
     public virtual Product? Product { get; set; }
     public virtual Customer? Customer { get; set; }
 
