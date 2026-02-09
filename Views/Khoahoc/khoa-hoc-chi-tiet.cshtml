@@ -1546,7 +1546,7 @@
 															</div>
 														}
 
-														<form asp-action="CreateComment" asp-controller="Comment" method="post" class="comment-form">
+														<form asp-action="CreateComment" asp-controller="Khoahoc" method="post" class="comment-form">
 
 															<input type="hidden" name="CustomerId" value="@HttpContextAccessor.HttpContext.Session.GetString("accountId")" />
 															<input type="hidden" name="ProductId" value="@Model.Product.Id" />

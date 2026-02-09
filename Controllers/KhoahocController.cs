@@ -89,6 +89,7 @@ namespace MyShop.Controllers
 		}
 
 		[Route("khoa-hoc-chi-tiet/{slug}")]
+		[HttpGet]
 		public IActionResult Chitiet(string slug = "")
 		{
 			var product = _context.Products
@@ -130,14 +131,14 @@ namespace MyShop.Controllers
 			if (model.Rate == null || model.Rate < 1 || model.Rate > 5)
 			{
 				TempData["Error"] = "Vui lòng chọn số sao đánh giá";
-				return Redirect(Request.Headers["Referer"].ToString());
+				return RedirectToAction("Chitiet");
 			}
 
 			// ❌ NỘI DUNG RỖNG
 			if (string.IsNullOrWhiteSpace(model.Comment1))
 			{
 				TempData["Error"] = "Nội dung đánh giá không được để trống";
-				return Redirect(Request.Headers["Referer"].ToString());
+				return RedirectToAction("Chitiet");
 			}
 
 			// ❌ TRÙNG ĐÁNH GIÁ (1 KHÁCH / 1 KHÓA)
@@ -149,7 +150,7 @@ namespace MyShop.Controllers
 			if (isExist)
 			{
 				TempData["Error"] = "Bạn đã đánh giá khóa học này rồi";
-				return Redirect(Request.Headers["Referer"].ToString());
+				return RedirectToAction("Chitiet");
 			}
 
 			// ✅ LƯU COMMENT
