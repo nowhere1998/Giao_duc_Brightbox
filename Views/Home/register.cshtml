@@ -1,4 +1,4 @@
-﻿@model MyShop.Models.User
+﻿@model MyShop.Models.Customer
 @{
 	ViewData["Title"] = "Đăng ký";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -31,7 +31,12 @@
 												<div class="um um-register um-544">
 
 													<div class="um-form" data-mode="register">
-
+														@if (TempData["Error"] != null)
+														{
+															<div class="alert alert-danger">
+																@TempData["Error"]
+															</div>
+														}
 														<form method="post" action="/dang-ky">
 															@Html.AntiForgeryToken()
                                                             <div class="um-row _um_row_1 " style="margin: 0 0 30px 0;">

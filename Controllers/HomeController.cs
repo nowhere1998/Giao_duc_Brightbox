@@ -115,20 +115,20 @@ namespace MyShop.Controllers
 
         [Route("dang-nhap")]
         [HttpPost]
-        public async Task<IActionResult> Login(string userName, string password)
+        public async Task<IActionResult> Login(string userName = "", string password = "")
         {
             string passmd5 = "";
             passmd5 = Cipher.GenerateMD5(password);
-            var acc = _context.Users.SingleOrDefault(x => x.Username == userName && x.Password == passmd5 && x.Active == 1) ?? new User();
+            var acc = _context.Customers.SingleOrDefault(x => x.UserName == userName && x.Password == passmd5 && x.Active == 1);
             if (acc != null)
             {
-                HttpContext.Session.SetString("username", acc.Name);
+                HttpContext.Session.SetString("username", acc.UserName);
                 HttpContext.Session.SetString("accountId", acc.Id.ToString());
 
                 return RedirectToAction("Index");
             }
-            ViewBag.error = "<p class='alert alert-danger'>Email or password is incorrect!</p>";
-            ViewBag.UserName = userName;
+			TempData["Error"] = "Tên tài khoản hoặc mật khẩu không đúng!";
+			ViewBag.UserName = userName;
             ViewBag.password = password;
             return View();
         }
@@ -144,13 +144,21 @@ namespace MyShop.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Register(string name = "", string userName = "", string password = "", string confirmPassword = "")
 		{
-            var acc = new User();
+            var acc = new Customer();
             acc.Name = name;
-            acc.Username = userName;
+            acc.UserName = userName;
             acc.Password = password;
-			if (_context.Users.Any(x => x.Username.ToLower() == acc.Username.ToLower().Trim()))
+            bool hasError = false;
+            string error = "";
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(name))
+            {
+				hasError = true;
+				error = "Tên không được để rỗng!";
+			}
+			if (_context.Customers.Any(x => x.UserName.ToLower() == acc.UserName.ToLower().Trim()))
 			{
-				ViewBag.ErrorUserName = "Tên tài khoản đã tồn tại!";
+                hasError = true;
+				error = "Tên tài khoản đã tồn tại!";
 			}
 			if (confirmPassword.Equals(acc.Password))
 			{
@@ -158,15 +166,18 @@ namespace MyShop.Controllers
 			}
 			else
 			{
-				ViewBag.ErrorConfirmPassword = "Nhập mật khẩu chưa khớp!";
+				hasError = true;
+				error = "Nhập password chưa khớp!";
 			}
-			if (!string.IsNullOrEmpty(ViewBag.ErrorUserName) || !string.IsNullOrEmpty(ViewBag.ErrorConfirmPassword))
+			if (hasError)
 			{
+				TempData["Error"] = error;
 				ViewBag.UserName = userName;
 				ViewBag.Name = name;
 				return View(acc);
 			}
-			_context.Add(acc);
+            acc.Active = 1;
+			_context.Customers.Add(acc);
 			await _context.SaveChangesAsync();
 			return Redirect("/dang-nhap");
 			
