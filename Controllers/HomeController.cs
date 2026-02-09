@@ -75,20 +75,25 @@ namespace MyShop.Controllers
             var thongke = _context.Pages
                 .Where(x => x.Position == 7 && x.Active == 1)
                 .FirstOrDefault() ?? new Page();
-			var students = _context.Customers
+			var customers = _context.Customers
 	            .Where(x => x.Active == 1)
 	            .OrderByDescending(x => x.Id)
 	            .Select(x => new
 	            {
 		            Customer = x,
 		            CommentPro = x.CommentPros
-                        .Where(x => x.ac)
+                        .Where(x => 
+                            x.Active == 1
+                            && (x.Rate > 4 || x.Rate <=5)
+                        )
 			            .OrderByDescending(cp => cp.Id) 
 			            .FirstOrDefault()
 	            })
+                .Skip(0)
+                .Take(3)
 	            .ToList();
 
-			//ViewBag.News = news;
+			ViewBag.Students = customers;
 			ViewBag.Categories = categories;
             ViewBag.Products = products;
             ViewBag.ProductsFilter = productsFilter;

@@ -403,28 +403,32 @@
 										<h2 style="text-align: center" class="vc_custom_heading title_one white">Phản hồi của học viên</h2>
                                         <div class="porto-carousel owl-carousel has-ccols ccols-xl-3 ccols-lg-3 ccols-md-2 ccols-1 " data-plugin-options="{&quot;stagePadding&quot;:0,&quot;margin&quot;:30,&quot;autoplay&quot;:&quot;yes&quot;,&quot;autoplayTimeout&quot;:5000,&quot;autoplayHoverPause&quot;:&quot;true&quot;,&quot;items&quot;:3,&quot;lg&quot;:3,&quot;md&quot;:2,&quot;sm&quot;:1,&quot;xs&quot;:1,&quot;nav&quot;:false,&quot;dots&quot;:&quot;yes&quot;,&quot;animateIn&quot;:&quot;&quot;,&quot;animateOut&quot;:&quot;&quot;,&quot;loop&quot;:false,&quot;center&quot;:false,&quot;video&quot;:false,&quot;lazyLoad&quot;:false,&quot;fullscreen&quot;:false}">
                                             @* list phản hồi *@
-											<div class="porto-testimonial wpb_content_element ">
-                                                <div class="testimonial testimonial-style-4">
-                                                    <div class="testimonial-author clearfix">
-                                                        <div class="testimonial-author-thumbnail">
-                                                            <img class="img-responsive img-circle" src="/user/assets/wp-content/uploads/2020/06/img-9.jpg" alt="Giang Thùy Trang">
-                                                        </div>
-                                                        <div class="testimonial_header_desc">
-                                                            <p><strong>Giang Thùy Trang</strong><span>Học viên khóa Thiết kế đồ họa</span><span>Nhân viên Kế toán</span></p>
-                                                            <div class="testimonial_rating">
-                                                                <div class="star-rating">
-                                                                    <span style="width:94%">
-                                                                        <strong class="rating">4.7</strong> out of 5
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="testimonial-arrow-down"></div>
-                                                    <blockquote><p>Bài giảng rất dễ hiểu, mình thực hành được ngay tại lớp và cảm thấy rất hứng thú. Mình chưa từng nghĩ mình có thể đạt được những kỹ năng liên quan đến thiết kế dễ dàng như thế. Mình sẽ tiếp tục đồng hành thêm những khóa học khác của Bright Box</p></blockquote>
-                                                    <a class="testimonial_readmore" href="#">Xem chi tiết</a>
-                                                </div>
-                                            </div>
+											@foreach(Customer c in ViewBag.Customer)
+											{
+												<div class="porto-testimonial wpb_content_element ">
+													<div class="testimonial testimonial-style-4">
+														<div class="testimonial-author clearfix">
+															<div class="testimonial-author-thumbnail">
+																<img class="img-responsive img-circle" src="@c." alt="Giang Thùy Trang">
+															</div>
+															<div class="testimonial_header_desc">
+																<p><strong>Giang Thùy Trang</strong><span>Học viên khóa Thiết kế đồ họa</span><span>Nhân viên Kế toán</span></p>
+																<div class="testimonial_rating">
+																	<div class="star-rating">
+																		<span style="width:94%">
+																			<strong class="rating">4.7</strong> out of 5
+																		</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="testimonial-arrow-down"></div>
+														<blockquote><p>Bài giảng rất dễ hiểu, mình thực hành được ngay tại lớp và cảm thấy rất hứng thú. Mình chưa từng nghĩ mình có thể đạt được những kỹ năng liên quan đến thiết kế dễ dàng như thế. Mình sẽ tiếp tục đồng hành thêm những khóa học khác của Bright Box</p></blockquote>
+														<a class="testimonial_readmore" href="#">Xem chi tiết</a>
+													</div>
+												</div>
+											}
+											
 											@* end list phản hồi  *@
                                         </div>
                                     </div>
