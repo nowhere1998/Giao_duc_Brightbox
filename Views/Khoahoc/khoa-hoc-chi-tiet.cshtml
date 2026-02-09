@@ -1126,64 +1126,69 @@
 														 data-rtl="false">
 														<div class="porto-ultimate-carousel porto-carousel-226910641696d900ead7b3 ">
 															@* list comment *@
-															@for (int i = 0; i < ViewBag.Comments.Count; i += 3)
+															@{
+																var comments = ViewBag.Comments as List<CommentPro>;
+															}
+
+															@if (comments != null && comments.Any())
 															{
-																<div class="porto-item-wrap">
-																	<div class="vc_row wpb_row vc_inner row">
-																		<div class="vc_column_container col-md-12">
-																			<div class="wpb_wrapper vc_column-inner">
+																for (int i = 0; i < comments.Count; i += 3)
+																{
+																	<div class="porto-item-wrap">
+																		<div class="vc_row wpb_row vc_inner row">
+																			<div class="vc_column_container col-md-12">
+																				<div class="wpb_wrapper vc_column-inner">
 
-																				@for (int j = i; j < i + 3 && j < ViewBag.Comments.Count; j++)
-																				{
-																					var item = ViewBag.Comments[j];
+																					@for (int j = i; j < i + 3 && j < comments.Count; j++)
+																					{
+																						var item = comments[j];
 
-																					<div class="porto-item-wrap">
-																						<div class="porto-testimonial wpb_content_element testi_one">
-																							<div class="testimonial testimonial-style-4">
+																						<div class="porto-item-wrap">
+																							<div class="porto-testimonial wpb_content_element testi_one">
+																								<div class="testimonial testimonial-style-4">
 
-																								<div class="testimonial-author clearfix">
-																									<div class="testimonial-author-thumbnail">
-																										<img class="img-responsive img-circle"
-																											 src="@item.Customer.Image"
-																											 alt="@item.Customer.Name">
-																									</div>
+																									<!-- AUTHOR -->
+																									<div class="testimonial-author clearfix">
+																										<div class="testimonial-author-thumbnail">
+																											<img class="img-responsive img-circle"
+																												 src="@(item.Customer?.Image ?? "/images/avatar-default.png")"
+																												 alt="@item.Customer?.Name" />
+																										</div>
 
-																									<div class="testimonial_header_desc">
-																										<p>
-																											<strong>@item.Customer.Name</strong>
-																											<span>@item.Product?.Name</span>
-																											<span>@item.Customer.JobTitle</span>
-																										</p>
+																										<div class="testimonial_header_desc">
+																											<p>
+																												<strong>@item.Customer?.Name</strong>
+																												<span>@item.Product?.Name</span>
+																												@* <span>@item.Customer?.</span> *@
+																											</p>
 
-																										@if (item.Comment != null)
-																										{
-																											var rate = Math.Clamp(item.Comment.Rate, 0, 5);
 																											<div class="testimonial_rating">
 																												<div class="star-rating">
-																													<span style="width:@(rate * 20)%">
-																														<strong class="rating">@rate</strong> out of 5
+																													<span style="width:@(item.Rate * 20)%">
+																														<strong class="rating">@item.Rate</strong> out of 5
 																													</span>
 																												</div>
 																											</div>
-																										}
+																										</div>
 																									</div>
+
+																									<div class="testimonial-arrow-down"></div>
+
+																									<!-- CONTENT -->
+																									<blockquote>
+																										<p>@item.Comment1</p>
+																									</blockquote>
+
 																								</div>
-
-																								<div class="testimonial-arrow-down"></div>
-
-																								<blockquote>
-																									<p>@item.Comment?.Content</p>
-																								</blockquote>
-
 																							</div>
 																						</div>
-																					</div>
-																				}
+																					}
 
+																				</div>
 																			</div>
 																		</div>
 																	</div>
-																</div>
+																}
 															}
 
 															@* <div class="porto-item-wrap">

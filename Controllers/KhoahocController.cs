@@ -131,14 +131,14 @@ namespace MyShop.Controllers
 			if (model.Rate == null || model.Rate < 1 || model.Rate > 5)
 			{
 				TempData["Error"] = "Vui lòng chọn số sao đánh giá";
-				return RedirectToAction("Chitiet");
+				return Redirect(Request.Headers["Referer"].ToString());
 			}
 
 			// ❌ NỘI DUNG RỖNG
 			if (string.IsNullOrWhiteSpace(model.Comment1))
 			{
 				TempData["Error"] = "Nội dung đánh giá không được để trống";
-				return RedirectToAction("Chitiet");
+				return Redirect(Request.Headers["Referer"].ToString());
 			}
 
 			// ❌ TRÙNG ĐÁNH GIÁ (1 KHÁCH / 1 KHÓA)
@@ -150,7 +150,7 @@ namespace MyShop.Controllers
 			if (isExist)
 			{
 				TempData["Error"] = "Bạn đã đánh giá khóa học này rồi";
-				return RedirectToAction("Chitiet");
+				return Redirect(Request.Headers["Referer"].ToString());
 			}
 
 			// ✅ LƯU COMMENT
