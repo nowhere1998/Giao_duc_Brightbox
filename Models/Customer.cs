@@ -13,6 +13,7 @@ public partial class Customer
     public string? Phone { get; set; }
     public string? Password { get; set; }
     public int Active { get; set; }
+    public string? Image { get; set; }
 
     public virtual ICollection<CommentPro> CommentPros { get; set; }
        = new List<CommentPro>();
