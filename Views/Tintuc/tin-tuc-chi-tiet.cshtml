@@ -1,5 +1,207 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MyShop.Models.News
 @{
+	ViewData["Title"] = "Chi tiết tin tức";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="porto-html-block porto-block-html-banner"></div>
+<section class="page-top page-header-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="text-center">
+					<h1 class="page-title">An Interview with John Doe</h1>
+				</div>
+				<div class="breadcrumbs-wrap text-center">
+					<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+						<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+							<a itemtype="http://schema.org/Thing" itemprop="item"
+							   href="https://tech1.mypagedemo.com/brightbox">
+								<span itemprop="name">Trang Chủ</span>
+								<meta itemprop="position" content="1" />
+							</a><i class="delimiter delimiter-2"></i>
+						</li>
+						<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+							<a itemtype="http://schema.org/Thing" itemprop="item"
+							   href="https://tech1.mypagedemo.com/brightbox/blog/">
+								<span itemprop="name">Blog</span>
+								<meta itemprop="position" content="2" />
+							</a><i class="delimiter delimiter-2"></i>
+						</li>
+						<li>An Interview with John Doe</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="main" class="column2 column2-right-sidebar boxed">
+	<!-- main -->
+
+	<div class="container">
+		<div class="row main-content-wrap">
+
+			<!-- main content -->
+			<div class="main-content col-lg-9">
+
+
+
+				<div id="content" role="main">
+
+
+					<article class="post-full-alt post-title-simple post-262 post type-post status-publish format-standard has-post-thumbnail hentry category-dung-phim category-thiet-ke-do-hoa category-thiet-ke-noi-that category-thiet-ke-website category-tieng-han category-tieng-hoa category-tieng-nhat category-tin-tuc category-xu-huong tag-hoc-thiet-ke post-ftoc">
+						<div class="post-image single">
+							<div class="post-slideshow porto-carousel owl-carousel nav-inside nav-inside-center nav-style-2 show-nav-hover has-ccols ccols-1"
+								 data-plugin-options='{"nav":true}'>
+								<div>
+									<div class="img-thumbnail">
+										<img width="560" height="224"
+											 src="@Model.Image"
+											 class="owl-lazy img-responsive" alt="@Model.Name" loading="lazy"
+											 srcset=""
+											 sizes="(max-width: 560px) 100vw, 560px" />
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="post-content">
+							<div>
+
+
+
+
+
+
+								<span class="post-date-block">
+									<span>Ngày đăng: </span><span class="font-weight-semibold">@Model.Date?.ToString("dd/MM/yyyy")</span>
+								</span>
+							</div>
+							<hr class="solid">
+							<h2 class="entry-title">@Model.Name</h2>
+							<span class="vcard" style="display: none;">
+								<span class="fn">
+									<a href=""
+									   title="Đăng bởi DEV" rel="author">DEV</a>
+								</span>
+							</span>
+							<div class="entry-content ck-content">
+								@Html.Raw(Model.Detail)
+							</div>
+
+						</div>
+
+						<div class="post-gap"></div>
+
+
+
+
+
+					</article>
+
+
+
+
+
+				</div>
+
+
+
+			</div><!-- end main content -->
+
+			<div class="col-lg-3 sidebar porto-blog-sidebar right-sidebar">
+				<!-- main sidebar -->
+				<div data-plugin-sticky
+					 data-plugin-options="{&quot;autoInit&quot;: true, &quot;minWidth&quot;: 992, &quot;containerSelector&quot;: &quot;.main-content-wrap&quot;,&quot;autoFit&quot;:true, &quot;paddingOffsetBottom&quot;: 10}">
+					<div class="sidebar-content">
+						<aside id="search-2" class="widget widget_search">
+							<form method="get" id="searchform" class="searchform"
+								  asp-action="Index" asp-controller="Tintuc">
+								<div class="input-group">
+									<input class="form-control" placeholder="@(!string.IsNullOrEmpty(ViewBag.Search) ? ViewBag.Search : "Tìm kiếm ...")" name="s" id="s"
+										   type="text">
+									<span class="input-group-append">
+										<button type="submit" class="btn btn-dark p-2">
+											<i class="d-inline-block Simple-Line-Icons-magnifier font-weight-bold m-2"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</aside>
+						<aside id="recent-posts-2" class="widget widget_recent_entries">
+							<p class="widget-title">Bài viết mới</p>
+							<ul>
+								@foreach (News n in ViewBag.News)
+								{
+									<li>
+										<a href="/tin-tuc-chi-tiet/@n.Tag">@n.Name</a>
+										<span class="post-date">@n.Date?.ToString("dd/MM/yyyy")</span>
+									</li>
+								}
+							</ul>
+
+						</aside>
+					</div>
+				</div>
+			</div><!-- end main sidebar -->
+
+
+		</div>
+	</div>
+
+	<div class="porto-html-block porto-block-html-content-bottom"></div>
+
+
+</div><!-- end main -->
+@section Styles 
+{
+	<style>
+		/* ===========================
+		   FIX TRÀN NỘI DUNG CKEDITOR
+		   =========================== */
+
+		.entry-content,
+		.ck-content {
+			max-width: 100%;
+			overflow: hidden;
+			word-wrap: break-word;
+		}
+
+			/* Ảnh – iframe – video */
+			.entry-content img,
+			.entry-content iframe,
+			.entry-content video,
+			.ck-content img,
+			.ck-content iframe,
+			.ck-content video {
+				max-width: 100% !important;
+				height: auto !important;
+				display: block;
+			}
+
+			/* Table CKEditor (thủ phạm chính) */
+			.entry-content table,
+			.ck-content table {
+				width: 100% !important;
+				max-width: 100%;
+				display: block;
+				overflow-x: auto;
+				border-collapse: collapse;
+			}
+
+			/* Tất cả phần tử con */
+			.entry-content *,
+			.ck-content * {
+				max-width: 100%;
+				box-sizing: border-box;
+			}
+
+			/* Chặn position phá layout */
+			.entry-content iframe {
+				position: relative !important;
+			}
+
+	</style>
 }
