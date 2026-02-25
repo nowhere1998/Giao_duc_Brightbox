@@ -104,12 +104,13 @@
 								@foreach (ProductViewModel p in Model)
 								{
 									<article class="portfolio portfolio-grid portfolio-col-3 thiet-ke-do-hoa post-503 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-thiet-ke-do-hoa">
-										<span class="entry-title" style="display: none;">Dàn trang với Adobe Indesign</span><span class="vcard" style="display: none;"><span class="fn"><a href="https://tech1.mypagedemo.com/brightbox/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:27:10+07:00</span>		<div class="portfolio-item outimage">
+										@* <span class="entry-title" style="display: none;">Dàn trang với Adobe Indesign</span><span class="vcard" style="display: none;"><span class="fn"><a href="" title="" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:27:10+07:00</span>	 *@	
+										<div class="portfolio-item outimage">
 
 											<a class="text-decoration-none portfolio-link" href="/khoa-hoc-chi-tiet/@p.Product.Tag">
 												<span class="thumb-info thumb-info-hide-wrapper-bg thumb-info-no-zoom">
 													<span class="thumb-info-wrapper">
-														<img class="img-responsive" src="@p.Product.Image" alt="" width="367" height="278" style="max-height:278px"/>
+														<img class="img-responsive" src="@p.Product.Image" alt="" width="367" height="278" style="max-height:278px; object-fit:cover"/>
 													</span>
 												</span>
 											</a>
@@ -125,7 +126,7 @@
 												</div>
 											</div>
 
-											<h4 class="portfolio-title"><a class="text-decoration-none" href="/khoa-hoc-chi-tiet/@p.Product.Tag">Dàn trang với Adobe Indesign</a></h4>
+											<h4 class="portfolio-title"><a class="text-decoration-none" href="/khoa-hoc-chi-tiet/@p.Product.Tag">@p.Product.Name</a></h4>
 											<p class="portfolio_opening">Ngày khai giảng: @p.Product.Date</p>
 
 											<div class="portfolio_teacher">
