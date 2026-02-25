@@ -30,7 +30,8 @@ public partial class DbMyShopContext : DbContext
     public virtual DbSet<Contact> Contacts { get; set; }
     public virtual DbSet<Customer> Customers { get; set; } = null!;
     public virtual DbSet<Document> Documents { get; set; }
-
+    public virtual DbSet<GroupRecruitment> GroupRecruitments { get; set; }
+    public virtual DbSet<Recruitment> Recruitments { get; set; }
     public virtual DbSet<DocumentType> DocumentTypes { get; set; }
 
     public virtual DbSet<DocumentTypeUser> DocumentTypeUsers { get; set; }
@@ -422,7 +423,61 @@ public partial class DbMyShopContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FRK_DocumentTypeUser_UserId");
         });
+        modelBuilder.Entity<GroupRecruitment>(entity =>
+        {
+            entity.ToTable("GroupRecruitments");
 
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Name)
+                  .HasMaxLength(256);
+
+            entity.Property(e => e.Tag)
+                  .HasMaxLength(256);
+
+            entity.Property(e => e.Status)
+                  .HasDefaultValue(1);
+        });
+
+        /* =======================
+           Recruitments
+        ======================= */
+        modelBuilder.Entity<Recruitment>(entity =>
+        {
+            entity.ToTable("Recruitments");
+
+            entity.HasKey(e => e.RecruitmentId);
+
+            entity.Property(e => e.JobTitle)
+                  .HasMaxLength(255);
+
+            entity.Property(e => e.CompanyName)
+                  .HasMaxLength(255);
+
+            entity.Property(e => e.CompanyAddress)
+                  .HasMaxLength(255);
+
+            entity.Property(e => e.Phone)
+                  .HasMaxLength(50);
+
+            entity.Property(e => e.Email)
+                  .HasMaxLength(100);
+
+            entity.Property(e => e.Salary)
+                  .HasMaxLength(100);
+
+            entity.Property(e => e.Date)
+                  .HasDefaultValueSql("GETDATE()");
+
+            entity.Property(e => e.Status)
+                  .HasDefaultValue(1);
+
+            /* ===== FK GroupRecruitment ===== */
+            entity.HasOne(e => e.GroupRecruitment)
+                  .WithMany(g => g.Recruitments)
+                  .HasForeignKey(e => e.GroupRecruitmentId)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
         modelBuilder.Entity<Enrollment>()
     .HasIndex(e => new { e.CustomerId, e.ProductId })
     .IsUnique();
