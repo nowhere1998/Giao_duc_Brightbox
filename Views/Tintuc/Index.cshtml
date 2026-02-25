@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<MyShop.Models.News>
+@{
     ViewData["Title"] = "Tin tức";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,51 +15,117 @@
                     <div class="blog-posts posts posts-grid posts-grid-1">
                         <div class="row posts-container">
 
-                            <!-- BÀI VIẾT DEMO -->
-                            <article class="post post-grid col-md-12">
-                                <div class="grid-box">
+                            @* list news *@
+                            @if (Model.Any())
+                            {
+                                foreach (var n in Model)
+                                {
+                                    <article class="post post-grid col-md-12">
+                                        <div class="grid-box">
 
-                                    <!-- IMAGE -->
-                                    <div class="post-image single">
-                                        <a href="#">
-                                            <img src="https://tech1.mypagedemo.com/brightbox/wp-content/uploads/2020/06/seo2-blog-1.jpg"
-                                                 class="owl-lazy img-responsive"
-                                                 loading="lazy" />
-                                        </a>
-                                    </div>
+                                            <!-- IMAGE -->
+                                            <div class="post-image single">
+                                                <a href="/tin-tuc-chi-tiet/@n.Tag">
+                                                    <img src="@n.Image"
+                                                         class="owl-lazy img-responsive"
+                                                         loading="lazy"
+                                                         alt="@n.Name" />
+                                                </a>
+                                            </div>
 
-                                    <!-- META -->
-                                    <div class="post-meta">
-                                        <span class="meta-date">
-                                            <i class="far fa-calendar-alt"></i> 26/04/2021
-                                        </span>
-                                    </div>
+                                            <!-- META -->
+                                            <div class="post-meta">
+                                                <span class="meta-date">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                    @n.Date?.ToString("dd/MM/yyyy")
+                                                </span>
+                                            </div>
 
-                                    <!-- CONTENT -->
-                                    <div class="post-content">
-                                        <h4 class="entry-title">
-                                            <a href="#">
-                                                Tuyển dụng nhân viên thiết kế quảng cáo
-                                            </a>
-                                        </h4>
+                                            <!-- CONTENT -->
+                                            <div class="post-content">
+                                                <h4 class="entry-title">
+                                                    <a href="/tin-tuc-chi-tiet/@n.Tag">
+                                                        @n.Name
+                                                    </a>
+                                                </h4>
 
-                                        <p class="post-excerpt">
-                                            Lorem ipsum dolor sit amet, consectetur adipissdfsdfdssssssssssssssfdsfsdfdsssssssssssssssssssssssssssssssssssssssssssscing elit. Nulla pretium laoreet diam...
-                                        </p>
-                                    </div>
+                                                <p class="post-excerpt">
+                                                    @(n.Description?.Length > 150
+                                                        ? n.Description.Substring(0, 150) + "..."
+                                                        : n.Description)
+                                                </p>
+                                            </div>
 
-                                    <!-- READ MORE -->
-                                    <div class="clearfix">
-                                        <a class="btn btn-xs btn-default text-xs text-uppercase btn-readmore" href="#">
-                                            Đọc thêm ...
-                                        </a>
-                                    </div>
+                                            <!-- READ MORE -->
+                                            <div class="clearfix">
+                                                <a class="btn btn-xs btn-default text-xs text-uppercase btn-readmore"
+                                                   href="/tin-tuc-chi-tiet/@n.Tag">
+                                                    Đọc thêm ...
+                                                </a>
+                                            </div>
 
-                                </div>
-                            </article>
-                            <!-- END DEMO -->
-
+                                        </div>
+                                    </article>
+                                }
+                            }
+                            @* end list news *@
                         </div>
+                    </div>
+                </div>
+                <div class="pagination-wrap">
+                    <div class="pagination" role="navigation" style="justify-content: center;">
+                        @* PREVIOUS *@
+                        @if (ViewBag.Page > 1)
+                        {
+                            var prev = ViewBag.Page - 1;
+                            var prevUrl = "/tin-tuc?page=" + prev;
+
+                            if (!string.IsNullOrEmpty(ViewBag.Search))
+                            {
+                                prevUrl += "&s=" + ViewBag.Search;
+                            }
+
+                            <a class="prev page-numbers" href="@prevUrl">
+                                <i class="fas fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Previous
+                            </a>
+                        }
+
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            var url = i == 1
+                            ? "/tin-tuc"
+                            : $"/tin-tuc?page={i}";
+
+                            if (!string.IsNullOrEmpty(ViewBag.Search))
+                            {
+                                url += $"&s={ViewBag.Search}";
+                            }
+
+                            if (i == ViewBag.Page)
+                            {
+                                <span class="page-numbers current">@i</span>
+                            }
+                            else
+                            {
+                                <a class="page-numbers" href="@url">@i</a>
+                            }
+                        }
+
+                        @* Next *@
+                        @if (ViewBag.Page < ViewBag.TotalPages)
+                        {
+                            var next = ViewBag.Page + 1;
+                            var nextUrl = "/tin-tuc?page=" + next;
+
+                            if (!string.IsNullOrEmpty(ViewBag.Search))
+                            {
+                                nextUrl += "&s=" + ViewBag.Search;
+                            }
+
+                            <a class="next page-numbers" href="@nextUrl">
+                                Next&nbsp;&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
+                        }
                     </div>
                 </div>
 
@@ -75,7 +142,7 @@
                         <aside class="widget widget_search">
                             <form method="get" class="searchform">
                                 <div class="input-group">
-                                    <input class="form-control" placeholder="Tìm kiếm…" type="text">
+                                    <input class="form-control" placeholder="@(!string.IsNullOrEmpty(ViewBag.Search) ? ViewBag.Search : "Tìm kiếm ...")" type="text" name="s">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-dark p-2">
                                             <i class="Simple-Line-Icons-magnifier"></i>
@@ -85,35 +152,18 @@
                             </form>
                         </aside>
 
-                        <!-- CATEGORY -->
-                        <aside class="widget widget_nav_menu">
-                            <p class="widget-title">Danh mục</p>
-                            <ul class="menu">
-                                <li><a href="#">Tin tức</a></li>
-                                <li><a href="#">Xu hướng</a></li>
-                                <li><a href="#">Lối sống</a></li>
-                                <li><a href="#">Thiết kế đồ họa</a></li>
-                                <li><a href="#">Thiết kế website</a></li>
-                            </ul>
-                        </aside>
-
                         <!-- BÀI VIẾT MỚI -->
                         <aside class="widget widget_recent_entries">
                             <p class="widget-title">Bài viết mới</p>
 
                             <ul>
-                                <li>
-                                    <a href="#">Tuyển dụng nhân viên thiết kế quảng cáo</a>
-                                    <span class="post-date">26/04/2021</span>
-                                </li>
-                                <li>
-                                    <a href="#">Tuyển dụng nhân viên thiết kế website</a>
-                                    <span class="post-date">26/04/2021</span>
-                                </li>
-                                <li>
-                                    <a href="#">Nhân viên hỗ trợ kỹ thuật</a>
-                                    <span class="post-date">25/04/2021</span>
-                                </li>
+                                @foreach(News n in Model.Skip(0).Take(3))
+                                {
+                                    <li>
+                                        <a href="/tin-tuc-chi-tiet/@n.Tag">@n.Name</a>
+                                        <span class="post-date">@n.Date?.ToString("dd/MM/yyyy")</span>
+                                    </li>
+                                }
                             </ul>
                         </aside>
                     </div>

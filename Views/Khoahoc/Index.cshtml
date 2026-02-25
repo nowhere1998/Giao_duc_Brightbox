@@ -150,6 +150,28 @@
 						<div class="clearfix"></div>
 						<div class="pagination-wrap">
 							<div class="pagination" role="navigation" style="justify-content: center;">
+								@* PREVIOUS *@
+								@if (ViewBag.Page > 1)
+								{
+									var prev = ViewBag.Page - 1;
+									var prevUrl = !string.IsNullOrEmpty(ViewBag.Slug)
+									? (prev == 1
+									? $"/khoa-hoc/{ViewBag.Slug}"
+									: $"/khoa-hoc/{ViewBag.Slug}/page/{prev}")
+									: (prev == 1
+									? "/khoa-hoc"
+									: $"/khoa-hoc/page/{prev}");
+
+									// giữ search
+									if (!string.IsNullOrEmpty(ViewBag.Search))
+									{
+										prevUrl += $"?s={ViewBag.Search}";
+									}
+
+									<a class="prev page-numbers" href="@prevUrl">
+										<i class="fas fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Previous
+									</a>
+								}
 
 								@for (int i = 1; i <= ViewBag.TotalPages; i++)
 								{
