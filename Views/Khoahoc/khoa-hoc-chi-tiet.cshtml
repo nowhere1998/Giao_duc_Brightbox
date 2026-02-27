@@ -1528,7 +1528,7 @@
 											</div>
 											@using Microsoft.AspNetCore.Http
 
-											@if (HttpContextAccessor.HttpContext.Session.GetString("username") != null)
+											@* @if (HttpContextAccessor.HttpContext.Session.GetString("username") != null)
 											{
 												<!-- ĐÃ ĐĂNG NHẬP → HIỆN FORM -->
 												<div class="vc_column_container col-md-12">
@@ -1537,7 +1537,6 @@
 															Đánh giá khóa học
 														</h2>
 
-														@* THÔNG BÁO LỖI / THÀNH CÔNG *@
 														@if (TempData["Error"] != null)
 														{
 															<div class="alert alert-danger">
@@ -1597,7 +1596,7 @@
 														</h2>
 													</div>
 												</div>
-											}
+											} *@
 
 										</div>
 										<div class="vc_row-full-width vc_clearfix"></div>
