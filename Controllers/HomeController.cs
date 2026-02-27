@@ -49,15 +49,11 @@ namespace MyShop.Controllers
             {
                 productsFilter = products
                     .Where(x => x.Product.Category.Tag == slug)
-                    .Skip(0)
-                    .Take(3)
                     .ToList();
             }
             else
             {
                 productsFilter = products
-                    .Skip(0)
-					.Take(3)
 					.ToList(); 
             }
             var slides = _context.Advertises

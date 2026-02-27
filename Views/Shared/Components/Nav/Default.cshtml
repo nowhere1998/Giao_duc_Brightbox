@@ -5,14 +5,14 @@
 		<div class="header-container container">
 			<div class="header-left">
 				<h1 class="logo">
-					<a href="/" title="Bright Box - Learn great things everyday" rel="home">
+					<a href="/" title="" rel="home">
 						<img class="img-responsive standard-logo retina-logo" src="@ViewBag.Logo.Image" alt="@ViewBag.Logo.Name" style="width:@(ViewBag.Logo.Width+"px"); height:@(ViewBag.Logo.Height+"px")" />
 					</a>
 				</h1>
 			</div>
 
 			<div class="header-right">
-				<div class="header-right-top">
+				@* <div class="header-right-top">
 					<div class="header-contact">
 						<ul class="nav nav-pills nav-top">
 							<li class="mr-2"><a href="#" target="_blank" class="d-inline-flex align-items-center"><i class="fas fa-phone-alt"></i>@ViewBag.Config.HotLine</a></li>
@@ -32,7 +32,7 @@
 							<li id="nav-menu-item-303" class="account_link menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="/dang-nhap">Tạo tài khoản / Đăng nhập</a></li>
 						</ul>
 					}
-				</div>
+				</div> *@
 				<div class="header-right-bottom">
 					<div id="main-menu">
 						<ul id="menu-menu-chinh" class="main-menu mega-menu">
@@ -70,10 +70,10 @@
 						</ul>
 					</div>
 					<div class="searchform-popup search-popup">
-						<a class="search-toggle"><i class="fas fa-search"></i><span class="search-text">Tìm kiếm</span></a>	<form action="https:/user/assets/" method="get"
-																															   class="searchform">
+						@* <a class="search-toggle"><i class="fas fa-search"></i><span class="search-text">Tìm kiếm</span></a>	 *@
+						<form action="/khoa-hoc" method="get" class="" style="display: inline-block">
 							<div class="searchform-fields">
-								<span class="text"><input name="s" type="text" value="" placeholder="Tìm kiếm&hellip;" autocomplete="off" /></span>
+								<span class="text"><input name="search" type="text" value="" placeholder="Tìm kiếm khóa học" autocomplete="off" /></span>
 								<input type="hidden" name="post_type" value="portfolio" />
 								<span class="button-wrap">
 									<button class="btn btn-special" title="Tìm kiếm" type="submit"><i class="fas fa-search"></i></button>

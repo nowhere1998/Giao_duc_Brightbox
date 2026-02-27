@@ -17,7 +17,7 @@ namespace MyShop.Controllers
 			return View();
 		}
 
-		[Route("viec-lam-chi-tiet/{slug}")]
+		/*[Route("viec-lam-chi-tiet/{slug}")]
 		public IActionResult Chitiet(string slug = "", string s = "")
 		{
 			var tintuc = _context.Recruitments.FirstOrDefault(x => x.Tag == slug) ?? new News();
@@ -31,6 +31,6 @@ namespace MyShop.Controllers
 			ViewBag.News = news;
 			ViewBag.Search = s;
 			return View("viec-lam-chi-tiet", tintuc);
-		}
+		}*/
 	}
 }

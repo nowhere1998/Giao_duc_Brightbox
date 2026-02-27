@@ -197,7 +197,8 @@
 
 											<div class="page-portfolios portfolios-grid clearfix">
 												<div class="portfolio_header">
-													<h2 class="wpb_heading title_one">Khoá học top 3</h2>		<div class="portfolio-filter-custom">
+													@* <h2 class="wpb_heading title_one">Khoá học</h2>		 *@
+													<div class="portfolio-filter-custom">
 														<div id="portfolioAjaxBox" class="ajax-box">
 															<div class="bounce-loader">
 																<div class="bounce1"></div>
@@ -217,16 +218,32 @@
 													</div>
 
 
-													<a class="btn btn-primary" href="/khoa-hoc/@slug">Xem Thêm</a>
+													@* <a class="btn btn-primary" href="/khoa-hoc/@slug">Xem Thêm</a> *@
 												</div>
 
 												<p class="portfolio_description">Lựa chọn khóa học ngay hôm nay để nhận ưu đãi tốt nhất</p>
 
-												<div class="portfolio-row portfolio-row-3 classic">													
+												<div class="porto-carousel owl-carousel has-ccols ccols-xl-3 ccols-lg-3 ccols-md-2 ccols-1"
+													 data-plugin-options='{
+		"stagePadding":0,
+		"margin":30,
+		"autoplay":"yes",
+		"autoplayTimeout":4000,
+		"autoplayHoverPause":"true",
+		"items":3,
+		"lg":3,
+		"md":2,
+		"sm":1,
+		"xs":1,
+		"nav":true,
+		"dots":"yes",
+		"loop":true
+	 }'>
 													@* list khóa học *@
 													@foreach (ProductViewModel p in ViewBag.ProductsFilter)
 													{
-														<article class="portfolio portfolio-grid portfolio-col-3 thiet-ke-do-hoa post-503 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-thiet-ke-do-hoa">
+														<div class="porto-item">
+															<article class="portfolio portfolio-grid portfolio-col-3 thiet-ke-do-hoa post-503 type-portfolio status-publish has-post-thumbnail hentry portfolio_cat-thiet-ke-do-hoa">
 															<span class="entry-title" style="display: none;">Dàn trang với Adobe Indesign</span><span class="vcard" style="display: none;"><span class="fn"><a href="/user/assets/author/mypage/" title="Đăng bởi DEV" rel="author">DEV</a></span></span><span class="updated" style="display:none">2021-04-23T23:27:10+07:00</span>		<div class="portfolio-item outimage">
 
 																<a class="text-decoration-none portfolio-link" href="/khoa-hoc-chi-tiet/@p.Product.Tag">
@@ -236,7 +253,7 @@
 																		</span>
 																	</span>
 																</a>
-																<div class="rating_student">
+																@* <div class="rating_student">
 																	<div class="portfolio_rating">
 																		<div class="star-rating">
 																			<span style="width:@(p.AvgRate*100/5)%"> <strong class="rating">@p.AvgRate</strong> out of 5 </span>
@@ -247,21 +264,70 @@
 																		<span>@p.TotalEnroll</span>
 																	</div>
 																</div>
-
+ *@
 																<h4 class="portfolio-title"><a class="text-decoration-none" href="/khoa-hoc-chi-tiet/@p.Product.Tag">@p.Product.Name</a></h4>
-																<p class="portfolio_opening">Ngày khai giảng: @p.Product.Date</p>
+																@* <p class="portfolio_opening">Ngày khai giảng: @p.Product.Date</p> *@
 
-																<div class="portfolio_teacher">
+																@* <div class="portfolio_teacher">
 																	<div class="portfolio_teacher_thumbnail">
 																		<img alt="teacher" class="img-responsive img-circle" src="@p.Product.Faculty?.Image" style="width:46.5px!important; height:46.5px!important; object-fit:cover">
 																	</div>
 																	<p><strong>@p.Product.Faculty?.Name </strong><span>@p.Product.Faculty?.Description</span></p>
+																</div> *@
+																<div class="article-action">
+																		<a href="/khoa-hoc-chi-tiet/@p.Product.Tag" class="view-detail">
+																		<span class="arrow">→</span>
+																		Xem chi tiết
+																	</a>
 																</div>
+																<style>
+																		.portfolio-item {
+																			padding-left: 0 !important;
+																		}
 
+																		.article-action {
+																			margin-top: 15px;
+																			padding: 0 !important; /* bỏ mọi padding */
+																			text-align: left !important;
+																		}
 
+																		.view-detail {
+																			display: inline-flex;
+																			align-items: center;
+																			gap: 10px;
+																			margin-top: 15px;
+																			padding: 8px 18px 8px 8px;
+																			background: #f5f5f5;
+																			border-radius: 40px;
+																			text-decoration: none;
+																			color: #333;
+																			font-weight: 500;
+																			transition: all 0.3s ease;
+																		}
+
+																			/* Icon tròn đỏ */
+																			.view-detail .arrow {
+																				width: 32px;
+																				height: 32px;
+																				background: #e60000;
+																				color: #fff;
+																				border-radius: 50%;
+																				display: flex;
+																				align-items: center;
+																				justify-content: center;
+																				font-size: 14px;
+																				transition: 0.3s;
+																			}
+
+																			/* Hover */
+																			.view-detail:hover {
+																				background: #e9e9e9;
+																			}
+}
+																</style>
 															</div>
 														</article>
-
+														</div>
 													}
 													@* end list khóa học *@
 												</div>
