@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MyShop.middleware;
@@ -54,7 +55,18 @@ if (!app.Environment.IsDevelopment())
 
 app.UseSession();
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = new FileExtensionContentTypeProvider
+    {
+        Mappings =
+        {
+            [".woff2"] = "font/woff2",
+            [".woff"] = "font/woff",
+            [".ttf"] = "font/ttf"
+        }
+    }
+});
 
 app.UseCookiePolicy();
 //app.UseAuthentication();

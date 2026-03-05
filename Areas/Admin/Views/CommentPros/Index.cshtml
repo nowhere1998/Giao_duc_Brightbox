@@ -10,6 +10,10 @@
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h3 class="text-primary">Danh sách bình luận</h3>
+
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Thêm mới
+            </a>
         </div>
         <form method="get"
               asp-area="Admin"
@@ -36,7 +40,8 @@
                     <th>Họ tên</th>
                     <th>Sản phẩm</th>
                     <th>Đánh giá</th>
-                    <th>Bình luận</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
 
@@ -44,10 +49,10 @@
                 @foreach (var item in Model)
                 {
                     <tr style="border-bottom:1px solid #dee2e6;">
-                        <td>@item.Name</td>
+                        <td>@item.Customer?.Name</td>
                         <td>@item.Product?.Name</td>
                         <td>@item.Rate</td>
-                        <td>
+                        @* <td>
                             @(string.IsNullOrEmpty(item.Comment1)
                                                     ? ""
                                                     : item.Comment1.Length > 10
@@ -67,6 +72,27 @@
                                 </a>
 
                             }
+                        </td> *@
+                        <td>
+                            @if (item.Active == 1)
+                            {
+                                <span class="badge bg-success">Hiển thị</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Ẩn</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-primary me-1"
+                               href="@Url.Action("Edit", new { id = item.Id })">
+                                <i class="fa fa-edit"></i>
+                            </a>
+
+                            <a class="btn btn-sm btn-outline-danger me-1" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"
+                               href="@Url.Action("Delete", new { id = item.Id })">
+                                <i class="fa fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                 }
@@ -99,7 +125,7 @@
             </ul>
         </nav>
     </main>
-    <div class="modal fade" id="messageModal" tabindex="-1" aria-hidden="true">
+    @* <div class="modal fade" id="messageModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -133,7 +159,7 @@
             document.getElementById('modalEmail').innerText = button.getAttribute('data-email');
             document.getElementById('modalMessage').innerText = button.getAttribute('data-message');
         });
-    </script>
+    </script> *@
 
 </body>
 

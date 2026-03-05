@@ -204,8 +204,7 @@ public partial class DbMyShopContext : DbContext
         {
             entity.ToTable("commentPro"); // đúng tên bảng mới
 
-            entity.Property(e => e.Comment1)
-                .HasColumnName("Comment");
+            entity.Property(e => e.Comment1);
 
             entity.Property(e => e.Date)
                 .HasColumnType("datetime");

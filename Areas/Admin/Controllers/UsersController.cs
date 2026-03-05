@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Scripting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using MyShop.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace MyShop.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private readonly DbMyShopContext _context;
+        static string Level = "";
 
         public UsersController(DbMyShopContext context)
         {
@@ -25,10 +28,10 @@ namespace MyShop.Areas.Admin.Controllers
         // GET: Admin/Users
         public async Task<IActionResult> Index(string? name, int page = 1, int pageSize = 30)
         {
-            var query = _context.Users.OrderByDescending(x => x.Id).AsNoTracking();
+            var query = _context.Users.OrderBy(x => x.Level).AsNoTracking();
             if (!string.IsNullOrWhiteSpace(name))
             {
-                query = query.Where(x => x.Username.ToLower().Contains(name.ToLower().Trim())).OrderByDescending(x => x.Id);
+                query = query.Where(x => x.Username.ToLower().Contains(name.ToLower().Trim())).OrderBy(x => x.Level);
             }
             // Tổng số bản ghi sau khi lọc
             var totalCount = await query.CountAsync();
@@ -66,8 +69,10 @@ namespace MyShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Create
-        public IActionResult Create()
+        public IActionResult Create(string? strLevel)
         {
+            if (strLevel != null)
+                Level = strLevel;
             return View();
         }
 
@@ -76,17 +81,20 @@ namespace MyShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(User user)
+        public async Task<IActionResult> Create(User model)
         {
+            model.Level = Level + model.Level;
+            model.Level = Level + "00000";
+            Level = "";
             if (ModelState.IsValid)
             {
-                user.Password = Cipher.GenerateMD5(user.Password);
-                user.Active = 1;
-                _context.Add(user);
+                model.Password = Cipher.GenerateMD5(model.Password);
+                model.Active = 1;
+                _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(model);
         }
 
         // GET: Admin/Users/Edit/5
@@ -102,6 +110,7 @@ namespace MyShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            Level = user.Level.Substring(0, user.Level.Length - 5);
             return View(user);
         }
 
@@ -110,37 +119,44 @@ namespace MyShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, User user)
+        public async Task<IActionResult> Edit(int id, User user, string? CurrentPassword, string? NewPassword)
         {
             if (id != user.Id)
             {
                 return NotFound();
             }
-
+            user.Level = Level + user.Level;
+            user.Level = Level + "00000";
+            Level = "";
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // lấy mật khẩu cũ từ DB
-                    var oldPassword = await _context.Users
-                        .Where(x => x.Id == user.Id)
-                        .Select(x => x.Password)
-                        .FirstOrDefaultAsync();
+                    // lấy user gốc từ DB
+                    var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id);
+                    if (dbUser == null) return NotFound();
+
+                    // update các field thường
+                    dbUser.Username = user.Username;
+                    dbUser.Name = user.Name;
+                    dbUser.Admin = user.Admin;
+                    dbUser.Active = user.Active;
+                    dbUser.Ord = user.Ord;
+                    dbUser.Level = Level + "00000";
+                    Level = "";
 
                     // 👉 xử lý mật khẩu
-                    if (string.IsNullOrWhiteSpace(user.Password))
+                    if (!string.IsNullOrWhiteSpace(NewPassword))
                     {
-                        // không nhập → giữ mật khẩu cũ
-                        user.Password = oldPassword;
+                        // chỉ đổi mật khẩu khi có nhập mật khẩu mới
+                        dbUser.Password = Cipher.GenerateMD5(NewPassword);
                     }
-                    else
-                    {
-                        // có nhập → hash mật khẩu mới
-                        user.Password = Cipher.GenerateMD5(user.Password);
-                    }
-                    _context.Update(user);
+                    // không nhập NewPassword → giữ nguyên mật khẩu cũ (KHÔNG ĐỘNG GÌ)
+
+                    _context.Update(dbUser);
                     await _context.SaveChangesAsync();
                 }
+
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!UserExists(user.Id))
@@ -190,7 +206,6 @@ namespace MyShop.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
         [HttpGet]
         public IActionResult ChangePassword()
         {

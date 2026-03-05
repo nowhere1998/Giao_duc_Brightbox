@@ -13,7 +13,7 @@ namespace MyShop.Models
         [MaxLength(256)]
         public string? Tag { get; set; }
 
-        public int Status { get; set; }  // 1: hiển thị, 0: ẩn
+        public int? Status { get; set; }  // 1: hiển thị, 0: ẩn
 
         // Navigation property
         public ICollection<Recruitment>? Recruitments { get; set; } = new List<Recruitment>();

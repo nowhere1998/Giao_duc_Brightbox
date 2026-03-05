@@ -45,6 +45,7 @@
             <tr style="border-bottom:2px solid #cfd4da;">
                 <th>Tên đăng nhập</th>
                 <th>Họ tên</th>
+                <th>Thứ tự</th>
                 <th>Quyền</th>
                 <th>Trạng thái</th>
                 <th class="text-center">Hành động</th>
@@ -55,8 +56,9 @@
             @foreach (var item in Model)
             {
                 <tr style="border-bottom:1px solid #dee2e6;">
-                    <td>@item.Username</td>
                     <td>@item.Name</td>
+                    <td>@item.Username</td>
+                    <td>@item.Ord</td>
                     <td>
                         <span>
                             @if (item.Admin == 1)

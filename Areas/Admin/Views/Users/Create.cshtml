@@ -21,32 +21,37 @@
 
         <!-- ROW 1 -->
         <div class="row mb-3">
-            <div class="col-md-12">
-                <label asp-for="Username" class="form-label fw-semibold"></label>
+            <div class="col-md-6">
+                <label asp-for="Username" class="form-label fw-semibold">Tên người dùng</label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Họ và tên</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
 
         <!-- ROW 2 -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label asp-for="Password" class="form-label fw-semibold"></label>
+                <label asp-for="Password" class="form-label fw-semibold">Mật khẩu</label>
                 <input asp-for="Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="col-md-6">
-                <label asp-for="Name" class="form-label fw-semibold"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Ord" class="form-label fw-semibold">Thứ tự</label>
+                <input asp-for="Ord" class="form-control" placeholder="Ví dụ: 1, 2, 3..." min="1" />
+                <span asp-validation-for="Ord" class="text-danger"></span>
             </div>
         </div>
 
         <!-- ROW 3 -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label asp-for="Admin" class="form-label fw-semibold"></label>
+                <label asp-for="Admin" class="form-label fw-semibold">Phân quyền</label>
                 <select asp-for="Admin" class="form-select">
                     <option value="1">Quản trị viên</option>
                     <option value="0">Người dùng</option>

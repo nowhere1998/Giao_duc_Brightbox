@@ -21,34 +21,33 @@
         <input asp-for="Id" type="hidden" />
         <!-- ROW 1 -->
         <div class="row mb-3">
-            <div class="col-md-12">
-                <label asp-for="Username" class="form-label fw-semibold"></label>
+            <div class="col-md-6">
+                <label asp-for="Username" class="form-label fw-semibold">Tên người dùng</label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
-        </div>
-
-        <!-- ROW 2 -->
-        <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label">Mật khẩu</label>
-                <input type="password"
-                       name="PasswordHash"
-                       class="form-control"
-                       placeholder="Nhập mật khẩu mới (để trống nếu không đổi)">
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Name" class="form-label fw-semibold"></label>
+                <label asp-for="Name" class="form-label fw-semibold">Họ và tên</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
 
+        <!-- ROW 2 -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label asp-for="Ord" class="form-label fw-semibold">Thứ tự</label>
+                <input asp-for="Ord" class="form-control" placeholder="Ví dụ: 1, 2, 3..." min="1" />
+                <span asp-validation-for="Ord" class="text-danger"></span>
+            </div>
+            @* <!-- input ẩn gửi mật khẩu mới -->
+            <input type="hidden" name="NewPassword" id="hiddenNewPassword" /> *@
+        </div>
+
         <!-- ROW 3 -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label asp-for="Admin" class="form-label fw-semibold"></label>
+                <label asp-for="Admin" class="form-label fw-semibold">Phân quyền</label>
                 <select asp-for="Admin" class="form-select">
                     <option value="1">Quản trị viên</option>
                     <option value="0">Người dùng</option>
@@ -68,6 +67,9 @@
 
         <!-- Actions bottom -->
         <div class="d-flex justify-content-end gap-2">
+            @* <button type="button" data-toggle="modal" data-target="#changePasswordModal" class="btn btn-primary mr-2">
+                <i class="fas fa-key"></i> Đổi mật khẩu
+            </button> *@
             <button type="submit" class="btn btn-success mr-2">
                 <i class="fas fa-save"></i> Lưu lại
             </button>
@@ -75,12 +77,101 @@
                 <i class="fas fa-arrow-left"></i> Trở lại
             </a>
         </div>
+        @* <!-- MODAL ĐỔI MẬT KHẨU -->
+        <div class="modal fade" id="changePasswordModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
+                    <div class="modal-header">
+                        <h5 class="modal-title">Đổi mật khẩu</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <!-- mật khẩu hiện tại -->
+                        <div class="mb-3">
+                            <label class="form-label">Mật khẩu hiện tại</label>
+                            <input type="password"
+                                   id="currentPassword"
+                                   class="form-control"
+                                   placeholder="Nhập mật khẩu hiện tại">
+                            <small id="passwordStatus" class="text-danger d-none">
+                                Mật khẩu không đúng
+                            </small>
+                        </div>
+
+                        <!-- mật khẩu mới -->
+                        <div class="mb-3 d-none" id="newPasswordBox">
+                            <label class="form-label">Mật khẩu mới</label>
+                            <input type="password"
+                                   id="newPassword"
+                                   class="form-control"
+                                   placeholder="Nhập mật khẩu mới">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Đóng
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div> *@
     </form>
+  
+
 </div>
 
 @section Scripts {
+    @* <script>
+        $('#currentPassword').on('blur', function () {
+            let password = $(this).val();
+            if (!password) return;
+
+            $.ajax({
+                url: '@Url.Action("CheckPassword", "Users", new { area = "Admin" })',
+                type: 'POST',
+                data: {
+                    id: $('input[name="Id"]').val(),
+                    password: password,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function (res) {
+                    if (res === true) {
+                        $('#newPasswordBox').removeClass('d-none');
+                        $('#passwordStatus').addClass('d-none');
+                    } else {
+                        $('#newPasswordBox').addClass('d-none');
+                        $('#passwordStatus').removeClass('d-none');
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        // gán mật khẩu mới vào input ẩn
+        $('#newPassword').on('input', function () {
+            $('#hiddenNewPassword').val($(this).val());
+        });
+
+        // reset popup khi đóng
+        $('#changePasswordModal').on('hidden.bs.modal', function () {
+            $('#currentPassword').val('');
+            $('#newPassword').val('');
+            $('#hiddenNewPassword').val('');
+            $('#newPasswordBox').addClass('d-none');
+            $('#passwordStatus').addClass('d-none');
+        });
+    </script> *@
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
 }

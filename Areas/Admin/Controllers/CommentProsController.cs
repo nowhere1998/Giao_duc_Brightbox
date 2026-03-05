@@ -22,7 +22,7 @@ namespace MyShop.Areas.Admin.Controllers
         // GET: Admin/CommentPros
         public async Task<IActionResult> Index(string? name, int page = 1, int pageSize = 30)
         {
-            var query = _context.CommentPros.Include(x => x.Product).OrderBy(x => x.Id).AsNoTracking();
+            var query = _context.CommentPros.Include(x => x.Product).Include(x => x.Customer).OrderBy(x => x.Id).AsNoTracking();
             if (!string.IsNullOrWhiteSpace(name))
             {
                 query = query.Where(x => x.Name.ToLower().Contains(name.ToLower().Trim())).OrderBy(x => x.Id);
@@ -66,7 +66,8 @@ namespace MyShop.Areas.Admin.Controllers
         // GET: Admin/CommentPros/Create
         public IActionResult Create()
         {
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name");
             return View();
         }
 
@@ -75,7 +76,7 @@ namespace MyShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Comment1,Date,Rate,CustomerId,ProductId,ImageUrl")] CommentPro commentPro)
+        public async Task<IActionResult> Create(CommentPro commentPro)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +84,8 @@ namespace MyShop.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", commentPro.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", commentPro.ProductId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", commentPro.CustomerId);
             return View(commentPro);
         }
 
@@ -100,7 +102,8 @@ namespace MyShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", commentPro.ProductId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", commentPro.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", commentPro.ProductId);
             return View(commentPro);
         }
 
@@ -109,7 +112,7 @@ namespace MyShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Comment1,Date,Rate,CustomerId,ProductId,ImageUrl")] CommentPro commentPro)
+        public async Task<IActionResult> Edit(int id , CommentPro commentPro)
         {
             if (id != commentPro.Id)
             {
@@ -136,43 +139,24 @@ namespace MyShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", commentPro.ProductId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", commentPro.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", commentPro.ProductId);
             return View(commentPro);
         }
 
-        // GET: Admin/CommentPros/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Admin/News/Delete/5
+        public IActionResult Delete(int id)
         {
-            if (id == null)
-            {
+            var model = _context.CommentPros.FirstOrDefault(a => a.Id == id);
+            if (model == null)
                 return NotFound();
-            }
 
-            var commentPro = await _context.CommentPros
-                .Include(c => c.Product)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (commentPro == null)
-            {
-                return NotFound();
-            }
+            _context.CommentPros.Remove(model);
+            _context.SaveChanges();
 
-            return View(commentPro);
+            return RedirectToAction("Index");
         }
 
-        // POST: Admin/CommentPros/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var commentPro = await _context.CommentPros.FindAsync(id);
-            if (commentPro != null)
-            {
-                _context.CommentPros.Remove(commentPro);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
 
         private bool CommentProExists(int id)
         {
