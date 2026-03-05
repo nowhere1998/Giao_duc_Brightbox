@@ -17,20 +17,24 @@ namespace MyShop.Controllers
 			return View();
 		}
 
-		/*[Route("viec-lam-chi-tiet/{slug}")]
-		public IActionResult Chitiet(string slug = "", string s = "")
+		[Route("viec-lam-chi-tiet/{id:int}")]
+		public IActionResult Chitiet(int id = 0, string s = "")
 		{
-			var tintuc = _context.Recruitments.FirstOrDefault(x => x.Tag == slug) ?? new News();
-			var news = _context.News
+			var vieclam = _context.Recruitments.FirstOrDefault(x => x.RecruitmentId == id) ?? new Recruitment();
+			if (vieclam == null)
+			{
+				return RedirectToAction("Index");
+			}
+			var listVieclam = _context.News
 				.OrderByDescending(x => x.Id)
 				.Where(x => x.Active == 1)
 				.Skip(0)
 				.Take(3)
 				.ToList();
 
-			ViewBag.News = news;
+			ViewBag.ListVieclam = listVieclam;
 			ViewBag.Search = s;
-			return View("viec-lam-chi-tiet", tintuc);
-		}*/
+			return View("viec-lam-chi-tiet", vieclam);
+		}
 	}
 }

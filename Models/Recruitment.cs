@@ -30,7 +30,7 @@ namespace MyShop.Models
 
         public int? GroupRecruitmentId { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public int Status { get; set; }
 
